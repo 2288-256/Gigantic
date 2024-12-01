@@ -1,6 +1,8 @@
-Gigantic Plugin
+Unofficial Gigantic Plugin
 ======
-Gigantic Plugin（以下、当プラグイン）は、[ギガンティック☆整地鯖](https://seichi.click)（以下、当サーバ）のSpigotプラグインです。<br />
+Unofficial Gigantic Plugin (仮称) は、seichi.click network で公開されていた [整地鯖(春)](https://www.seichi.network/spring) のSpigotプラグインをGPL-3.0ライセンスの条件下でフォークした非公式プラグインです。<br /><br />
+整地鯖(春)で使用されていたプラグインのソースコードは[こちら](https://github.com/GiganticMinecraft/Gigantic) (Public archive)<br /><br />
+整地鯖(春)との変更点はこちら (制作中)
 
 Description
 ---
