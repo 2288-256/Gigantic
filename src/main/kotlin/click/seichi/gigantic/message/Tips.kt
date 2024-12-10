@@ -34,15 +34,6 @@ enum class Tips(
                             "${ChatColor.WHITE}" +
                             "集めるとレリックに変換できるぞ！"
             ), 2L), { Achievement.FIRST_WILL.isGranted(it) }),
-    VOTE(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "投票ポイントを貯めて、お好みのエフェクトと交換だ！" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "${ChatColor.AQUA}" +
-                            "https://minecraft.jp/servers/54d3529e4ddda180780041a7"
-            ), 2L)),
     OPTIFINE(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
@@ -59,15 +50,6 @@ enum class Tips(
                             "元祖整地鯖(春)非公式Wiki→" +
                             "${ChatColor.AQUA}" +
                             "https://springseichi.sokuhou.wiki/"
-            ), 2L)),
-    DONATION(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "当サーバでは、寄付を受け付けています" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "寄付はこちらから→${ChatColor.AQUA}" +
-                            "https://goo.gl/forms/8ZR3MJwtSeTDkGST2"
             ), 2L)),
     HOME(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
@@ -104,12 +86,6 @@ enum class Tips(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
                             "${ChatColor.WHITE}" +
                             "地形にハマったときは，テレポートメニューから初期スポーンへGO"
-            ), 2L)),
-    VOTE_ON_NOT_LOGIN(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "ログインせずに投票しても特典は配布されるぞ！"
             ), 2L)),
     RELIC_INFO(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
