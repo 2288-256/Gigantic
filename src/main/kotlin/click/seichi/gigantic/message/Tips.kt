@@ -14,14 +14,6 @@ enum class Tips(
         private val linedMessage: LinedChatMessage,
         private val sendingCondition: (Player) -> Boolean = { true }
 ) {
-    DISCORD(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "整地鯖(春)Discord->" +
-                            "${ChatColor.AQUA}" +
-                            "https://discord.gg/nmhjtC5"
-            ), 2L)),
     COMBO(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
@@ -42,22 +34,6 @@ enum class Tips(
                             "${ChatColor.WHITE}" +
                             "集めるとレリックに変換できるぞ！"
             ), 2L), { Achievement.FIRST_WILL.isGranted(it) }),
-    SERVER_MAP(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "みんな大好きサーバマップ->" +
-                            "${ChatColor.AQUA}" +
-                            "http://map.spring.seichi.click/"
-            ), 2L)),
-    CAUTION_1(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "整地鯖(春)に関するご質問->" +
-                            "${ChatColor.AQUA}" +
-                            "https://discord.gg/nmhjtC5"
-            ), 2L)),
     VOTE(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
@@ -80,17 +56,9 @@ enum class Tips(
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
                             "${ChatColor.WHITE}" +
-                            "非公式Wiki→" +
+                            "元祖整地鯖(春)非公式Wiki→" +
                             "${ChatColor.AQUA}" +
                             "https://springseichi.sokuhou.wiki/"
-            ), 2L)),
-    TWITTER(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "公式Twitterアカウント->" +
-                            "${ChatColor.AQUA}" +
-                            "https://twitter.com/springseichi"
             ), 2L)),
     DONATION(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
@@ -142,16 +110,6 @@ enum class Tips(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
                             "${ChatColor.WHITE}" +
                             "ログインせずに投票しても特典は配布されるぞ！"
-            ), 2L)),
-    LOBBY(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "ロビーサーバへの移動は" +
-                            "${ChatColor.AQUA}" +
-                            "/hub" +
-                            "${ChatColor.WHITE}" +
-                            "を使おう"
             ), 2L)),
     RELIC_INFO(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
