@@ -70,6 +70,7 @@ object SettingMenu : Menu() {
         // ツール切り替え設定
         registerButton(17, SettingButtons.TOOL_SWITCH_SETTING)
         // テクスチャ切り替え設定
-        registerButton(15, SettingButtons.TEXTURE)
+        // 権利関連が不明のため無効化
+        // registerButton(15, SettingButtons.TEXTURE)
     }
 }
