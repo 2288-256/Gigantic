@@ -57,10 +57,12 @@ object BagButtons {
                 lore.addAll(listOf(
                         ProfileMessages.PROFILE_LEVEL(player.wrappedLevel),
                         ProfileMessages.PROFILE_EXP(player.wrappedLevel, player.wrappedExp),
-                        ProfileMessages.PROFILE_VOTE_POINT(player.totalVote),
+                        // 投票・寄付機能がないためコメントアウト
+                        // ProfileMessages.PROFILE_VOTE_POINT(player.totalVote),
+                        // ProfileMessages.PROFILE_DONATION(player.totalDonation),
+
                         // TODO Pomme実装後に実装
-//                        ProfileMessages.PROFILE_POMME(player.totalPomme),
-                        ProfileMessages.PROFILE_DONATION(player.totalDonation)
+//                        ProfileMessages.PROFILE_POMME(player.totalPomme)
                 ).map { it.asSafety(player.wrappedLocale) }
                 )
                 if (Achievement.MANA_STONE.isGranted(player)) {
