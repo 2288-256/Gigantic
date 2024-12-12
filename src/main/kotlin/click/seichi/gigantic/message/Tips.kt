@@ -14,14 +14,6 @@ enum class Tips(
         private val linedMessage: LinedChatMessage,
         private val sendingCondition: (Player) -> Boolean = { true }
 ) {
-    DISCORD(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "整地鯖(春)Discord->" +
-                            "${ChatColor.AQUA}" +
-                            "https://discord.gg/nmhjtC5"
-            ), 2L)),
     COMBO(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
@@ -42,31 +34,6 @@ enum class Tips(
                             "${ChatColor.WHITE}" +
                             "集めるとレリックに変換できるぞ！"
             ), 2L), { Achievement.FIRST_WILL.isGranted(it) }),
-    SERVER_MAP(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "みんな大好きサーバマップ->" +
-                            "${ChatColor.AQUA}" +
-                            "http://map.spring.seichi.click/"
-            ), 2L)),
-    CAUTION_1(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "整地鯖(春)に関するご質問->" +
-                            "${ChatColor.AQUA}" +
-                            "https://discord.gg/nmhjtC5"
-            ), 2L)),
-    VOTE(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "投票ポイントを貯めて、お好みのエフェクトと交換だ！" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "${ChatColor.AQUA}" +
-                            "https://minecraft.jp/servers/54d3529e4ddda180780041a7"
-            ), 2L)),
     OPTIFINE(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
@@ -80,26 +47,9 @@ enum class Tips(
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
                             "${ChatColor.WHITE}" +
-                            "非公式Wiki→" +
+                            "元祖整地鯖(春)非公式Wiki→" +
                             "${ChatColor.AQUA}" +
                             "https://springseichi.sokuhou.wiki/"
-            ), 2L)),
-    TWITTER(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "公式Twitterアカウント->" +
-                            "${ChatColor.AQUA}" +
-                            "https://twitter.com/springseichi"
-            ), 2L)),
-    DONATION(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "当サーバでは、寄付を受け付けています" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "寄付はこちらから→${ChatColor.AQUA}" +
-                            "https://goo.gl/forms/8ZR3MJwtSeTDkGST2"
             ), 2L)),
     HOME(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
@@ -113,6 +63,14 @@ enum class Tips(
                             "${ChatColor.WHITE}" +
                             "運営チームのなりすましに注意！"
             ), 2L)),
+    CONTACT_US_2(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                            "${ChatColor.WHITE}" +
+                            "お問い合わせはこちらから->" +
+                            "${ChatColor.AQUA}" +
+                            "https://forms.gle/PMMiXbGrRATTVReP9"
+                    ), 2L)),
     FRIEND(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
@@ -137,29 +95,28 @@ enum class Tips(
                             "${ChatColor.WHITE}" +
                             "地形にハマったときは，テレポートメニューから初期スポーンへGO"
             ), 2L)),
-    VOTE_ON_NOT_LOGIN(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "ログインせずに投票しても特典は配布されるぞ！"
-            ), 2L)),
-    LOBBY(LinedChatMessage(ChatMessageProtocol.CHAT,
-            LocalizedText(
-                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
-                            "${ChatColor.WHITE}" +
-                            "ロビーサーバへの移動は" +
-                            "${ChatColor.AQUA}" +
-                            "/hub" +
-                            "${ChatColor.WHITE}" +
-                            "を使おう"
-            ), 2L)),
     RELIC_INFO(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
                             "${ChatColor.WHITE}" +
                             "レリック一覧から最後にボーナスが適用されたレリックが見れる!!"
             ), 2L)),
-
+    SERVER_MAP(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                            "${ChatColor.WHITE}" +
+                            "みんな大好きサーバマップ->" +
+                            "${ChatColor.AQUA}" +
+                            "https://map.seichi-haru.pgw.jp/"
+            ), 2L)),
+    CONTACT_US_1(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                            "${ChatColor.WHITE}" +
+                            "不具合報告や要望はこちら->" +
+                            "${ChatColor.AQUA}" +
+                            "https://forms.gle/PMMiXbGrRATTVReP9"
+            ), 2L))
     ;
 
     fun sendTo(player: Player) {

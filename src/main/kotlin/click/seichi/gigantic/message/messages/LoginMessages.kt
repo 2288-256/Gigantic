@@ -20,58 +20,50 @@ object LoginMessages {
                             (1..53).joinToString("") { "-" } +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}" +
-                            "整地鯖(春)" +
+                            "非公式整地鯖(春)" +
                             "${ChatColor.WHITE}" +
                             "へようこそ!" +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.AQUA}${ChatColor.BOLD}" +
-                            "オープンβテスト" +
-                            "${ChatColor.WHITE}" +
-                            "中の為、" +
-                            "${ChatColor.RED}${ChatColor.BOLD}" +
-                            "レベルのリセット" +
-                            "${ChatColor.WHITE}" +
-                            "等が" +
+                            "このサーバーは整地鯖(春)をGPL-3.0 licenseの条件でForkした"+
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.RED}${ChatColor.BOLD}"+
+                            "非公式サーバーです。" +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.WHITE}" +
-                            "起こる可能性がありますことを予めご了承ください" +
+                            "ソースコード: " +
+                            "${ChatColor.YELLOW}" +
+                            "https://github.com/2288-256/Unofficial-Gigantic" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.WHITE}" +
+                            "実装予定の機能・発生中の不具合: " +
+                            "${ChatColor.YELLOW}" +
+                            "https://github.com/2288-256/Unofficial-Gigantic/issues" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.WHITE}" +
+                            "リリースノート: " +
+                            "${ChatColor.YELLOW}" +
+                            "https://github.com/2288-256/Unofficial-Gigantic/releases" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.WHITE}" +
+                            "お問い合わせフォーム(機能追加の要望・通報): " +
+                            "${ChatColor.YELLOW}" +
+                            "https://forms.gle/PMMiXbGrRATTVReP9" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.WHITE}" +
                             "※" +
                             "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}" +
-                            "整地鯖(春)" +
+                            "本サーバー 非公式整地鯖(春)" +
                             "${ChatColor.WHITE}" +
                             "に関するお問い合わせを" +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.GREEN}${ChatColor.BOLD}" +
-                            "ギガンティック整地鯖" +
+                            "ギガンティック整地鯖・整地鯖(春)" +
                             "${ChatColor.WHITE}" +
-                            "運営チームに行わないでください" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}" +
-                            "整地鯖(春)" +
-                            "${ChatColor.WHITE}" +
-                            "に関するご質問は" +
-                            "${ChatColor.DARK_PURPLE}${ChatColor.BOLD}" +
-                            "公式ディスコード" +
-                            "${ChatColor.WHITE}" +
-                            "で承ります" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "${ChatColor.WHITE}" +
-                            "公式ディスコード: " +
-                            "${ChatColor.YELLOW}" +
-                            "https://discord.gg/nmhjtC5" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "${ChatColor.WHITE}" +
-                            "寄付受付: " +
-                            "${ChatColor.YELLOW}" +
-                            "https://goo.gl/forms/8ZR3MJwtSeTDkGST2" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "${ChatColor.WHITE}" +
-                            "リソースパック手動ダウンロードリンク↓" +
-                            LinedChatMessage.NEW_LINE_SYMBOL +
-                            "${ChatColor.YELLOW}" +
-                            Config.RESOURCE_FOLDER +
+                            "運営チームに" +
+                            "${ChatColor.RED}${ChatColor.BOLD}"+
+                            "行わないでください" +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.WHITE}" +
                             (1..53).joinToString("") { "-" }
@@ -81,7 +73,7 @@ object LoginMessages {
     val LOGIN_TITLE = TitleMessage(
             title = LocalizedText(
                     Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
-                            "整地鯖(春)"
+                            "非公式整地鯖(春)"
             ), subTitle = null)
 
     val EVENT_SAKURA = LinedChatMessage(ChatMessageProtocol.CHAT, LocalizedText(
@@ -101,13 +93,6 @@ object LoginMessages {
                     " 桜の意志 " +
                     "${ChatColor.WHITE}" +
                     "を獲得して、特別なレリックを手に入れよう!!" +
-                    LinedChatMessage.NEW_LINE_SYMBOL +
-                    "${ChatColor.WHITE}" +
-                    "詳しくは" +
-                    "${ChatColor.DARK_PURPLE}" +
-                    "公式ディスコード" +
-                    "${ChatColor.WHITE}" +
-                    "をチェック!!" +
                     LinedChatMessage.NEW_LINE_SYMBOL +
                     "${ChatColor.LIGHT_PURPLE}" +
                     (1..53).joinToString("") { "-" }
@@ -130,13 +115,6 @@ object LoginMessages {
                     "${ChatColor.WHITE}" +
                     "を獲得して、特別なレリックを手に入れよう!!" +
                     LinedChatMessage.NEW_LINE_SYMBOL +
-                    "${ChatColor.WHITE}" +
-                    "詳しくは" +
-                    "${ChatColor.DARK_PURPLE}" +
-                    "公式ディスコード" +
-                    "${ChatColor.WHITE}" +
-                    "をチェック!!" +
-                    LinedChatMessage.NEW_LINE_SYMBOL +
                     "${ChatColor.AQUA}" +
                     (1..53).joinToString("") { "-" }
     ), 0L)
@@ -157,13 +135,6 @@ object LoginMessages {
                     " 楓の意志 " +
                     "${ChatColor.WHITE}" +
                     "を獲得して、特別なレリックを手に入れよう!!" +
-                    LinedChatMessage.NEW_LINE_SYMBOL +
-                    "${ChatColor.WHITE}" +
-                    "詳しくは" +
-                    "${ChatColor.DARK_PURPLE}" +
-                    "公式ディスコード" +
-                    "${ChatColor.WHITE}" +
-                    "をチェック!!" +
                     LinedChatMessage.NEW_LINE_SYMBOL +
                     "${ChatColor.GOLD}" +
                     (1..53).joinToString("") { "-" }
@@ -186,13 +157,6 @@ object LoginMessages {
                     "${ChatColor.WHITE}" +
                     "を獲得して、特別なレリックを手に入れよう!!" +
                     LinedChatMessage.NEW_LINE_SYMBOL +
-                    "${ChatColor.WHITE}" +
-                    "詳しくは" +
-                    "${ChatColor.DARK_PURPLE}" +
-                    "公式ディスコード" +
-                    "${ChatColor.WHITE}" +
-                    "をチェック!!" +
-                    LinedChatMessage.NEW_LINE_SYMBOL +
                     "${ChatColor.AQUA}" +
                     (1..53).joinToString("") { "-" }
     ), 0L)
@@ -212,13 +176,6 @@ object LoginMessages {
                     " 魔王の盃 " +
                     "${ChatColor.WHITE}" +
                     "をプレゼント!!" +
-                    LinedChatMessage.NEW_LINE_SYMBOL +
-                    "${ChatColor.WHITE}" +
-                    "詳しくは" +
-                    "${ChatColor.DARK_PURPLE}" +
-                    "公式ディスコード" +
-                    "${ChatColor.WHITE}" +
-                    "をチェック!!" +
                     LinedChatMessage.NEW_LINE_SYMBOL +
                     (1..53).joinToString("") { "-" }.toRainbow()
     ))

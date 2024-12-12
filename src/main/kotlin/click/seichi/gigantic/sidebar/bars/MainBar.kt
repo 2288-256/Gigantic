@@ -44,7 +44,7 @@ object MainBar : SideBar("info") {
 
     override fun getTitle(player: Player): String {
         return "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}" +
-                "整地鯖(春)"
+                "非公式整地鯖(春)"
     }
 
     override fun getMessageMap(player: Player): Map<SideBarRow, String> {
@@ -81,7 +81,7 @@ object MainBar : SideBar("info") {
             map[SideBarRow.THIRTEEN] = "${Defaults.SIDEBAR_HIDE_COLOR}___"
 
         map[SideBarRow.FOURTEEN] = "${ChatColor.YELLOW}" +
-                "       seichi.click       "
+                "  seichi-haru.pgw.jp  "
 
         return map
     }

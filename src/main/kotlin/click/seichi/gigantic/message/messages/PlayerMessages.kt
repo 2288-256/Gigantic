@@ -193,9 +193,9 @@ object PlayerMessages {
                 LocalizedText(
                         Locale.JAPANESE.let {
                             it to "${ChatColor.WHITE}" +
-                                    "======" +
+                                    "=====" +
                                     "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}" +
-                                    "整地鯖(春)" +
+                                    "非公式整地鯖(春)" +
                                     "${ChatColor.WHITE}" +
                                     "======" +
                                     "\n" +
@@ -226,11 +226,11 @@ object PlayerMessages {
                 ),
                 LocalizedText(
                         Locale.JAPANESE to "${ChatColor.WHITE}" +
-                                "======" +
+                                "===" +
                                 "${ChatColor.AQUA}${ChatColor.BOLD}" +
-                                "seichi.click" +
+                                "seichi-haru.pgw.jp" +
                                 "${ChatColor.WHITE}" +
-                                "======"
+                                "==="
                 )
         )
     }
