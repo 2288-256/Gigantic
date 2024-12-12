@@ -24,17 +24,46 @@ object LoginMessages {
                             "${ChatColor.WHITE}" +
                             "へようこそ!" +
                             LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.AQUA}${ChatColor.BOLD}" +
+                            "このサーバーは整地鯖(春)をGPL-3.0 licenseの条件でForkした"+
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.RED}${ChatColor.BOLD}"+
+                            "非公式サーバーです。" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.WHITE}" +
+                            "ソースコード: " +
+                            "${ChatColor.YELLOW}" +
+                            "https://github.com/2288-256/Unofficial-Gigantic" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.WHITE}" +
+                            "実装予定の機能・発生中の不具合: " +
+                            "${ChatColor.YELLOW}" +
+                            "https://github.com/2288-256/Unofficial-Gigantic/issues" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.WHITE}" +
+                            "リリースノート: " +
+                            "${ChatColor.YELLOW}" +
+                            "https://github.com/2288-256/Unofficial-Gigantic/releases" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            "${ChatColor.WHITE}" +
+                            "お問い合わせフォーム(機能追加の要望・通報): " +
+                            "${ChatColor.YELLOW}" +
+                            "https://forms.gle/PMMiXbGrRATTVReP9" +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
+                            LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.WHITE}" +
                             "※" +
                             "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}" +
-                            "非公式整地鯖(春)" +
+                            "本サーバー 非公式整地鯖(春)" +
                             "${ChatColor.WHITE}" +
                             "に関するお問い合わせを" +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.GREEN}${ChatColor.BOLD}" +
                             "ギガンティック整地鯖・整地鯖(春)" +
                             "${ChatColor.WHITE}" +
-                            "運営チームに行わないでください" +
+                            "運営チームに" +
+                            "${ChatColor.RED}${ChatColor.BOLD}"+
+                            "行わないでください" +
                             LinedChatMessage.NEW_LINE_SYMBOL +
                             "${ChatColor.WHITE}" +
                             (1..53).joinToString("") { "-" }
