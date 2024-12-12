@@ -2,7 +2,7 @@ Unofficial Gigantic Plugin
 ======
 Unofficial Gigantic Plugin (仮称) は、seichi.click network で公開されていた [整地鯖(春)](https://www.seichi.network/spring) のSpigotプラグインをGPL-3.0ライセンスの条件下でフォークした非公式プラグインです。<br /><br />
 整地鯖(春)で使用されていたプラグインのソースコードは[こちら](https://github.com/GiganticMinecraft/Gigantic) (Public archive)<br /><br />
-整地鯖(春)との変更点はこちら (制作中)
+整地鯖(春)との変更点は[こちら](https://github.com/2288-256/Unofficial-Gigantic/releases)
 
 Description
 ---
