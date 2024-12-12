@@ -63,6 +63,14 @@ enum class Tips(
                             "${ChatColor.WHITE}" +
                             "運営チームのなりすましに注意！"
             ), 2L)),
+    CONTACT_US_2(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                            "${ChatColor.WHITE}" +
+                            "お問い合わせはこちらから->" +
+                            "${ChatColor.AQUA}" +
+                            "https://forms.gle/PMMiXbGrRATTVReP9"
+                    ), 2L)),
     FRIEND(LinedChatMessage(ChatMessageProtocol.CHAT,
             LocalizedText(
                     Locale.JAPANESE to Defaults.TIPS_PREFIX +
@@ -93,7 +101,22 @@ enum class Tips(
                             "${ChatColor.WHITE}" +
                             "レリック一覧から最後にボーナスが適用されたレリックが見れる!!"
             ), 2L)),
-
+    SERVER_MAP(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                            "${ChatColor.WHITE}" +
+                            "みんな大好きサーバマップ->" +
+                            "${ChatColor.AQUA}" +
+                            "https://map.seichi-haru.pgw.jp/"
+            ), 2L)),
+    CONTACT_US_1(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                    Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                            "${ChatColor.WHITE}" +
+                            "不具合報告や要望はこちら->" +
+                            "${ChatColor.AQUA}" +
+                            "https://forms.gle/PMMiXbGrRATTVReP9"
+            ), 2L))
     ;
 
     fun sendTo(player: Player) {
