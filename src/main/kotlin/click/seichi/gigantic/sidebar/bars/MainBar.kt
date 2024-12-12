@@ -81,7 +81,7 @@ object MainBar : SideBar("info") {
             map[SideBarRow.THIRTEEN] = "${Defaults.SIDEBAR_HIDE_COLOR}___"
 
         map[SideBarRow.FOURTEEN] = "${ChatColor.YELLOW}" +
-                "       seichi.click       "
+                "  seichi-haru.pgw.jp  "
 
         return map
     }
