@@ -33,6 +33,10 @@ enum class ToggleSetting(
     SEE_OTHER_WILL_SPIRIT(5, LocalizedText(
             Locale.JAPANESE to "他の人の意志の表示"
     ), true),
+    COMBO_POSITION_FIX(6, LocalizedText(
+            Locale.JAPANESE to "コンボ表示位置の修正"
+        ), true
+    ),
     ;
 
     fun getName(locale: Locale) = localizedName.asSafety(locale)
