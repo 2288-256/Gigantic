@@ -303,4 +303,13 @@ object AchievementMessages {
             }
     ), 45L)
 
+    val UPDATE_USE_SWORD = LinedChatMessage(ChatMessageProtocol.CHAT, LocalizedText(
+        Locale.JAPANESE.let {
+            it to "${ChatColor.AQUA}" +
+                    "ツールに剣が追加されました。初期設定で自動で切り替わります。" +
+                    LinedChatMessage.NEW_LINE_SYMBOL +
+                    "${ChatColor.AQUA}" +
+                    "詳細設定内のツール切り替え設定で設定できます。"
+        }
+    ))
 }

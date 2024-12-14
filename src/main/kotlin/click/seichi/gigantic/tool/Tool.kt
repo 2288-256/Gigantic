@@ -21,7 +21,7 @@ enum class Tool(
     PICKEL(1, HandItems.PICKEL),
     SHOVEL(2, HandItems.SHOVEL),
     AXE(3, HandItems.AXE),
-    //SWORD(4, HandItems.SWORD)
+    SWORD(4, HandItems.SWORD)
     ;
 
     companion object {
@@ -150,6 +150,8 @@ enum class Tool(
                 Material.MELON -> AXE
 
                 Material.SMOOTH_STONE -> SHOVEL
+
+                Material.COBWEB -> SWORD
 
                 Material.SPONGE,
                 Material.WET_SPONGE -> null

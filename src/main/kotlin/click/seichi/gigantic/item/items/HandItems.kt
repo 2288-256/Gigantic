@@ -69,6 +69,20 @@ object HandItems {
         }
     }
 
+    val SWORD = object : HandItem {
+        override fun toShownItemStack(player: Player): ItemStack? {
+            return itemStackOf(Material.DIAMOND_SWORD) {
+                setDisplayName("${ChatColor.AQUA}${ChatColor.ITALIC}" +
+                        HandItemMessages.SWORD.asSafety(player.wrappedLocale))
+                addLore(*HandItemMessages.SWORD_LORE
+                        .map { it.asSafety(player.wrappedLocale) }
+                        .toTypedArray()
+                )
+                modifyItemMeta(this, player)
+            }
+        }
+    }
+
     private fun modifyItemMeta(itemStack: ItemStack, player: Player) {
         itemStack.run {
             itemMeta = itemMeta?.apply {

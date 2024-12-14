@@ -397,6 +397,12 @@ enum class Achievement(
     {
         it.offer(Keys.APTITUDE_MAP[Will.REI]!!, true)
     }, grantMessage = AchievementMessages.WILL(Will.REI)),
+
+    // 剣の不具合対応
+    UPDATE_USE_SWORD(900, { true }, action =
+        {
+            Tool.SWORD.grant(it)
+        }, grantMessage = AchievementMessages.UPDATE_USE_SWORD),
     ;
 
     /**1から順に [update] される**/
