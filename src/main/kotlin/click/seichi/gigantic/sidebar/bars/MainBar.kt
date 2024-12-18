@@ -57,31 +57,91 @@ object MainBar : SideBar("info") {
         map[SideBarRow.TWO] = "${Defaults.SIDEBAR_HIDE_COLOR}_"
 
         map[SideBarRow.THREE] = "${ChatColor.GREEN}${ChatColor.BOLD}通常破壊: " +
-                if (info.mineBlockPerMinute >= 99999999.toBigDecimal()) "${ChatColor.RED}測定不能"
-                else "${ChatColor.WHITE}${info.mineBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
+                if (info.multiBlockPerMinute >= 1000000000.toBigDecimal()) {
+                    "${ChatColor.RED}測定不能"
+                } else if (info.multiBlockPerMinute >= 1000000.toBigDecimal()) {
+                    val formattedValue = (info.multiBlockPerMinute / 1000000.toBigDecimal())
+                        .setScale(1, RoundingMode.HALF_UP) // 小数点以下1桁まで
+                    "${ChatColor.WHITE}${formattedValue}M/分"
+                } else {
+                    "${ChatColor.WHITE}${info.multiBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
+                }
 
-        if (Achievement.SPELL_MULTI_BREAK.isGranted(player))
+        if (Achievement.SPELL_MULTI_BREAK.isGranted(player)) {
             map[SideBarRow.FOUR] = "${ChatColor.DARK_AQUA}${ChatColor.BOLD}魔法破壊: " +
-                    if (info.multiBlockPerMinute >= 99999999.toBigDecimal()) "${ChatColor.RED}測定不能"
-                    else "${ChatColor.WHITE}${info.multiBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
+                    if (info.multiBlockPerMinute >= 1000000000.toBigDecimal()) {
+                        "${ChatColor.RED}測定不能"
+                    } else if (info.multiBlockPerMinute >= 1000000.toBigDecimal()) {
+                        val formattedValue = (info.multiBlockPerMinute / 1000000.toBigDecimal())
+                            .setScale(1, RoundingMode.HALF_UP) // 小数点以下1桁まで
+                        "${ChatColor.WHITE}${formattedValue}M/分"
+                    } else {
+                        "${ChatColor.WHITE}${info.multiBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
+                    }
+        }
 
-        if (Achievement.FIRST_RELIC.isGranted(player))
+
+        if (Achievement.FIRST_RELIC.isGranted(player)) {
             map[SideBarRow.FIVE] = "${ChatColor.GOLD}${ChatColor.BOLD}レリック: " +
-                    if (info.relicBonusPerMinute >= (99999.99).toBigDecimal()) "${ChatColor.RED}測定不能"
-                    else "${ChatColor.WHITE}${info.relicBonusPerMinute.setScale(2, RoundingMode.HALF_UP)}/分"
+                if (info.relicBonusPerMinute >= (99999.99).toBigDecimal()) {
+                    when {
+                        info.relicBonusPerMinute >= 1000000000.toBigDecimal() -> {
+                            "${ChatColor.RED}測定不能"
+                        }
+                        
+                        info.relicBonusPerMinute >= 1000000.toBigDecimal() -> {
+                            val formattedValue = (info.relicBonusPerMinute / 1000000.toBigDecimal())
+                                .setScale(2, RoundingMode.HALF_UP)
+                            "${ChatColor.WHITE}${formattedValue}M/分"
+                        }
+        
+                        info.relicBonusPerMinute >= 1000.toBigDecimal() -> {
+                            val formattedValue = (info.relicBonusPerMinute / 1000.toBigDecimal())
+                                .setScale(2, RoundingMode.HALF_UP)
+                            "${ChatColor.WHITE}${formattedValue}K/分"
+                        }
+        
+                        else -> "${ChatColor.RED}測定不能"
+                    }
+                } else {
+                    "${ChatColor.WHITE}${info.relicBonusPerMinute.setScale(2, RoundingMode.HALF_UP)}/分"
+                }
+        }        
 
         map[SideBarRow.SIX] = "${Defaults.SIDEBAR_HIDE_COLOR}__"
 
-        if (Achievement.MANA_STONE.isGranted(player))
+        if (Achievement.MANA_STONE.isGranted(player)) {
             map[SideBarRow.SEVEN] = "${ChatColor.AQUA}${ChatColor.BOLD}  マナ  : " +
-                    if (info.manaPerMinute >= (99999.99).toBigDecimal()) "${ChatColor.RED}測定不能"
-                    else "${ChatColor.WHITE}${info.manaPerMinute.setScale(2, RoundingMode.HALF_UP)}/分"
+                    if (info.manaPerMinute >= (99999.99).toBigDecimal()) {
+                        when {
+                            info.relicBonusPerMinute >= 1000000000.toBigDecimal() -> {
+                                "${ChatColor.RED}測定不能"
+                            }
+                            info.manaPerMinute >= 1000000.toBigDecimal() -> {
+                                val formattedValue = (info.manaPerMinute / 1000000.toBigDecimal())
+                                    .setScale(2, RoundingMode.HALF_UP)
+                                "${ChatColor.WHITE}${formattedValue}M/分"
+                            }
+
+                            info.manaPerMinute >= 1000.toBigDecimal() -> {
+                                val formattedValue = (info.manaPerMinute / 1000.toBigDecimal())
+                                    .setScale(2, RoundingMode.HALF_UP)
+                                "${ChatColor.WHITE}${formattedValue}K/分"
+                            }
+
+                            else -> "${ChatColor.RED}測定不能"
+                        }
+                    } else {
+                        "${ChatColor.WHITE}${info.manaPerMinute.setScale(2, RoundingMode.HALF_UP)}/分"
+                    }
+        }
+
 
         if (Achievement.MANA_STONE.isGranted(player))
             map[SideBarRow.THIRTEEN] = "${Defaults.SIDEBAR_HIDE_COLOR}___"
 
-        map[SideBarRow.FOURTEEN] = "${ChatColor.YELLOW}" +
-                "  seichi-haru.pgw.jp  "
+        map[SideBarRow.FOURTEEN] = "${ChatColor.RED}${ChatColor.BOLD}" +
+                "     DebugServer     "
 
         return map
     }
@@ -131,20 +191,20 @@ object MainBar : SideBar("info") {
             level = player.wrappedLevel
 
             recordQueue.addFirst(
-                    Record(
-                            player.getWrappedExp(ExpReason.MINE_BLOCK),
-                            player.getWrappedExp(ExpReason.SPELL_MULTI_BREAK),
-                            player.getWrappedExp(ExpReason.RELIC_BONUS),
-                            player.mana
-                    )
+                Record(
+                    player.getWrappedExp(ExpReason.MINE_BLOCK),
+                    player.getWrappedExp(ExpReason.SPELL_MULTI_BREAK),
+                    player.getWrappedExp(ExpReason.RELIC_BONUS),
+                    player.mana
+                )
             )
         }
 
         private class Record(
-                val mineBlock: BigDecimal,
-                val multiBlock: BigDecimal,
-                val relicBonus: BigDecimal,
-                val mana: BigDecimal
+            val mineBlock: BigDecimal,
+            val multiBlock: BigDecimal,
+            val relicBonus: BigDecimal,
+            val mana: BigDecimal
         ) {
             val createdAt: DateTime = DateTime.now()
         }
