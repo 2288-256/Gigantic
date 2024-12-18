@@ -140,8 +140,8 @@ object MainBar : SideBar("info") {
         if (Achievement.MANA_STONE.isGranted(player))
             map[SideBarRow.THIRTEEN] = "${Defaults.SIDEBAR_HIDE_COLOR}___"
 
-        map[SideBarRow.FOURTEEN] = "${ChatColor.RED}${ChatColor.BOLD}" +
-                "     DebugServer     "
+        map[SideBarRow.FOURTEEN] = "${ChatColor.YELLOW}" +
+                "  seichi-haru.pgw.jp  "
 
         return map
     }
