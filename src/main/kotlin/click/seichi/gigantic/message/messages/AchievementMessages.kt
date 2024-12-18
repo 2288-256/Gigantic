@@ -279,20 +279,14 @@ object AchievementMessages {
                         "エーテルを100個集めたら，メニューにあるレリック生成器を使って" +
                         LinedChatMessage.NEW_LINE_SYMBOL +
                         "${ChatColor.GRAY}" +
-                        "レリックを獲得できるぞ" +
-                        LinedChatMessage.NEW_LINE_SYMBOL +
-                        "${ChatColor.YELLOW}" +
-                        "投票特典が増えた"
+                        "レリックを獲得できるぞ"
             }
     ), 45L)
 
     val FIRST_ADVANCED_WILL = LinedChatMessage(ChatMessageProtocol.CHAT, LocalizedText(
             Locale.JAPANESE.let {
                 it to "${ChatColor.GRAY}" +
-                        "より高度な意志に出会った" +
-                        LinedChatMessage.NEW_LINE_SYMBOL +
-                        "${ChatColor.YELLOW}" +
-                        "投票特典が増えた"
+                        "より高度な意志に出会った"
             }
     ), 45L)
 
@@ -303,4 +297,13 @@ object AchievementMessages {
             }
     ), 45L)
 
+    val UPDATE_USE_SWORD = LinedChatMessage(ChatMessageProtocol.CHAT, LocalizedText(
+        Locale.JAPANESE.let {
+            it to "${ChatColor.AQUA}" +
+                    "ツールに剣が追加されました。初期設定で自動で切り替わります。" +
+                    LinedChatMessage.NEW_LINE_SYMBOL +
+                    "${ChatColor.AQUA}" +
+                    "詳細設定内のツール切り替え設定で設定できます。"
+        }
+    ))
 }

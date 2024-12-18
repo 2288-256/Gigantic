@@ -21,7 +21,7 @@ enum class Tool(
     PICKEL(1, HandItems.PICKEL),
     SHOVEL(2, HandItems.SHOVEL),
     AXE(3, HandItems.AXE),
-    //SWORD(4, HandItems.SWORD)
+    SWORD(4, HandItems.SWORD)
     ;
 
     companion object {
@@ -94,6 +94,9 @@ enum class Tool(
                 Material.INFESTED_STONE,
                 Material.INFESTED_STONE_BRICKS,
                 Material.COBBLESTONE,
+                Material.COBBLESTONE_WALL,
+                Material.COBBLESTONE_SLAB,
+                Material.COBBLESTONE_STAIRS,
                 Material.GRANITE,
                 Material.TUBE_CORAL_BLOCK,
                 Material.HORN_CORAL_BLOCK,
@@ -117,7 +120,8 @@ enum class Tool(
                 Material.PODZOL,
                 Material.SNOW_BLOCK,
                 Material.SNOW,
-                Material.MYCELIUM -> SHOVEL
+                Material.MYCELIUM,
+                Material.FARMLAND -> SHOVEL
 
                 Material.BIRCH_LOG,
                 Material.ACACIA_LOG,
@@ -137,12 +141,41 @@ enum class Tool(
                 Material.JUNGLE_PLANKS,
                 Material.ACACIA_PLANKS,
                 Material.DARK_OAK_PLANKS,
+                Material.OAK_SLAB,
+                Material.SPRUCE_SLAB,
+                Material.BIRCH_SLAB,
+                Material.JUNGLE_SLAB,
+                Material.ACACIA_SLAB,
+                Material.DARK_OAK_SLAB,
+                Material.OAK_STAIRS,
+                Material.SPRUCE_STAIRS,
+                Material.BIRCH_STAIRS,
+                Material.JUNGLE_STAIRS,
+                Material.ACACIA_STAIRS,
+                Material.DARK_OAK_STAIRS,
                 Material.OAK_FENCE,
                 Material.SPRUCE_FENCE,
                 Material.BIRCH_FENCE,
                 Material.JUNGLE_FENCE,
                 Material.ACACIA_FENCE,
                 Material.DARK_OAK_FENCE,
+                Material.OAK_FENCE_GATE,
+                Material.SPRUCE_FENCE_GATE,
+                Material.BIRCH_FENCE_GATE,
+                Material.JUNGLE_FENCE_GATE,
+                Material.DARK_OAK_FENCE_GATE,
+                Material.OAK_DOOR,
+                Material.SPRUCE_DOOR,
+                Material.BIRCH_DOOR,
+                Material.JUNGLE_DOOR,
+                Material.ACACIA_DOOR,
+                Material.DARK_OAK_DOOR,
+                Material.OAK_TRAPDOOR,
+                Material.SPRUCE_TRAPDOOR,
+                Material.BIRCH_TRAPDOOR,
+                Material.JUNGLE_TRAPDOOR,
+                Material.ACACIA_TRAPDOOR,
+                Material.DARK_OAK_TRAPDOOR,
                 Material.MUSHROOM_STEM,
                 Material.RED_MUSHROOM_BLOCK,
                 Material.BROWN_MUSHROOM_BLOCK,
@@ -150,6 +183,8 @@ enum class Tool(
                 Material.MELON -> AXE
 
                 Material.SMOOTH_STONE -> SHOVEL
+
+                Material.COBWEB -> SWORD
 
                 Material.SPONGE,
                 Material.WET_SPONGE -> null

@@ -17,6 +17,7 @@ import click.seichi.gigantic.sound.sounds.PlayerSounds
 import click.seichi.gigantic.sound.sounds.SkillSounds
 import click.seichi.gigantic.util.Random
 import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.BlockFace
 import org.bukkit.entity.Player
@@ -67,15 +68,15 @@ object Skills {
     val FLASH = object : Invokable {
 
         val transparentMaterialSet = setOf(
-                Material.AIR,
-                Material.CAVE_AIR,
-                Material.VOID_AIR,
-                Material.WATER,
-                Material.LAVA,
-                Defaults.SKY_WALK_AIR_MATERIAL,
-                Defaults.SKY_WALK_WATER_MATERIAL,
-                Defaults.SKY_WALK_LAVA_MATERIAL,
-                Defaults.SKY_WALK_TORCH_MATERIAL
+            Material.AIR,
+            Material.CAVE_AIR,
+            Material.VOID_AIR,
+            Material.WATER,
+            Material.LAVA,
+            Defaults.SKY_WALK_AIR_MATERIAL,
+            Defaults.SKY_WALK_WATER_MATERIAL,
+            Defaults.SKY_WALK_LAVA_MATERIAL,
+            Defaults.SKY_WALK_TORCH_MATERIAL
         )
 
         val maxDistance = 50
@@ -136,7 +137,7 @@ object Skills {
 
                 SkillAnimations.HEAL.absorb(p, block.centralLocation)
                 PopUp(SimpleAnimation, block.centralLocation.add(0.0, 0.2, 0.0), PopUpMessages.HEAL(diff))
-                        .pop()
+                    .pop()
                 SkillSounds.HEAL.play(block.centralLocation)
             }
         }
@@ -172,9 +173,14 @@ object Skills {
                 Bukkit.getPluginManager().callEvent(ComboEvent(player.combo, player))
 
                 if (ToggleSetting.COMBO.getToggle(player)) {
+                    // ポップアップに判定が吸われて整地体験が悪くなり一部ユーザーが非表示にしている
+                    val PopUpLocation: Location = block.centralLocation
+                    if (ToggleSetting.COMBO_POSITION_FIX.getToggle(player)) {
+                        PopUpLocation.y = PopUpLocation.y + 0.5
+                    }
                     // 現在のコンボ数をプレイヤーに告知
-                    PopUp(SimpleAnimation, block.centralLocation, PopUpMessages.MINE_COMBO(player.combo, player.comboRank))
-                            .pop()
+                    PopUp(SimpleAnimation, PopUpLocation, PopUpMessages.MINE_COMBO(player.combo, player.comboRank))
+                        .pop()
                 }
             }
         }

@@ -15,24 +15,45 @@ enum class ToggleSetting(
         private val localizedName: LocalizedText,
         val default: Boolean
 ) {
-    GAIN_EXP(0, LocalizedText(
+    GAIN_EXP(
+        0, LocalizedText(
             Locale.JAPANESE to "獲得経験値表示"
-    ), false),
-    UNDER_PLAYER(1, LocalizedText(
+        ), false
+    ),
+    UNDER_PLAYER(
+        1, LocalizedText(
             Locale.JAPANESE to "低い位置のブロック破壊警告"
-    ), true),
-    COMBO(2, LocalizedText(
+        ), true
+    ),
+    COMBO(
+        2, LocalizedText(
             Locale.JAPANESE to "コンボ表示"
-    ), true),
-    AUTORCH(3, LocalizedText(
+        ), true
+    ),
+    AUTORCH(
+        3, LocalizedText(
             Locale.JAPANESE to "自動松明設置"
-    ), true),
-    NIGHT_VISION(4, LocalizedText(
+        ), true
+    ),
+    NIGHT_VISION(
+        4, LocalizedText(
             Locale.JAPANESE to "暗視"
-    ), true),
-    SEE_OTHER_WILL_SPIRIT(5, LocalizedText(
+        ), true
+    ),
+    SEE_OTHER_WILL_SPIRIT(
+        5, LocalizedText(
             Locale.JAPANESE to "他の人の意志の表示"
     ), true),
+    COMBO_POSITION_FIX(
+        6, LocalizedText(
+            Locale.JAPANESE to "コンボ表示位置の修正"
+        ), true
+    ),
+    SEE_WILL_BOSSBAR(
+        7, LocalizedText(
+            Locale.JAPANESE to "意志の交感中表示"
+        ), true
+    ),
     ;
 
     fun getName(locale: Locale) = localizedName.asSafety(locale)

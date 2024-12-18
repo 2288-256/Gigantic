@@ -10,6 +10,7 @@ import click.seichi.gigantic.sidebar.Logger
 import click.seichi.gigantic.will.Will
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
+import java.math.RoundingMode
 import java.util.*
 
 /**
@@ -32,31 +33,43 @@ object EthelLogger : Logger("ethel") {
 
     fun add(player: Player, will: Will, amount: Long) {
         val all = player.ethel(will)
-        log(player, "${ChatColor.GREEN}" +
-                "" +
-                "${will.chatColor}${ChatColor.BOLD}" +
-                will.getName(player.wrappedLocale) +
-                "${ChatColor.GREEN}" +
-                "+$amount" +
-                "${ChatColor.DARK_GREEN}" +
-                "(" +
-                "${all.coerceAtMost(999)}" +
-                ")"
+        val formattedAll = if (all > 99999) {
+            "99.99k"
+        } else if (all > 999) {
+            "${(all / 1000.0).toBigDecimal().setScale(2, RoundingMode.HALF_UP)}k"
+        } else {
+            all.toString()
+        }
+        log(
+            player, "${ChatColor.GREEN}" +
+                    "${will.chatColor}${ChatColor.BOLD}" +
+                    will.getName(player.wrappedLocale) +
+                    "${ChatColor.GREEN}" +
+                    "+$amount" +
+                    "${ChatColor.DARK_GREEN}" +
+                    "($formattedAll)"
         )
     }
 
+
     fun use(player: Player, will: Will, amount: Long) {
         val all = player.ethel(will)
-        log(player, "${ChatColor.RED}" +
-                "" +
-                "${will.chatColor}${ChatColor.BOLD}" +
-                will.getName(player.wrappedLocale) +
-                "${ChatColor.RED}" +
-                "-$amount" +
-                "${ChatColor.DARK_RED}" +
-                "(" +
-                "${all.coerceAtMost(999)}" +
-                ")"
+        val formattedAll = if (all > 99999) {
+            "99.99k"
+        } else if (all > 999) {
+            "${(all / 1000.0).toBigDecimal().setScale(2, RoundingMode.HALF_UP)}k"
+        } else {
+            all.toString()
+        }
+        log(
+            player, "${ChatColor.RED}" +
+                    "" +
+                    "${will.chatColor}${ChatColor.BOLD}" +
+                    will.getName(player.wrappedLocale) +
+                    "${ChatColor.RED}" +
+                    "-$amount" +
+                    "${ChatColor.DARK_RED}" +
+                    "($formattedAll)"
         )
     }
 }

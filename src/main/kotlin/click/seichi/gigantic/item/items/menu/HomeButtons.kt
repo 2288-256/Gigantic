@@ -35,45 +35,49 @@ object HomeButtons {
                     null -> itemStackOf(Material.BEDROCK) {
                         // クリックでホームを設定
                         setDisplayName("${ChatColor.GREEN}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
-                                TeleportMessages.REGISTER_HOME.asSafety(player.wrappedLocale)
+                                    TeleportMessages.REGISTER_HOME.asSafety(player.wrappedLocale)
                         )
                     }
                     else -> itemStackOf(Material.RED_BED) {
                         setDisplayName(
-                                "${ChatColor.AQUA}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
-                                        home.name
+                            "${ChatColor.AQUA}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
+                                    home.name
                         )
                         clearLore()
+                        addLore(
+                            "${ChatColor.GRAY}" +
+                                    "座標: %.1f, %.1f, %.1f".format(home.x, home.y, home.z)
+                        )
                         if (player.gameMode != GameMode.SURVIVAL) {
                             addLore(
-                                    "${ChatColor.RED}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
-                                            TeleportMessages.HOME_NOT_SURVIVAL.asSafety(player.wrappedLocale)
+                                "${ChatColor.RED}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
+                                        TeleportMessages.HOME_NOT_SURVIVAL.asSafety(player.wrappedLocale)
                             )
                         } else {
                             addLore(
-                                    "${ChatColor.GREEN}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
-                                            TeleportMessages.CLICK_TO_TELEPORT_HOME.asSafety(player.wrappedLocale)
+                                "${ChatColor.GREEN}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
+                                        TeleportMessages.CLICK_TO_TELEPORT_HOME.asSafety(player.wrappedLocale)
                             )
                         }
 
                         if (deleteMap.containsKey(player.uniqueId) && deleteMap[player.uniqueId] == homeId) {
                             addLore(
-                                    "${ChatColor.RED}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
-                                            TeleportMessages.HOME_DELETE.asSafety(player.wrappedLocale)
+                                "${ChatColor.RED}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
+                                        TeleportMessages.HOME_DELETE.asSafety(player.wrappedLocale)
                             )
                         }
                         addLore(MenuMessages.LINE)
                         addLore(
-                                "${ChatColor.GRAY}" +
-                                        "/home ${home.id + 1} 名前"
+                            "${ChatColor.GRAY}" +
+                                    "/home ${home.id + 1} 名前"
                         )
                         addLore(
-                                "${ChatColor.GRAY}" +
-                                        TeleportMessages.CHANGE_NAME_LORE.asSafety(player.wrappedLocale)
+                            "${ChatColor.GRAY}" +
+                                    TeleportMessages.CHANGE_NAME_LORE.asSafety(player.wrappedLocale)
                         )
                         addLore(
-                                "${ChatColor.DARK_RED}" +
-                                        TeleportMessages.HOME_DELETE_LORE.asSafety(player.wrappedLocale)
+                            "${ChatColor.DARK_RED}" +
+                                    TeleportMessages.HOME_DELETE_LORE.asSafety(player.wrappedLocale)
                         )
 
                     }

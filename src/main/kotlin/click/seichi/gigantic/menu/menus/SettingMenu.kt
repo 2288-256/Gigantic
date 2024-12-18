@@ -30,7 +30,13 @@ object SettingMenu : Menu() {
     init {
         // 色々トグル設定(1..16)
         ToggleSetting.values().forEachIndexed { index, display ->
-            registerButton(index, object : Button {
+            var slotNum = index
+            //見栄えが悪いので7,8スロットにはボタンを置かない
+            if (index >= 7) {
+                slotNum += 2
+            }
+
+            registerButton(slotNum, object : Button {
                 override fun toShownItemStack(player: Player): ItemStack? {
                     val itemStack = if (display.getToggle(player)) {
                         ItemStack(Material.ENDER_EYE)
@@ -38,13 +44,14 @@ object SettingMenu : Menu() {
                         ItemStack(Material.ENDER_PEARL)
                     }
                     return itemStack.apply {
-                        setDisplayName("${ChatColor.WHITE}${ChatColor.BOLD}" +
-                                display.getName(player.wrappedLocale) + ": " +
-                                if (display.getToggle(player)) {
-                                    "${ChatColor.GREEN}${ChatColor.BOLD}ON"
-                                } else {
-                                    "${ChatColor.RED}${ChatColor.BOLD}OFF"
-                                }
+                        setDisplayName(
+                            "${ChatColor.WHITE}${ChatColor.BOLD}" +
+                                    display.getName(player.wrappedLocale) + ": " +
+                                    if (display.getToggle(player)) {
+                                        "${ChatColor.GREEN}${ChatColor.BOLD}ON"
+                                    } else {
+                                        "${ChatColor.RED}${ChatColor.BOLD}OFF"
+                                    }
                         )
                         setLore(ToolSwitchMessages.CLICK_TO_TOGGLE.asSafety(player.wrappedLocale))
                     }

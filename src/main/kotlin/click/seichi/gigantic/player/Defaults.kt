@@ -14,13 +14,17 @@ object Defaults {
     const val TOOL_ID = 2
     const val BELT_ID = 1
     const val EFFECT_ID = 0
+
     // プロフィール更新にかかる時間（秒）
     const val PROFILE_UPDATE_TIME = 1L
+
     // 寄付履歴表示にかかる時間（秒）
     const val DONATE_HISTORY_LOAD_TIME = 1L
+
     // Elytra Settings
     const val ELYTRA_BASE_SPEED = 0.05
     const val ELYTRA_BASE_LAUNCH = 3
+
     // 意志の発生確率
     const val WILL_SPAWN_PROBABILITY = 0.01
 
@@ -46,6 +50,7 @@ object Defaults {
     val SKY_WALK_WATER_MATERIAL = Material.BLUE_STAINED_GLASS
     val SKY_WALK_LAVA_MATERIAL = Material.RED_STAINED_GLASS
     val SKY_WALK_TORCH_MATERIAL = Material.YELLOW_STAINED_GLASS
+    val SKY_WALK_FENCE_MATERIAL = Material.BROWN_STAINED_GLASS
 
     // 1回の投票でもらえる投票p
     val VOTE_POINT_PER_VOTE = 10
@@ -55,19 +60,23 @@ object Defaults {
 
     // 投票特典で1種類につき貰えるエーテル量
     val VOTE_BONUS_ETHEL = 100L
+
     // 投票得点で通常意志をもらえる種類数
     val VOTE_BONUS_BASIC_WILL_NUM = 3
+
     // 投票得点で高度意志をもらえる種類数
     val VOTE_BONUS_ADVANCED_WILL_NUM = 1
 
     // 標準の移動速度
     val WALK_SPEED = 0.2.toBigDecimal()
+
     // ルナフレックスの最大段階
     val LUNA_FLEX_MAX_DEGREE = 10.minus(WALK_SPEED.times(10.toBigDecimal()).toInt())
 
 
     // コンボの1間隔ごとの最大減少コンボ数
     val MAX_DECREASE_COMBO_PER_STEP = 50
+
     // コンボの最大待ち時間（時間）
     val MAX_COMBO_CONTINUATION_HOUR = 1
 
@@ -78,6 +87,7 @@ object Defaults {
 
     // スキル　フォーカストーテムの形成に必要な欠片の数
     val MAX_TOTEM_PIECE = 100
+
     // 欠片の発生確率
     val PIECE_PROBABILITY = 0.02
 
