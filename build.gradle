@@ -9,7 +9,7 @@ buildscript {
 
 //        protcollib_version = '4.5.0-SNAPSHOT'
         slf4j_version = '1.8.0-beta4'
-        exposed_version = '0.14.1'
+        exposed_version = '0.17.14'
     }
     repositories {
         mavenCentral()
