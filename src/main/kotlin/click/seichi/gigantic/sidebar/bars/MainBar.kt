@@ -57,14 +57,14 @@ object MainBar : SideBar("info") {
         map[SideBarRow.TWO] = "${Defaults.SIDEBAR_HIDE_COLOR}_"
 
         map[SideBarRow.THREE] = "${ChatColor.GREEN}${ChatColor.BOLD}通常破壊: " +
-                if (info.multiBlockPerMinute >= 1000000000.toBigDecimal()) {
+                if (info.mineBlockPerMinute >= 1000000000.toBigDecimal()) {
                     "${ChatColor.RED}測定不能"
-                } else if (info.multiBlockPerMinute >= 1000000.toBigDecimal()) {
-                    val formattedValue = (info.multiBlockPerMinute / 1000000.toBigDecimal())
+                } else if (info.mineBlockPerMinute >= 1000000.toBigDecimal()) {
+                    val formattedValue = (info.mineBlockPerMinute / 1000000.toBigDecimal())
                         .setScale(1, RoundingMode.HALF_UP) // 小数点以下1桁まで
                     "${ChatColor.WHITE}${formattedValue}M/分"
                 } else {
-                    "${ChatColor.WHITE}${info.multiBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
+                    "${ChatColor.WHITE}${info.mineBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
                 }
 
         if (Achievement.SPELL_MULTI_BREAK.isGranted(player)) {
