@@ -5,6 +5,7 @@ import click.seichi.gigantic.cache.RankingPlayerCacheMemory
 import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.config.PlayerLevelConfig
 import click.seichi.gigantic.extension.hasAptitude
+import click.seichi.gigantic.message.LinedChatMessage
 import click.seichi.gigantic.message.LocalizedText
 import click.seichi.gigantic.ranking.Score
 import click.seichi.gigantic.relic.Relic
@@ -79,13 +80,11 @@ object ProfileMessages {
                 }
             }
         }
-        if (rank == null || value == null || abovePlayerName == null || aboveDiff == null) {
-            LocalizedText( Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
-        }
-        if (rank == 1){
-            LocalizedText( Locale.JAPANESE to "${ChatColor.GOLD}あなたは現在1位です！")
-        } else {
-            LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank?.minus(1)}位(${abovePlayerName})までとの差: ${ChatColor.WHITE}$aboveDiff")
+        when {
+            rank == 1 -> LocalizedText(Locale.JAPANESE to "${ChatColor.GOLD}あなたは現在1位です！")
+            rank == null || value == null || abovePlayerName == null || aboveDiff == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
+            aboveDiff < 0 -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングが変動しました。更新までお待ち下さい")
+            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.minus(1)}位(${abovePlayerName})までとの差: ${ChatColor.WHITE}$aboveDiff")
         }
     }
     val PROFILE_BELOW_RANKING = { player: Player, value: BigDecimal ->
@@ -110,13 +109,12 @@ object ProfileMessages {
             }
         }
 
-        if (rank == null || value == null || isLastRank == null || belowPlayerName == null || belowDiff == null) {
-            LocalizedText( Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
-        }
-        if (isLastRank){
-            LocalizedText(Locale.JAPANESE to "${ChatColor.GRAY}あなたは現在最下位です...")
-        } else {
-            LocalizedText( Locale.JAPANESE to "${ChatColor.GREEN}${rank?.plus(1)}位(${belowPlayerName})までとの差: ${ChatColor.WHITE}$belowDiff")
+        when {
+            isLastRank == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
+            isLastRank -> LocalizedText(Locale.JAPANESE to "${ChatColor.GRAY}あなたは現在最下位です...")
+            rank == null || value == null || belowPlayerName == null || belowDiff == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
+            belowDiff < 0 -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングが変動しました。更新までお待ち下さい")
+            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.plus(1)}位(${belowPlayerName})までとの差: ${ChatColor.WHITE}$belowDiff")
         }
     }
 
