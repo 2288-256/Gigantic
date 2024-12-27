@@ -4,8 +4,10 @@ import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.config.Config
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.item.Button
+import click.seichi.gigantic.menu.menus.setting.CategorySettingMenu
 import click.seichi.gigantic.menu.menus.setting.ToolSwitchSettingMenu
 import click.seichi.gigantic.message.messages.BagMessages
+import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.sound.sounds.PlayerSounds
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -75,8 +77,10 @@ object SettingButtons {
         }
 
         override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
-            //TODO: CategorySettingMenu実装後、変更
-            return false
+            if (event.inventory.holder === CategorySettingMenu(ToggleSetting.Category.DISPLAY)) return false
+            val menu = CategorySettingMenu(ToggleSetting.Category.DISPLAY)
+            menu.open(player)
+            return true
         }
 
     }
@@ -90,8 +94,10 @@ object SettingButtons {
         }
 
         override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
-            //TODO: CategorySettingMenu実装後、変更
-            return false
+            if (event.inventory.holder === CategorySettingMenu(ToggleSetting.Category.FUNCTION)) return false
+            val menu = CategorySettingMenu(ToggleSetting.Category.FUNCTION)
+            menu.open(player)
+            return true
         }
 
     }
@@ -105,8 +111,10 @@ object SettingButtons {
         }
 
         override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
-            //TODO: CategorySettingMenu実装後、変更
-            return false
+            if (event.inventory.holder === CategorySettingMenu(ToggleSetting.Category.NOTIFICATION)) return false
+            val menu = CategorySettingMenu(ToggleSetting.Category.NOTIFICATION)
+            menu.open(player)
+            return true
         }
 
     }
