@@ -69,7 +69,7 @@ enum class ToggleSetting(
     SCOREBOARD_MANA(
         10, LocalizedText(
             Locale.JAPANESE to "スコアボードにマナの情報を表示"
-        ), true, Category.DISPLAY
+        ), false, Category.DISPLAY
     ),
     TIPS_NOTIFICATION(
         11, LocalizedText(
