@@ -65,5 +65,49 @@ object SettingButtons {
         }
 
     }
+    val DISPLAY_SETTING = object : Button {
+        override fun toShownItemStack(player: Player): ItemStack? {
+            return itemStackOf(Material.ITEM_FRAME) {
+                setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
+                        + BagMessages.DISPLAY_SETTING.asSafety(player.wrappedLocale))
+                setLore(BagMessages.DISPLAY_SETTING_LORE.asSafety(player.wrappedLocale))
+            }
+        }
 
+        override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
+            //TODO: CategorySettingMenu実装後、変更
+            return false
+        }
+
+    }
+    val FUNCTION_SETTING = object : Button {
+        override fun toShownItemStack(player: Player): ItemStack? {
+            return itemStackOf(Material.REDSTONE) {
+                setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
+                        + BagMessages.FUNCTION_SETTING.asSafety(player.wrappedLocale))
+                setLore(BagMessages.FUNCTION_SETTING_LORE.asSafety(player.wrappedLocale))
+            }
+        }
+
+        override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
+            //TODO: CategorySettingMenu実装後、変更
+            return false
+        }
+
+    }
+    val NOTIFICATION_SETTING = object : Button {
+        override fun toShownItemStack(player: Player): ItemStack? {
+            return itemStackOf(Material.BELL) {
+                setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
+                        + BagMessages.NOTIFICATION_SETTING.asSafety(player.wrappedLocale))
+                setLore(BagMessages.NOTIFICATION_SETTING_LORE.asSafety(player.wrappedLocale))
+            }
+        }
+
+        override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
+            //TODO: CategorySettingMenu実装後、変更
+            return false
+        }
+
+    }
 }

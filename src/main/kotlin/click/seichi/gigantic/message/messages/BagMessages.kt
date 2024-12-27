@@ -89,7 +89,30 @@ object BagMessages {
             Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
                     "\"f\" キー を押してツールを変更"
     )
-
+    val DISPLAY_SETTING = LocalizedText(
+            Locale.JAPANESE to "表示設定"
+    )
+    val DISPLAY_SETTING_LORE = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
+            //TODO: 実装後、適切な説明に変更
+                    "未実装"
+    )
+    val FUNCTION_SETTING = LocalizedText(
+            Locale.JAPANESE to "機能設定"
+    )
+    val FUNCTION_SETTING_LORE = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
+            //TODO: 実装後、適切な説明に変更
+                    "未実装"
+    )
+    val NOTIFICATION_SETTING = LocalizedText(
+            Locale.JAPANESE to "通知設定"
+    )
+    val NOTIFICATION_SETTING_LORE = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
+            //TODO: 実装後、適切な説明に変更
+                    "未実装"
+    )
     val VOTE_BONUS = LocalizedText(
             Locale.JAPANESE to "投票特典"
     )
