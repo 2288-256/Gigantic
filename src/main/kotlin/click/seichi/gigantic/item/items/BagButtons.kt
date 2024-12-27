@@ -2,7 +2,6 @@ package click.seichi.gigantic.item.items
 
 import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.acheivement.Achievement
-import click.seichi.gigantic.cache.RankingPlayerCacheMemory
 import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.database.dao.DonateHistory
 import click.seichi.gigantic.database.dao.user.User
@@ -10,7 +9,6 @@ import click.seichi.gigantic.database.table.DonateHistoryTable
 import click.seichi.gigantic.event.events.SenseEvent
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.item.Button
-import click.seichi.gigantic.item.items.menu.RankingButtons
 import click.seichi.gigantic.menu.menus.*
 import click.seichi.gigantic.menu.menus.shop.DonateEffectShopMenu
 import click.seichi.gigantic.menu.menus.shop.VoteEffectShopMenu
@@ -21,7 +19,6 @@ import click.seichi.gigantic.message.messages.menu.*
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.DonateTicket
 import click.seichi.gigantic.quest.Quest
-import click.seichi.gigantic.ranking.Score
 import click.seichi.gigantic.sound.sounds.PlayerSounds
 import click.seichi.gigantic.sound.sounds.WillSpiritSounds
 import click.seichi.gigantic.util.Random

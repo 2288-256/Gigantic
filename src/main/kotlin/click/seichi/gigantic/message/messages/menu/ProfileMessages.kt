@@ -5,7 +5,6 @@ import click.seichi.gigantic.cache.RankingPlayerCacheMemory
 import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.config.PlayerLevelConfig
 import click.seichi.gigantic.extension.hasAptitude
-import click.seichi.gigantic.message.LinedChatMessage
 import click.seichi.gigantic.message.LocalizedText
 import click.seichi.gigantic.ranking.Score
 import click.seichi.gigantic.relic.Relic
