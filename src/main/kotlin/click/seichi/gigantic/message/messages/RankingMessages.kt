@@ -109,5 +109,8 @@ object RankingMessages {
     val CLICK_TO_MY_RANKING_PAGE = LocalizedText(
             Locale.JAPANESE to "${ChatColor.GREEN}${ChatColor.UNDERLINE}クリックして自分がいるページへ"
     )
+    val UPDATE_RANKING = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.YELLOW}[お知らせ] ${ChatColor.GREEN}ランキングが更新されました。"
+    )
 
 }

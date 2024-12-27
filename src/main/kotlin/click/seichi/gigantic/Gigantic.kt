@@ -16,8 +16,10 @@ import click.seichi.gigantic.event.events.TickEvent
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.listener.*
 import click.seichi.gigantic.listener.packet.ExperienceOrbSpawn
+import click.seichi.gigantic.message.messages.RankingMessages
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.ExpReason
+import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.player.skill.Skill
 import click.seichi.gigantic.player.spell.Spell
 import click.seichi.gigantic.player.spell.spells.SkyWalk
@@ -39,6 +41,7 @@ import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.command.CommandExecutor
 import org.bukkit.entity.ArmorStand
+import org.bukkit.entity.Player
 import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 import org.jetbrains.exposed.sql.Database
@@ -291,6 +294,12 @@ class Gigantic : JavaPlugin() {
             RankingPlayerCacheMemory.clearAll()
             RankingPlayerCacheMemory.addAll(*uniqueIdSet.toTypedArray())
         }
+        Bukkit.getServer().onlinePlayers
+            .filterNotNull()
+            .filter { it.isValid && ToggleSetting.UPDATE_RANKING.getToggle(it) }
+            .forEach { player ->
+                player.sendMessage(RankingMessages.UPDATE_RANKING.asSafety(player.wrappedLocale))
+            }
     }
 
 
