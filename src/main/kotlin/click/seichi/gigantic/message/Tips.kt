@@ -125,6 +125,12 @@ enum class Tips(
                         "${ChatColor.AQUA}" +
                         "https://s.seichi-haru.pgw.jp/discord"
             ), 2L)),
+    RANKING_UPDATE_TIPS(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                        "${ChatColor.WHITE}" +
+                        "詳細設定からランキングの更新時に通知を受け取ることができるぞ！"
+            ), 2L)),
     ;
 
     fun sendTo(player: Player) {

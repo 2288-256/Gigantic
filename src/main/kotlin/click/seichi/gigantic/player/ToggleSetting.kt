@@ -54,6 +54,11 @@ enum class ToggleSetting(
             Locale.JAPANESE to "意志の交感中表示"
         ), true
     ),
+    UPDATE_RANKING(
+        8, LocalizedText(
+            Locale.JAPANESE to "ランキングの更新通知"
+        ), false
+    ),
     ;
 
     fun getName(locale: Locale) = localizedName.asSafety(locale)

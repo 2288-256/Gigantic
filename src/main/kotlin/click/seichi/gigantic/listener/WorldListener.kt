@@ -42,25 +42,25 @@ class WorldListener : Listener {
 
     @EventHandler
     fun onWorldSave(event: WorldSaveEvent) {
-        // プレイヤーデータの逐次保存
-        val onlineIdSet = Bukkit.getOnlinePlayers().map { it.uniqueId }.toSet()
+        if (event.world.environment == org.bukkit.World.Environment.NORMAL) {
+            // プレイヤーデータの逐次保存
+            val onlineIdSet = Bukkit.getOnlinePlayers().map { it.uniqueId }.toSet()
 
-        if (onlineIdSet.isEmpty()) return
-
-        runTaskLaterAsync(Defaults.PLAYER_DATA_SAVE_DELAY) {
+            if (onlineIdSet.isEmpty()) return
+            runTaskLaterAsync(Defaults.PLAYER_DATA_SAVE_DELAY) {
             onlineIdSet.forEach { uniqueId ->
                 // 保存処理
                 try {
-                    PlayerCacheMemory.write(uniqueId)
+                PlayerCacheMemory.write(uniqueId)
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                e.printStackTrace()
                 }
             }
-        }
-
-        // ランキングデータの更新
-        runTaskLaterAsync(Defaults.RANK_DATA_SAVE_DELAY) {
+            }
+            // ランキングデータの更新
+            runTaskLaterAsync(Defaults.RANK_DATA_SAVE_DELAY) {
             Gigantic.PLUGIN.updateRanking()
+            }
         }
     }
 

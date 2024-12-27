@@ -59,6 +59,8 @@ object BagButtons {
                 lore.addAll(listOf(
                         ProfileMessages.PROFILE_LEVEL(player.wrappedLevel),
                         ProfileMessages.PROFILE_EXP(player.wrappedLevel, player.wrappedExp),
+                        ProfileMessages.PROFILE_ABOVE_RANKING(player,player.wrappedExp),
+                        ProfileMessages.PROFILE_BELOW_RANKING(player,player.wrappedExp),
                         // 投票・寄付機能がないためコメントアウト
                         // ProfileMessages.PROFILE_VOTE_POINT(player.totalVote),
                         // ProfileMessages.PROFILE_DONATION(player.totalDonation),

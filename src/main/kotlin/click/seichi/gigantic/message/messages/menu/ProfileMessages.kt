@@ -1,8 +1,12 @@
 package click.seichi.gigantic.message.messages.menu
 
+import click.seichi.gigantic.Gigantic
+import click.seichi.gigantic.cache.RankingPlayerCacheMemory
+import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.config.PlayerLevelConfig
 import click.seichi.gigantic.extension.hasAptitude
 import click.seichi.gigantic.message.LocalizedText
+import click.seichi.gigantic.ranking.Score
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.will.Will
 import click.seichi.gigantic.will.WillGrade
@@ -16,6 +20,8 @@ import java.util.*
  * @author tar0ss
  */
 object ProfileMessages {
+    val score = Score.values().first { it == Score.EXP }
+    val ranking = Gigantic.RANKING_MAP[score]
 
     val TITLE = LocalizedText(
             Locale.JAPANESE to "プロフィール"
@@ -51,6 +57,63 @@ object ProfileMessages {
             LocalizedText(
                     Locale.JAPANESE to "${ChatColor.GREEN}経験値: ${ChatColor.WHITE}${exp.setScale(0, RoundingMode.FLOOR)} / ${expToNextLevel.setScale(0, RoundingMode.FLOOR)}"
             )
+        }
+    }
+    val PROFILE_ABOVE_RANKING = { player: Player, value: BigDecimal ->
+        val rank = ranking?.findRank(player.uniqueId)
+        var abovePlayerName: String? = null
+        var aboveDiff: Long? = null
+        if (rank != null) {
+            if (rank > 1) {
+                val aboveRank = rank - 1
+                val aboveUniqueId = ranking?.findUUID(aboveRank)
+                if (aboveUniqueId != null) {
+                    val abovePlayerCache = RankingPlayerCacheMemory.find(aboveUniqueId)
+                    if (abovePlayerCache != null) {
+                        abovePlayerName = abovePlayerCache.getOrPut(Keys.RANK_PLAYER_NAME)
+                        val aboveValue = ranking?.findValue(aboveUniqueId)
+                        if (aboveValue != null) {
+                            aboveDiff = aboveValue - value.toLong()!!
+                        }
+                    }
+                }
+            }
+        }
+        when {
+            rank == 1 -> LocalizedText(Locale.JAPANESE to "${ChatColor.GOLD}あなたは現在1位です！")
+            rank == null || value == null || abovePlayerName == null || aboveDiff == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
+            aboveDiff < 0 -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングが変動しました。更新までお待ち下さい")
+            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.minus(1)}位(${abovePlayerName})までとの差: ${ChatColor.WHITE}$aboveDiff")
+        }
+    }
+    val PROFILE_BELOW_RANKING = { player: Player, value: BigDecimal ->
+        val rank = ranking?.findRank(player.uniqueId)
+
+        val isLastRank = rank != null && rank == ranking?.size
+        var belowPlayerName: String? = null
+        var belowDiff: Long? = null
+
+        if (rank != null){
+            val belowRank = rank + 1
+            val belowUniqueId = ranking?.findUUID(belowRank)
+            if (belowUniqueId != null) {
+                val belowPlayerCache = RankingPlayerCacheMemory.find(belowUniqueId)
+                if (belowPlayerCache != null) {
+                    belowPlayerName = belowPlayerCache.getOrPut(Keys.RANK_PLAYER_NAME)
+                    val belowValue = ranking?.findValue(belowUniqueId)
+                    if (belowValue != null) {
+                        belowDiff = value.toLong()!! - belowValue
+                    }
+                }
+            }
+        }
+
+        when {
+            isLastRank == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
+            isLastRank -> LocalizedText(Locale.JAPANESE to "${ChatColor.GRAY}あなたは現在最下位です...")
+            rank == null || value == null || belowPlayerName == null || belowDiff == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
+            belowDiff < 0 -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングが変動しました。更新までお待ち下さい")
+            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.plus(1)}位(${belowPlayerName})までとの差: ${ChatColor.WHITE}$belowDiff")
         }
     }
 
