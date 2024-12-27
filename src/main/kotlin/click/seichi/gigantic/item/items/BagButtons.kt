@@ -56,8 +56,6 @@ object BagButtons {
 
                 lore.add("${ChatColor.GREEN}MCID: ${ChatColor.WHITE}" + player.name)
 
-                // abovePlayerName, aboveDiff, belowPlayerName, belowDiff を使用して処理を行う
-
                 lore.addAll(listOf(
                         ProfileMessages.PROFILE_LEVEL(player.wrappedLevel),
                         ProfileMessages.PROFILE_EXP(player.wrappedLevel, player.wrappedExp),
