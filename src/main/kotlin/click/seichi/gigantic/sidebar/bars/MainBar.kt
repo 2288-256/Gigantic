@@ -1,12 +1,12 @@
 package click.seichi.gigantic.sidebar.bars
 
 import click.seichi.gigantic.acheivement.Achievement
-import click.seichi.gigantic.extension.getWrappedExp
-import click.seichi.gigantic.extension.mana
-import click.seichi.gigantic.extension.wrappedLevel
+import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.ExpReason
+import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.sidebar.SideBar
+import click.seichi.gigantic.util.NumberUtils.commaSeparated
 import click.seichi.gigantic.util.SideBarRow
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
@@ -54,21 +54,26 @@ object MainBar : SideBar("info") {
         map[SideBarRow.ONE] = "${ChatColor.GREEN}${ChatColor.BOLD} レベル : " +
                 "${ChatColor.WHITE}${info.level}"
 
-        map[SideBarRow.TWO] = "${Defaults.SIDEBAR_HIDE_COLOR}_"
+        if (ToggleSetting.SCOREBOARD_TOTAL_EXP.getToggle(player)) {
+            map[SideBarRow.TWO] = "${ChatColor.GREEN}${ChatColor.BOLD}総経験値: " +
+                "${ChatColor.WHITE}${player.wrappedExp.setScale(0, RoundingMode.FLOOR).commaSeparated()}"
+        }
 
-        map[SideBarRow.THREE] = "${ChatColor.GREEN}${ChatColor.BOLD}通常破壊: " +
-                if (info.multiBlockPerMinute >= 1000000000.toBigDecimal()) {
+        map[SideBarRow.THREE] = "${Defaults.SIDEBAR_HIDE_COLOR}_"
+
+        map[SideBarRow.FOUR] = "${ChatColor.GREEN}${ChatColor.BOLD}通常破壊: " +
+                if (info.mineBlockPerMinute >= 1000000000.toBigDecimal()) {
                     "${ChatColor.RED}測定不能"
-                } else if (info.multiBlockPerMinute >= 1000000.toBigDecimal()) {
-                    val formattedValue = (info.multiBlockPerMinute / 1000000.toBigDecimal())
+                } else if (info.mineBlockPerMinute >= 1000000.toBigDecimal()) {
+                    val formattedValue = (info.mineBlockPerMinute / 1000000.toBigDecimal())
                         .setScale(1, RoundingMode.HALF_UP) // 小数点以下1桁まで
                     "${ChatColor.WHITE}${formattedValue}M/分"
                 } else {
-                    "${ChatColor.WHITE}${info.multiBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
+                    "${ChatColor.WHITE}${info.mineBlockPerMinute.setScale(0, RoundingMode.HALF_UP)}/分"
                 }
 
         if (Achievement.SPELL_MULTI_BREAK.isGranted(player)) {
-            map[SideBarRow.FOUR] = "${ChatColor.DARK_AQUA}${ChatColor.BOLD}魔法破壊: " +
+            map[SideBarRow.FIVE] = "${ChatColor.DARK_AQUA}${ChatColor.BOLD}魔法破壊: " +
                     if (info.multiBlockPerMinute >= 1000000000.toBigDecimal()) {
                         "${ChatColor.RED}測定不能"
                     } else if (info.multiBlockPerMinute >= 1000000.toBigDecimal()) {
@@ -82,7 +87,7 @@ object MainBar : SideBar("info") {
 
 
         if (Achievement.FIRST_RELIC.isGranted(player)) {
-            map[SideBarRow.FIVE] = "${ChatColor.GOLD}${ChatColor.BOLD}レリック: " +
+            map[SideBarRow.SIX] = "${ChatColor.GOLD}${ChatColor.BOLD}レリック: " +
                 if (info.relicBonusPerMinute >= (99999.99).toBigDecimal()) {
                     when {
                         info.relicBonusPerMinute >= 1000000000.toBigDecimal() -> {
@@ -108,10 +113,10 @@ object MainBar : SideBar("info") {
                 }
         }        
 
-        map[SideBarRow.SIX] = "${Defaults.SIDEBAR_HIDE_COLOR}__"
+        map[SideBarRow.SEVEN] = "${Defaults.SIDEBAR_HIDE_COLOR}__"
 
         if (Achievement.MANA_STONE.isGranted(player)) {
-            map[SideBarRow.SEVEN] = "${ChatColor.AQUA}${ChatColor.BOLD}  マナ  : " +
+            map[SideBarRow.EIGHT] = "${ChatColor.AQUA}${ChatColor.BOLD}  マナ  : " +
                     if (info.manaPerMinute >= (99999.99).toBigDecimal()) {
                         when {
                             info.relicBonusPerMinute >= 1000000000.toBigDecimal() -> {
@@ -135,12 +140,14 @@ object MainBar : SideBar("info") {
                         "${ChatColor.WHITE}${info.manaPerMinute.setScale(2, RoundingMode.HALF_UP)}/分"
                     }
         }
-
+        if (ToggleSetting.SCOREBOARD_MANA.getToggle(player)){
+            map[SideBarRow.NINE] = "           ${ChatColor.DARK_AQUA}${player.mana.coerceAtLeast(BigDecimal.ZERO).setScale(1, RoundingMode.HALF_UP)}/${player.maxMana}"
+        }
 
         if (Achievement.MANA_STONE.isGranted(player))
-            map[SideBarRow.THIRTEEN] = "${Defaults.SIDEBAR_HIDE_COLOR}___"
+            map[SideBarRow.TEN] = "${Defaults.SIDEBAR_HIDE_COLOR}___"
 
-        map[SideBarRow.FOURTEEN] = "${ChatColor.YELLOW}" +
+        map[SideBarRow.ELEVEN] = "${ChatColor.YELLOW}" +
                 "  seichi-haru.pgw.jp  "
 
         return map

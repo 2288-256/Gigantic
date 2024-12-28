@@ -33,9 +33,12 @@ Requirement
 publicなメソッドについては、JavaDocsを記載するよう心がけてください。
 その他は各自が必要だと判断した場合のみ記載してください。
 
-## Commit Style
-1コミットあたりの情報は最小限としてください。<br />
-コミットメッセージは英語の動詞から始めることを推奨しています。
+## Commit and PR Style
+PRのタイトルとコミットメッセージは[Conventional Commits](https://www.conventionalcommits.org/ja/v1.0.0/)の形式に従ってください。
+
+## Contributing Guide
+
+貢献方法については[こちら](https://github.com/2288-256/Unofficial-Gigantic/wiki/Contributing-Guide-(%E8%B2%A2%E7%8C%AE%E6%96%B9%E6%B3%95))か[Discord](https://discord.gg/6ccJNEP5G4)の[チャンネル](https://discord.com/channels/1316682322606559305/1316700763954876470)をご覧ください
 
 ## Branch Model
 [Git-flow](https://qiita.com/KosukeSone/items/514dd24828b485c69a05)を簡略化したものを使用します。<br>
