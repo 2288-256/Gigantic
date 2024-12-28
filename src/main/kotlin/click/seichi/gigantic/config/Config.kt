@@ -63,4 +63,6 @@ object Config : SimpleConfiguration("config") {
 
     val SPELL_LUNA_FLEX_MANA_PER_DEGREE by lazy { getDouble("spell.luna_flex.mana_per_degree") }
 
+    val WEBHOOK_DISCORD_LEVEL_NOTIFICATION_URL by lazy { getString("webhook.discord.level_notification_url") }
+
 }
