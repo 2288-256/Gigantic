@@ -5,6 +5,7 @@ import click.seichi.gigantic.config.Config
 import click.seichi.gigantic.config.DebugConfig
 import click.seichi.gigantic.event.events.TickEvent
 import click.seichi.gigantic.message.Tips
+import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.util.Random
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
@@ -41,7 +42,7 @@ class TipsListener : Listener {
         Bukkit.getServer().onlinePlayers
                 .asSequence()
                 .filterNotNull()
-                .filter { it.isValid }
+                .filter { it.isValid && ToggleSetting.TIPS_NOTIFICATION.getToggle(it) }
                 .forEach { player ->
                     message.sendTo(player)
                 }

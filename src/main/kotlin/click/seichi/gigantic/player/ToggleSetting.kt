@@ -13,51 +13,78 @@ import java.util.*
 enum class ToggleSetting(
         val id: Int,
         private val localizedName: LocalizedText,
-        val default: Boolean
+        val default: Boolean,
+        val category: Category
 ) {
     GAIN_EXP(
         0, LocalizedText(
             Locale.JAPANESE to "獲得経験値表示"
-        ), false
+        ), false, Category.DISPLAY
     ),
     UNDER_PLAYER(
         1, LocalizedText(
             Locale.JAPANESE to "低い位置のブロック破壊警告"
-        ), true
+        ), true, Category.FUNCTION
     ),
     COMBO(
         2, LocalizedText(
             Locale.JAPANESE to "コンボ表示"
-        ), true
+        ), true, Category.DISPLAY
     ),
     AUTORCH(
         3, LocalizedText(
             Locale.JAPANESE to "自動松明設置"
-        ), true
+        ), true, Category.FUNCTION
     ),
     NIGHT_VISION(
         4, LocalizedText(
             Locale.JAPANESE to "暗視"
-        ), true
+        ), true, Category.FUNCTION
     ),
     SEE_OTHER_WILL_SPIRIT(
         5, LocalizedText(
             Locale.JAPANESE to "他の人の意志の表示"
-    ), true),
+        ), true, Category.DISPLAY
+    ),
     COMBO_POSITION_FIX(
         6, LocalizedText(
             Locale.JAPANESE to "コンボ表示位置の修正"
-        ), true
+        ), true, Category.FUNCTION
     ),
     SEE_WILL_BOSSBAR(
         7, LocalizedText(
             Locale.JAPANESE to "意志の交感中表示"
-        ), true
+        ), true, Category.FUNCTION
     ),
     UPDATE_RANKING(
         8, LocalizedText(
             Locale.JAPANESE to "ランキングの更新通知"
-        ), false
+        ), false, Category.NOTIFICATION
+    ),
+    MANA_HP_DISPLAY(
+        9, LocalizedText(
+            Locale.JAPANESE to "マナ回復・HP回復の表示"
+        ), true, Category.DISPLAY
+    ),
+    SCOREBOARD_MANA(
+        10, LocalizedText(
+            Locale.JAPANESE to "スコアボードにマナの情報を表示"
+        ), false, Category.DISPLAY
+    ),
+    SCOREBOARD_TOTAL_EXP(
+        10, LocalizedText(
+            Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
+        ), false, Category.DISPLAY
+    ),
+    TIPS_NOTIFICATION(
+        11, LocalizedText(
+            Locale.JAPANESE to "TIPSの通知"
+        ), true, Category.NOTIFICATION
+    ),
+    COMBO_RANKING_NOTIFICATION(
+        12, LocalizedText(
+            Locale.JAPANESE to "コンボランキングの通知"
+        ), true, Category.NOTIFICATION
     ),
     ;
 
@@ -67,4 +94,7 @@ enum class ToggleSetting(
 
     fun toggle(player: Player) = player.transform(Keys.TOGGLE_SETTING_MAP.getValue(this)) { !it }
 
+    enum class Category {
+        DISPLAY, FUNCTION, NOTIFICATION
+    }
 }

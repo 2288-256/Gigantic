@@ -2,6 +2,7 @@ package click.seichi.gigantic.ranking
 
 import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.extension.combo
+import click.seichi.gigantic.player.ToggleSetting
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.scheduler.BukkitRunnable
@@ -66,9 +67,10 @@ class Combo30minRanking {
                 threePlayerCombo == playerCombo -> threePlayerName += ", $playerName"
             }
         }
-
         // 結果通知用
-        Bukkit.getOnlinePlayers().forEach { player ->
+        Bukkit.getOnlinePlayers()
+            .filter { ToggleSetting.COMBO_RANKING_NOTIFICATION.getToggle(it) }
+            .forEach { player ->
             player.sendMessage(
                     "${ChatColor.YELLOW}${ChatColor.BOLD}☆☆☆☆☆☆☆☆" +
                             "${ChatColor.AQUA}${ChatColor.BOLD}定期コンボ量ランキング発表！" +

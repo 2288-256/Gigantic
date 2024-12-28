@@ -135,10 +135,12 @@ object Skills {
                 val diff = nextHealth - p.health
                 p.health = nextHealth
 
-                SkillAnimations.HEAL.absorb(p, block.centralLocation)
-                PopUp(SimpleAnimation, block.centralLocation.add(0.0, 0.2, 0.0), PopUpMessages.HEAL(diff))
-                    .pop()
-                SkillSounds.HEAL.play(block.centralLocation)
+                if (ToggleSetting.MANA_HP_DISPLAY.getToggle(p)) {
+                    SkillAnimations.HEAL.absorb(p, block.centralLocation)
+                    PopUp(SimpleAnimation, block.centralLocation.add(0.0, 0.2, 0.0), PopUpMessages.HEAL(diff))
+                        .pop()
+                    SkillSounds.HEAL.play(block.centralLocation)
+                }
             }
         }
 

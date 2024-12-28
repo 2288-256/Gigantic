@@ -131,6 +131,12 @@ enum class Tips(
                         "${ChatColor.WHITE}" +
                         "詳細設定からランキングの更新時に通知を受け取ることができるぞ！"
             ), 2L)),
+    HIDE_TIPS(LinedChatMessage(ChatMessageProtocol.CHAT,
+            LocalizedText(
+                Locale.JAPANESE to Defaults.TIPS_PREFIX +
+                        "${ChatColor.WHITE}" +
+                        "メニューの詳細設定→通知設定からTIPSをオフにできるぞ！"
+            ), 2L)),
     ;
 
     fun sendTo(player: Player) {
