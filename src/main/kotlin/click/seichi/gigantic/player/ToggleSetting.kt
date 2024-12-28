@@ -71,6 +71,11 @@ enum class ToggleSetting(
             Locale.JAPANESE to "スコアボードにマナの情報を表示"
         ), false, Category.DISPLAY
     ),
+    SCOREBOARD_TOTAL_EXP(
+        10, LocalizedText(
+            Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
+        ), false, Category.DISPLAY
+    ),
     TIPS_NOTIFICATION(
         11, LocalizedText(
             Locale.JAPANESE to "TIPSの通知"
