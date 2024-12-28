@@ -3,9 +3,11 @@ package click.seichi.gigantic.sidebar.bars
 import click.seichi.gigantic.acheivement.Achievement
 import click.seichi.gigantic.extension.getWrappedExp
 import click.seichi.gigantic.extension.mana
+import click.seichi.gigantic.extension.maxMana
 import click.seichi.gigantic.extension.wrappedLevel
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.ExpReason
+import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.sidebar.SideBar
 import click.seichi.gigantic.util.SideBarRow
 import org.bukkit.ChatColor
@@ -135,7 +137,9 @@ object MainBar : SideBar("info") {
                         "${ChatColor.WHITE}${info.manaPerMinute.setScale(2, RoundingMode.HALF_UP)}/分"
                     }
         }
-
+        if (ToggleSetting.SCOREBOARD_MANA.getToggle(player)){
+            map[SideBarRow.EIGHT] = "           ${ChatColor.DARK_AQUA}${player.mana.coerceAtLeast(BigDecimal.ZERO).setScale(1, RoundingMode.HALF_UP)}/${player.maxMana}"
+        }
 
         if (Achievement.MANA_STONE.isGranted(player))
             map[SideBarRow.THIRTEEN] = "${Defaults.SIDEBAR_HIDE_COLOR}___"
