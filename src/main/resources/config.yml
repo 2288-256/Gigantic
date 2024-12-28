@@ -3,6 +3,10 @@ resource:
   default: "Spring_Texture_ver1.2.zip"
   no_particle: "Spring_Texture_No_Particle_ver1.2.zip"
 
+webhook:
+  discord:
+    level_notification_url: ""
+
 tips:
   interval: 5
 

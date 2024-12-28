@@ -5,6 +5,7 @@ import click.seichi.gigantic.belt.Belt
 import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.config.DebugConfig
 import click.seichi.gigantic.extension.*
+import click.seichi.gigantic.message.DiscordWebhookNotifier
 import click.seichi.gigantic.message.LinedChatMessage
 import click.seichi.gigantic.message.Message
 import click.seichi.gigantic.message.messages.AchievementMessages
@@ -57,8 +58,9 @@ enum class Achievement(
             priority = UpdatePriority.LOWEST),
     TUTORIAL(5, {
         it.wrappedLevel >= 200
-    }, broadcastMessage = { AchievementMessages.TUTORIAL_ALL(it) }
-            , broadcastSound = PlayerSounds.ACHIEVE_TUTORIAL),
+    }, action = {DiscordWebhookNotifier.sendLevelNotification(it.name,200)}
+        , broadcastMessage = { AchievementMessages.TUTORIAL_ALL(it) }
+        , broadcastSound = PlayerSounds.ACHIEVE_TUTORIAL),
     FIRST_PRE_SENSE(6, {
         Will.values().firstOrNull { will -> it.isProcessed(will) } != null
     }, grantMessage = AchievementMessages.FIRST_PRE_SENSE),
