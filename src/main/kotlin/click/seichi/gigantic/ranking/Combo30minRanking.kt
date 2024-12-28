@@ -2,7 +2,6 @@ package click.seichi.gigantic.ranking
 
 import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.extension.combo
-import click.seichi.gigantic.extension.info
 import click.seichi.gigantic.player.ToggleSetting
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
