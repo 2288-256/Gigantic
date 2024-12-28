@@ -72,7 +72,8 @@ object SettingButtons {
             return itemStackOf(Material.ITEM_FRAME) {
                 setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
                         + BagMessages.DISPLAY_SETTING.asSafety(player.wrappedLocale))
-                setLore(BagMessages.DISPLAY_SETTING_LORE.asSafety(player.wrappedLocale))
+                addLore(BagMessages.DISPLAY_SETTING_LORE_1.asSafety(player.wrappedLocale))
+                addLore(BagMessages.DISPLAY_SETTING_LORE_2.asSafety(player.wrappedLocale))
             }
         }
 
@@ -89,7 +90,8 @@ object SettingButtons {
             return itemStackOf(Material.REDSTONE) {
                 setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
                         + BagMessages.FUNCTION_SETTING.asSafety(player.wrappedLocale))
-                setLore(BagMessages.FUNCTION_SETTING_LORE.asSafety(player.wrappedLocale))
+                addLore(BagMessages.FUNCTION_SETTING_LORE_1.asSafety(player.wrappedLocale))
+                addLore(BagMessages.FUNCTION_SETTING_LORE_2.asSafety(player.wrappedLocale))
             }
         }
 
@@ -106,7 +108,8 @@ object SettingButtons {
             return itemStackOf(Material.BELL) {
                 setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
                         + BagMessages.NOTIFICATION_SETTING.asSafety(player.wrappedLocale))
-                setLore(BagMessages.NOTIFICATION_SETTING_LORE.asSafety(player.wrappedLocale))
+                addLore(BagMessages.NOTIFICATION_SETTING_LORE_1.asSafety(player.wrappedLocale))
+                addLore(BagMessages.NOTIFICATION_SETTING_LORE_2.asSafety(player.wrappedLocale))
             }
         }
 

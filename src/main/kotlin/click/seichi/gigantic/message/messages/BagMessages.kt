@@ -92,26 +92,35 @@ object BagMessages {
     val DISPLAY_SETTING = LocalizedText(
             Locale.JAPANESE to "表示設定"
     )
-    val DISPLAY_SETTING_LORE = LocalizedText(
-            Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
-            //TODO: 実装後、適切な説明に変更
-                    "未実装"
+    val DISPLAY_SETTING_LORE_1 = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.GRAY}" +
+                    "各種表示に関する設定"
+    )
+    val DISPLAY_SETTING_LORE_2 = LocalizedText(
+        Locale.JAPANESE to "${ChatColor.GRAY}" +
+                "(獲得経験値・コンボなど)"
     )
     val FUNCTION_SETTING = LocalizedText(
             Locale.JAPANESE to "機能設定"
     )
-    val FUNCTION_SETTING_LORE = LocalizedText(
-            Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
-            //TODO: 実装後、適切な説明に変更
-                    "未実装"
+    val FUNCTION_SETTING_LORE_1 = LocalizedText(
+        Locale.JAPANESE to "${ChatColor.GRAY}" +
+                "各種機能に関する設定"
+    )
+    val FUNCTION_SETTING_LORE_2 = LocalizedText(
+        Locale.JAPANESE to "${ChatColor.GRAY}" +
+                "(暗視・交感中表示など)"
     )
     val NOTIFICATION_SETTING = LocalizedText(
             Locale.JAPANESE to "通知設定"
     )
-    val NOTIFICATION_SETTING_LORE = LocalizedText(
-            Locale.JAPANESE to "${ChatColor.LIGHT_PURPLE}" +
-            //TODO: 実装後、適切な説明に変更
-                    "未実装"
+    val NOTIFICATION_SETTING_LORE_1 = LocalizedText(
+        Locale.JAPANESE to "${ChatColor.GRAY}" +
+                "チャットに送信される要素の設定"
+    )
+    val NOTIFICATION_SETTING_LORE_2 = LocalizedText(
+        Locale.JAPANESE to "${ChatColor.GRAY}" +
+                "(ランキング更新・Tipsなど)"
     )
     val VOTE_BONUS = LocalizedText(
             Locale.JAPANESE to "投票特典"
