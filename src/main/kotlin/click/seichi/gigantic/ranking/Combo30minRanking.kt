@@ -68,7 +68,6 @@ class Combo30minRanking {
                 threePlayerCombo == playerCombo -> threePlayerName += ", $playerName"
             }
         }
-        info("COMBOランキング")
         // 結果通知用
         Bukkit.getOnlinePlayers()
             .filter { ToggleSetting.COMBO_RANKING_NOTIFICATION.getToggle(it) }
