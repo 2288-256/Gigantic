@@ -75,6 +75,11 @@ enum class ToggleSetting(
         11, LocalizedText(
             Locale.JAPANESE to "TIPSの通知"
         ), true, Category.NOTIFICATION
+    ),
+    COMBO_RANKING_NOTIFICATION(
+        12, LocalizedText(
+            Locale.JAPANESE to "コンボランキングの通知"
+        ), true, Category.NOTIFICATION
     );
 
     fun getName(locale: Locale) = localizedName.asSafety(locale)
