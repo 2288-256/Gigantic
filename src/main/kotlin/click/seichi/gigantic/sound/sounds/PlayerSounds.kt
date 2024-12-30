@@ -17,6 +17,13 @@ object PlayerSounds {
             volume = 0.5F
     )
 
+    val LEVEL_UP_ANNOUNCEMENT = DetailedSound(
+        Sound.ITEM_TOTEM_USE,
+        SoundCategory.PLAYERS,
+        pitch = 0.7f,
+        volume = 1f
+    )
+
     val OBTAIN_EXP = { combo: Long ->
         DetailedSound(
                 Sound.ENTITY_EXPERIENCE_ORB_PICKUP,

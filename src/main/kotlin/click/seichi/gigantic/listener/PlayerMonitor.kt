@@ -15,6 +15,8 @@ import click.seichi.gigantic.event.events.LevelUpEvent
 import click.seichi.gigantic.event.events.RelicGenerateEvent
 import click.seichi.gigantic.event.events.SenseEvent
 import click.seichi.gigantic.extension.*
+import click.seichi.gigantic.message.DiscordWebhookNotifier
+import click.seichi.gigantic.message.messages.AchievementMessages
 import click.seichi.gigantic.message.messages.GiganticEventMessages
 import click.seichi.gigantic.message.messages.LoginMessages
 import click.seichi.gigantic.message.messages.PlayerMessages
@@ -147,6 +149,12 @@ class PlayerMonitor : Listener {
         PlayerSounds.LEVEL_UP.play(player.location)
 
         Achievement.update(event.player)
+
+        if (event.level !in 1..200 && event.level % 100 == 0) {
+            AchievementMessages.LEVEL_UP_ALL(event.player,event.level).broadcast()
+            PlayerSounds.LEVEL_UP_ANNOUNCEMENT.broadcast()
+            DiscordWebhookNotifier.sendLevelNotification(event.player.name,event.level)
+        }
 
         player.manipulate(CatalogPlayerCache.MANA) {
             val prevMax = it.max
