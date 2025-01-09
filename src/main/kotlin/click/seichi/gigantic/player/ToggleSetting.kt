@@ -51,23 +51,18 @@ enum class ToggleSetting(
             Locale.JAPANESE to "コンボ表示位置の修正"
         ), true, Category.FUNCTION
     ),
-    SEE_WILL_BOSSBAR(
-        7, LocalizedText(
-            Locale.JAPANESE to "意志の交感中表示"
-        ), true, Category.FUNCTION
-    ),
     UPDATE_RANKING(
-        8, LocalizedText(
+        7, LocalizedText(
             Locale.JAPANESE to "ランキングの更新通知"
         ), false, Category.NOTIFICATION
     ),
     MANA_HP_DISPLAY(
-        9, LocalizedText(
+        8, LocalizedText(
             Locale.JAPANESE to "マナ回復・HP回復の表示"
         ), true, Category.DISPLAY
     ),
     SCOREBOARD_MANA(
-        10, LocalizedText(
+        9, LocalizedText(
             Locale.JAPANESE to "スコアボードにマナの情報を表示"
         ), false, Category.DISPLAY
     ),

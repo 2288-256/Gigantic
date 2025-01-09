@@ -17,6 +17,22 @@ enum class Setting(
     val category: ToggleSetting.Category,
     private val descriptions: Map<Int, LocalizedText> = emptyMap()
 ) {
+    SEE_WILL_BOSSBAR(
+        7, LocalizedText(
+            Locale.JAPANESE to "意志の交感中表示"
+        ), 0, 3, ToggleSetting.Category.FUNCTION,
+        mapOf(
+            0 to LocalizedText(
+                Locale.JAPANESE to "表示しない"
+            ),
+            1 to LocalizedText(
+                Locale.JAPANESE to "神友以外表示"
+            ),
+            2 to LocalizedText(
+                Locale.JAPANESE to "すべて表示"
+            )
+        )
+    );
     fun getName(locale: Locale) = localizedName.asSafety(locale)
 
     fun getDescription(player: Player): List<String> {

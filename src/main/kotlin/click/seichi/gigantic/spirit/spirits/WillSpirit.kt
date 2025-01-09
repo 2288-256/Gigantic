@@ -7,7 +7,7 @@ import click.seichi.gigantic.extension.isCrust
 import click.seichi.gigantic.extension.relationship
 import click.seichi.gigantic.message.messages.WillMessages
 import click.seichi.gigantic.player.Defaults
-import click.seichi.gigantic.player.ToggleSetting
+import click.seichi.gigantic.player.Setting
 import click.seichi.gigantic.sound.sounds.WillSpiritSounds
 import click.seichi.gigantic.spirit.Sensor
 import click.seichi.gigantic.spirit.Spirit
@@ -66,8 +66,15 @@ class WillSpirit(
                 }
             // 意志との交感進捗
             // 関係がPARTNER(神友)の場合は範囲無制限なので表示させない
-            if (ToggleSetting.SEE_WILL_BOSSBAR.getToggle(player) && player.relationship(this.will) != WillRelationship.PARTNER) {
-                bossBarUpdate(count, this)
+            when (Setting.SEE_WILL_BOSSBAR.getValue(player)) {
+                1 -> {
+                    if (player.relationship(this.will) != WillRelationship.PARTNER) {
+                        bossBarUpdate(count, this)
+                    }
+                }
+                2 -> {
+                    bossBarUpdate(count, this)
+                }
             }
             },
             { player ->
