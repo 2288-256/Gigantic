@@ -56,28 +56,23 @@ enum class ToggleSetting(
             Locale.JAPANESE to "ランキングの更新通知"
         ), false, Category.NOTIFICATION
     ),
-    MANA_HP_DISPLAY(
-        8, LocalizedText(
-            Locale.JAPANESE to "マナ回復・HP回復の表示"
-        ), true, Category.DISPLAY
-    ),
     SCOREBOARD_MANA(
-        9, LocalizedText(
+        8, LocalizedText(
             Locale.JAPANESE to "スコアボードにマナの情報を表示"
         ), false, Category.DISPLAY
     ),
     SCOREBOARD_TOTAL_EXP(
-        10, LocalizedText(
+        9, LocalizedText(
             Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
         ), false, Category.DISPLAY
     ),
     TIPS_NOTIFICATION(
-        11, LocalizedText(
+        10, LocalizedText(
             Locale.JAPANESE to "TIPSの通知"
         ), true, Category.NOTIFICATION
     ),
     COMBO_RANKING_NOTIFICATION(
-        12, LocalizedText(
+        11, LocalizedText(
             Locale.JAPANESE to "コンボランキングの通知"
         ), true, Category.NOTIFICATION
     ),

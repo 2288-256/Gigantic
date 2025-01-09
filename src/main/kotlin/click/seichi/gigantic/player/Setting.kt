@@ -32,6 +32,25 @@ enum class Setting(
                 Locale.JAPANESE to "すべて表示"
             )
         )
+    ),
+    MANA_HP_DISPLAY(
+        1, LocalizedText(
+            Locale.JAPANESE to "マナ回復・HP回復の表示"
+        ), 0,4, ToggleSetting.Category.DISPLAY,
+        mapOf(
+            0 to LocalizedText(
+                Locale.JAPANESE to "表示"
+            ),
+            1 to LocalizedText(
+                Locale.JAPANESE to "マナ回復のみ非表示"
+            ),
+            2 to LocalizedText(
+                Locale.JAPANESE to "HP回復のみ非表示"
+            ),
+            3 to LocalizedText(
+                Locale.JAPANESE to "両方非表示"
+            )
+        )
     );
     fun getName(locale: Locale) = localizedName.asSafety(locale)
 
