@@ -107,6 +107,7 @@ class CategorySettingMenu(private val category: ToggleSetting.Category) : Menu()
                         runTaskLater(5L) {
                             coolTimeSet.remove(uniqueId)
                         }
+                        setting.rotateValue(player)
                         PlayerSounds.TOGGLE.playOnly(player)
                         reopen(player)
                         player.updateDisplay(applyMainHand = true, applyOffHand = true)
