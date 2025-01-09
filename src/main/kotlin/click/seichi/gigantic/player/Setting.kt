@@ -18,7 +18,7 @@ enum class Setting(
     private val descriptions: Map<Int, LocalizedText> = emptyMap()
 ) {
     SEE_WILL_BOSSBAR(
-        7, LocalizedText(
+        0, LocalizedText(
             Locale.JAPANESE to "意志の交感中表示"
         ), 0, 3, ToggleSetting.Category.FUNCTION,
         mapOf(
