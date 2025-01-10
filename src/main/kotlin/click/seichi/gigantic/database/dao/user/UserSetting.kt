@@ -5,6 +5,10 @@ import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 
+/**
+ * @author 2288-256
+ */
+
 class UserSetting(id: EntityID<Int>) : IntEntity(id) {
     companion object : EntityClass<Int, UserSetting>(UserSettingTable)
 

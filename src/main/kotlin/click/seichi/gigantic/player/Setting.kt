@@ -9,6 +9,10 @@ import org.bukkit.ChatColor
 import org.bukkit.entity.Player
 import java.util.*
 
+/**
+ * @author 2288-256
+ */
+
 enum class Setting(
     val id: Int,
     private val localizedName: LocalizedText,
