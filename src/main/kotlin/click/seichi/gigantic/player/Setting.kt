@@ -51,6 +51,25 @@ enum class Setting(
                 Locale.JAPANESE to "両方非表示"
             )
         )
+    ),
+    RELIC_GENERATION_VALUE(
+        2, LocalizedText(
+            Locale.JAPANESE to "レリックを一度に生成する量"
+        ),0,4,ToggleSetting.Category.FUNCTION,
+        mapOf(
+            0 to LocalizedText(
+                Locale.JAPANESE to "1個"
+            ),
+            1 to LocalizedText(
+                Locale.JAPANESE to "10個"
+            ),
+            2 to LocalizedText(
+                Locale.JAPANESE to "50個"
+            ),
+            3 to LocalizedText(
+                Locale.JAPANESE to "100個"
+            )
+        )
     );
     fun getName(locale: Locale) = localizedName.asSafety(locale)
 

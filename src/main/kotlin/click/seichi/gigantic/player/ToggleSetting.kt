@@ -76,6 +76,11 @@ enum class ToggleSetting(
             Locale.JAPANESE to "コンボランキングの通知"
         ), true, Category.NOTIFICATION
     ),
+    RELIC_GENERATION_RESULT(
+        12, LocalizedText(
+            Locale.JAPANESE to "レリック生成結果をチャットで送信"
+        ), true, Category.NOTIFICATION
+    )
     ;
 
     fun getName(locale: Locale) = localizedName.asSafety(locale)
