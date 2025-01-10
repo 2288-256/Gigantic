@@ -158,7 +158,7 @@ object RelicGeneratorButtons {
             }
 
             if (genMultiValueIndex == 0) {
-                RelicGeneratorMenu.reopen(player)
+                reopen(player)
             } else {
                 close(player)
             }
