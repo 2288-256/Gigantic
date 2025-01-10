@@ -1138,6 +1138,27 @@ object Keys {
         }
     }.toMap()
 
+    val SETTING_MAP: Map<Setting, DatabaseKey<PlayerCache, Int, UserEntity>> = Setting.values().map { display ->
+        display to object : DatabaseKey<PlayerCache, Int, UserEntity> {
+            override val default: Int
+                get() = 0
+
+            override fun read(entity: UserEntity): Int {
+                val userSetting = entity.userSettingMap.getValue(display)
+                return userSetting.value
+            }
+
+            override fun store(entity: UserEntity, value: Int) {
+                val userSetting = entity.userSettingMap.getValue(display)
+                userSetting.value = value
+            }
+
+            override fun satisfyWith(value: Int): Boolean {
+                return true
+            }
+        }
+    }.toMap()
+
     val TITLE = object : Key<PlayerCache, String?> {
         override val default: String?
             get() = null
