@@ -804,7 +804,7 @@ enum class Relic(
             itemStackOf(Material.ALLIUM)
     ) {
         override fun isBonusTarget(block: Block): Boolean {
-            return block.y < 29
+            return block.y <= 29
         }
     },
     BEAUTIFUL_ORE(
