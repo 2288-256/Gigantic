@@ -252,7 +252,7 @@ enum class Relic(
             itemStackOf(Material.LILAC)
     ) {
         override fun isBonusTarget(block: Block): Boolean {
-            return block.y > 85
+            return block.y >= 85
         }
     },
     WHITE_APPLE(
