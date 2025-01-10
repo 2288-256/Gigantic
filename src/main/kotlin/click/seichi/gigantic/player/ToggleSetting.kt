@@ -52,34 +52,34 @@ enum class ToggleSetting(
         ), true, Category.FUNCTION
     ),
     UPDATE_RANKING(
-        7, LocalizedText(
+        8, LocalizedText(
             Locale.JAPANESE to "ランキングの更新通知"
         ), false, Category.NOTIFICATION
     ),
     SCOREBOARD_MANA(
-        8, LocalizedText(
+        10, LocalizedText(
             Locale.JAPANESE to "スコアボードにマナの情報を表示"
         ), false, Category.DISPLAY
     ),
-    SCOREBOARD_TOTAL_EXP(
-        9, LocalizedText(
-            Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
-        ), false, Category.DISPLAY
-    ),
     TIPS_NOTIFICATION(
-        10, LocalizedText(
+        11, LocalizedText(
             Locale.JAPANESE to "TIPSの通知"
         ), true, Category.NOTIFICATION
     ),
     COMBO_RANKING_NOTIFICATION(
-        11, LocalizedText(
+        12, LocalizedText(
             Locale.JAPANESE to "コンボランキングの通知"
         ), true, Category.NOTIFICATION
     ),
     RELIC_GENERATION_RESULT(
-        12, LocalizedText(
+        14, LocalizedText(
             Locale.JAPANESE to "レリック生成結果をチャットで送信"
         ), true, Category.NOTIFICATION
+    ),
+    SCOREBOARD_TOTAL_EXP(
+        13, LocalizedText(
+            Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
+        ), false, Category.DISPLAY
     )
     ;
 
