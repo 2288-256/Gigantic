@@ -11,6 +11,7 @@ import click.seichi.gigantic.message.messages.PopUpMessages
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.Invokable
 import click.seichi.gigantic.player.Setting
+import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.popup.PopUp
 import click.seichi.gigantic.popup.SimpleAnimation
 import click.seichi.gigantic.sound.sounds.PlayerSounds
