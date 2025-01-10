@@ -1357,7 +1357,7 @@ enum class Relic(
             itemStackOf(Material.PRISMARINE_SHARD)
     ) {
         override fun isBonusTarget(block: Block): Boolean {
-            return block.y > 85 && block.biome == Biome.MOUNTAINS
+            return block.y >= 85 && block.biome == Biome.MOUNTAINS
         }
     },
     HITSUMABUSHI(
