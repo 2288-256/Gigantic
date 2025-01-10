@@ -17,7 +17,7 @@ import java.util.*
  */
 object AchievementMessages {
 
-    val TUTORIAL_ALL = { player: Player ->
+    val LEVEL_UP_ALL = { player: Player , level: Int->
         ChatMessage(ChatMessageProtocol.CHAT,
                 LocalizedText(
                         Locale.JAPANESE to "${ChatColor.WHITE}${ChatColor.BOLD}" +
@@ -27,7 +27,7 @@ object AchievementMessages {
                                 "${ChatColor.WHITE}" +
                                 "が" +
                                 "${ChatColor.LIGHT_PURPLE}" +
-                                " Lv200 " +
+                                " Lv$level " +
                                 "${ChatColor.WHITE}" +
                                 "を達成しました。" +
                                 "おめでとうございます!"
