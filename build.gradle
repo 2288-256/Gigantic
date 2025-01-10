@@ -22,7 +22,7 @@ buildscript {
 
 
 group = 'click.seichi'
-version = '1.2.3-UNOFFICIAL'
+version = '1.2.4-UNOFFICIAL'
 
 apply plugin: 'kotlin'
 
