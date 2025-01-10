@@ -278,6 +278,17 @@ class PlayerListener : Listener {
         event.isCancelled = true
     }
 
+    // スポーン付近を破壊した場合問答無用でキャンセル
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    fun cancelBucketSpawnArea(event: PlayerBucketFillEvent) {
+        val player = event.player
+        val block = event.block
+        if (player.gameMode != GameMode.SURVIVAL) return
+        if (!block.isSpawnArea) return
+        PlayerMessages.SPAWN_PROTECT.sendTo(player)
+        event.isCancelled = true
+    }
+
     // ツール以外で破壊したときキャンセル
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     fun cancelNotToolBreaking(event: BlockBreakEvent) {

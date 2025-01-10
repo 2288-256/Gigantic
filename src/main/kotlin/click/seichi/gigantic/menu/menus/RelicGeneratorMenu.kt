@@ -53,6 +53,9 @@ object RelicGeneratorMenu : Menu() {
 
         registerButton(31, RelicGeneratorButtons.GENERATED)
         registerButton(49, RelicGeneratorButtons.GENERATE)
+
+        registerButton(48, RelicGeneratorButtons.GENERATE_NOTIFICATION_SETTING)
+        registerButton(50, RelicGeneratorButtons.GENERATE_VALUE_SETTING)
     }
 
 }

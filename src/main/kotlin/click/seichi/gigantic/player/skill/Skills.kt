@@ -10,6 +10,7 @@ import click.seichi.gigantic.message.messages.PlayerMessages
 import click.seichi.gigantic.message.messages.PopUpMessages
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.Invokable
+import click.seichi.gigantic.player.Setting
 import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.popup.PopUp
 import click.seichi.gigantic.popup.SimpleAnimation
@@ -135,7 +136,7 @@ object Skills {
                 val diff = nextHealth - p.health
                 p.health = nextHealth
 
-                if (ToggleSetting.MANA_HP_DISPLAY.getToggle(p)) {
+                if (Setting.MANA_HP_DISPLAY.getValue(p) in 0..1) {
                     SkillAnimations.HEAL.absorb(p, block.centralLocation)
                     PopUp(SimpleAnimation, block.centralLocation.add(0.0, 0.2, 0.0), PopUpMessages.HEAL(diff))
                         .pop()

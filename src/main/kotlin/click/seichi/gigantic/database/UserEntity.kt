@@ -8,6 +8,7 @@ import click.seichi.gigantic.database.table.PurchaseHistoryTable
 import click.seichi.gigantic.database.table.user.*
 import click.seichi.gigantic.monster.SoulMonster
 import click.seichi.gigantic.player.ExpReason
+import click.seichi.gigantic.player.Setting
 import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.quest.Quest
 import click.seichi.gigantic.relic.Relic
@@ -110,6 +111,16 @@ class UserEntity(uniqueId: UUID, playerName: String) {
             user = this@UserEntity.user
             toggleId = toggleSetting.id
             toggle = toggleSetting.default
+        })
+    }.toMap()
+
+    val userSettingMap = Setting.values().map { setting ->
+        setting to (UserSetting
+                .find { (UserSettingTable.userId eq uniqueId) and (UserSettingTable.settingId eq setting.id) }
+                .firstOrNull() ?: UserSetting.new {
+            user = this@UserEntity.user
+            settingId = setting.id
+            value = setting.default
         })
     }.toMap()
 

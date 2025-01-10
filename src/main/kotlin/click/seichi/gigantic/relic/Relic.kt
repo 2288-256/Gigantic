@@ -756,7 +756,7 @@ enum class Relic(
             itemStackOf(Material.QUARTZ)
     ) {
         override fun isBonusTarget(block: Block): Boolean {
-            return block.type == Material.BLUE_ICE
+            return block.biome == Biome.MUSHROOM_FIELD_SHORE
         }
     },
     ACID_GEAR(

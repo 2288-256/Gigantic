@@ -83,6 +83,27 @@ object HandItems {
         }
     }
 
+    val BUCKET = object : HandItem {
+        override fun toShownItemStack(player: Player): ItemStack? {
+            return itemStackOf(Material.BUCKET) {
+                setDisplayName("${ChatColor.AQUA}${ChatColor.ITALIC}" +
+                        HandItemMessages.BUCKET.asSafety(player.wrappedLocale))
+                addLore(HandItemMessages.BUCKET_LORE.asSafety(player.wrappedLocale))
+                setEnchanted(true)
+                modifyItemMeta(this, player)
+            }
+        }
+
+        override fun tryInteract(player: Player, event: PlayerInteractEvent): Boolean {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(Gigantic.PLUGIN, {
+                if (player.inventory.getItem(player.inventory.heldItemSlot)?.type != Material.BUCKET) {
+                    player.inventory.setItem(player.inventory.heldItemSlot, toShownItemStack(player))
+                }
+            }, 1L)
+            return true
+        }
+    }
+
     private fun modifyItemMeta(itemStack: ItemStack, player: Player) {
         itemStack.run {
             itemMeta = itemMeta?.apply {
@@ -91,7 +112,15 @@ object HandItems {
                 addItemFlags(ItemFlag.HIDE_ENCHANTS)
                 addItemFlags(ItemFlag.HIDE_UNBREAKABLE)
             }
-            ToolEnchantment.values().forEach { it.addIfMatch(player, itemStack) }
+            if (itemStack.type == Material.BUCKET) {
+                ToolEnchantment.INF_DRAIN.addIfMatch(player, itemStack)
+            } else {
+                ToolEnchantment.values().forEach {
+                    if (it != ToolEnchantment.INF_DRAIN) {
+                        it.addIfMatch(player, itemStack)
+                    }
+                }
+            }
         }
     }
 
@@ -296,6 +325,5 @@ object HandItems {
 
         }
     }
-
 
 }

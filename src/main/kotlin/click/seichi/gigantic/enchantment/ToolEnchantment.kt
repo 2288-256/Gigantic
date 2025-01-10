@@ -85,6 +85,17 @@ enum class ToolEnchantment(
             return 1
         }
     },
+    INF_DRAIN(
+        LocalizedText(Locale.JAPANESE to "無限水吸収")
+    ) {
+        override fun isMatch(player: Player, itemStack: ItemStack): Boolean {
+            return true
+        }
+
+        override fun calcLevel(player: Player, itemStack: ItemStack): Int {
+            return 1
+        }
+    },
     ;
 
     protected abstract fun isMatch(player: Player, itemStack: ItemStack): Boolean

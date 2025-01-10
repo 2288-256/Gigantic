@@ -219,5 +219,13 @@ object HandItemMessages {
                     )
             )
 
+    val BUCKET = LocalizedText(
+        Locale.JAPANESE to "不思議なバケツ"
+    )
+
+    val BUCKET_LORE = LocalizedText(
+        Locale.JAPANESE to "${ChatColor.WHITE}" +
+            "どんなに使ってもすぐに液体が消える"
+    )
 
 }

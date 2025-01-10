@@ -51,29 +51,14 @@ enum class ToggleSetting(
             Locale.JAPANESE to "コンボ表示位置の修正"
         ), true, Category.FUNCTION
     ),
-    SEE_WILL_BOSSBAR(
-        7, LocalizedText(
-            Locale.JAPANESE to "意志の交感中表示"
-        ), true, Category.FUNCTION
-    ),
     UPDATE_RANKING(
         8, LocalizedText(
             Locale.JAPANESE to "ランキングの更新通知"
         ), false, Category.NOTIFICATION
     ),
-    MANA_HP_DISPLAY(
-        9, LocalizedText(
-            Locale.JAPANESE to "マナ回復・HP回復の表示"
-        ), true, Category.DISPLAY
-    ),
     SCOREBOARD_MANA(
         10, LocalizedText(
             Locale.JAPANESE to "スコアボードにマナの情報を表示"
-        ), false, Category.DISPLAY
-    ),
-    SCOREBOARD_TOTAL_EXP(
-        10, LocalizedText(
-            Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
         ), false, Category.DISPLAY
     ),
     TIPS_NOTIFICATION(
@@ -86,6 +71,16 @@ enum class ToggleSetting(
             Locale.JAPANESE to "コンボランキングの通知"
         ), true, Category.NOTIFICATION
     ),
+    RELIC_GENERATION_RESULT(
+        14, LocalizedText(
+            Locale.JAPANESE to "レリック生成結果をチャットで送信"
+        ), true, Category.NOTIFICATION
+    ),
+    SCOREBOARD_TOTAL_EXP(
+        13, LocalizedText(
+            Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
+        ), false, Category.DISPLAY
+    )
     ;
 
     fun getName(locale: Locale) = localizedName.asSafety(locale)

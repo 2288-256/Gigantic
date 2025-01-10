@@ -59,7 +59,7 @@ enum class Achievement(
     TUTORIAL(5, {
         it.wrappedLevel >= 200
     }, action = {DiscordWebhookNotifier.sendLevelNotification(it.name,200)}
-        , broadcastMessage = { AchievementMessages.TUTORIAL_ALL(it) }
+        , broadcastMessage = { AchievementMessages.LEVEL_UP_ALL(it,200) }
         , broadcastSound = PlayerSounds.ACHIEVE_TUTORIAL),
     FIRST_PRE_SENSE(6, {
         Will.values().firstOrNull { will -> it.isProcessed(will) } != null

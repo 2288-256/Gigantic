@@ -40,6 +40,7 @@ enum class Belt(
             2 to HandItems.MINE_BURST,
             3 to HandItems.SKY_WALK,
             Defaults.TOTEM_SLOT to HandItems.TOTEM,
+            7 to HandItems.BUCKET,
             8 to HandItems.JUMP
     ),
     ;

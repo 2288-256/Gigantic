@@ -12,7 +12,7 @@ import click.seichi.gigantic.message.messages.PlayerMessages
 import click.seichi.gigantic.message.messages.PopUpMessages
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.Invokable
-import click.seichi.gigantic.player.ToggleSetting
+import click.seichi.gigantic.player.Setting
 import click.seichi.gigantic.popup.PopUp
 import click.seichi.gigantic.popup.SimpleAnimation
 import click.seichi.gigantic.sound.sounds.SpellSounds
@@ -41,7 +41,7 @@ object Spells {
                     wrappedAmount = it.increase(it.max.divide(100.toBigDecimal(), 10, RoundingMode.HALF_UP).times(Config.SPELL_STELLA_CLAIR_RATIO.toBigDecimal()))
                 }
 
-                if (ToggleSetting.MANA_HP_DISPLAY.getToggle(p)) {
+                if (Setting.MANA_HP_DISPLAY.getValue(p) == 0 || Setting.MANA_HP_DISPLAY.getValue(p) == 2) {
                     SpellAnimations.STELLA_CLAIR.absorb(p, block.centralLocation)
                     PopUp(
                         SimpleAnimation,
