@@ -159,6 +159,9 @@ class PlayerCache(private val uniqueId: UUID, private val playerName: String) : 
             Keys.TOGGLE_SETTING_MAP.forEach { (_, key) ->
                 offer(key, key.read(entity))
             }
+            Keys.SETTING_MAP.forEach { (_, key) ->
+                offer(key, key.read(entity))
+            }
         }
     }
 
@@ -274,6 +277,9 @@ class PlayerCache(private val uniqueId: UUID, private val playerName: String) : 
                 key.store(entity, getOrDefault(key))
             }
             Keys.TOGGLE_SETTING_MAP.forEach { (_, key) ->
+                key.store(entity, getOrDefault(key))
+            }
+            Keys.SETTING_MAP.forEach { (_, key) ->
                 key.store(entity, getOrDefault(key))
             }
 
