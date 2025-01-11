@@ -6,9 +6,9 @@ import java.util.*
 
 object SpecialThanksMenuMessages {
 
-    val OFFICAL_SPECIAL_THANKS_DISPLAY = 
+    val OFFICAL_SPECIAL_THANKS_DISPLAY_NAME = 
         LocalizedText(
-            Locale.JAPANESE to "seichi.click network 整地鯖(春)"
+            Locale.JAPANESE to "seichi.click network 整地鯖(春) Special Thanks"
         )
 
 }

@@ -3,8 +3,8 @@ package click.seichi.gigantic.item.items.menu
 import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.item.Button
-import click.seichi.gigantic.menu.menus.*
-import click.seichi.gigantic.message.messages.SpecialThanksMenuMessages
+import click.seichi.gigantic.menu.menus.specialthanks.OfficalSpecialThanksMenu
+import click.seichi.gigantic.message.messages.menu.SpecialThanksMenuMessages
 import click.seichi.gigantic.message.messages.MenuMessages
 import click.seichi.gigantic.message.messages.BagMessages
 import click.seichi.gigantic.sound.sounds.MenuSounds
@@ -21,7 +21,7 @@ object SpecialThanksButtons {
         override fun toShownItemStack(player: Player): ItemStack? {
             return itemStackOf(Material.MUSIC_DISC_13) {
                 setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
-                        + SpecialThanksMenuMessages.UNOFFICAL_SPECIAL_THANKS_LORE.asSafety(player.wrappedLocale))
+                        + SpecialThanksMenuMessages.OFFICAL_SPECIAL_THANKS_DISPLAY_NAME.asSafety(player.wrappedLocale))
                 clearLore()
                 itemMeta = itemMeta?.apply {
                     addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
