@@ -1,13 +1,9 @@
 package click.seichi.gigantic.item.items.menu
 
-import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.item.Button
 import click.seichi.gigantic.menu.menus.specialthanks.OfficalSpecialThanksMenu
 import click.seichi.gigantic.message.messages.menu.SpecialThanksMenuMessages
-import click.seichi.gigantic.message.messages.MenuMessages
-import click.seichi.gigantic.message.messages.BagMessages
-import click.seichi.gigantic.sound.sounds.MenuSounds
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
