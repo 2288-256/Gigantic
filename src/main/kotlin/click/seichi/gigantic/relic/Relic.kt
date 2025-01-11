@@ -252,7 +252,7 @@ enum class Relic(
             itemStackOf(Material.LILAC)
     ) {
         override fun isBonusTarget(block: Block): Boolean {
-            return block.y > 85
+            return block.y >= 85
         }
     },
     WHITE_APPLE(
@@ -804,7 +804,7 @@ enum class Relic(
             itemStackOf(Material.ALLIUM)
     ) {
         override fun isBonusTarget(block: Block): Boolean {
-            return block.y < 29
+            return block.y <= 29
         }
     },
     BEAUTIFUL_ORE(
@@ -1357,7 +1357,7 @@ enum class Relic(
             itemStackOf(Material.PRISMARINE_SHARD)
     ) {
         override fun isBonusTarget(block: Block): Boolean {
-            return block.y > 85 && block.biome == Biome.MOUNTAINS
+            return block.y >= 85 && block.biome == Biome.MOUNTAINS
         }
     },
     HITSUMABUSHI(
