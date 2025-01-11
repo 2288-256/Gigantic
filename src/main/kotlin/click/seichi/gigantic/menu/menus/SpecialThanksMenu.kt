@@ -1,6 +1,7 @@
 package click.seichi.gigantic.menu.menus
 
 import click.seichi.gigantic.extension.wrappedLocale
+import click.seichi.gigantic.item.items.menu.SpecialThanksButtons
 import click.seichi.gigantic.item.items.menu.OfflinePlayerHeadButton
 import click.seichi.gigantic.menu.Menu
 import click.seichi.gigantic.message.messages.BagMessages
@@ -28,6 +29,7 @@ object SpecialThanksMenu : Menu() {
         get() = size - 1
     
     init {
+        registerButton(officialSpecialThanksIndex, SpecialThanksButtons.OFFICIAL_SPECIAL_THANKS)
         var index = 0
         playerMap.forEach { name, uuidString ->
             val uuid = UUID.fromString(uuidString) ?: return@forEach
