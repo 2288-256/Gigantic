@@ -20,9 +20,13 @@ object SpecialThanksMenu : Menu() {
         return BagMessages.SPECIAL_THANKS_TITLE.asSafety(player.wrappedLocale)
     }
 
-    private val playerMap: Map<String, String> = mapOf(
-        // TODO:SpcialThanksをここに記述
-        // "{MCID}" to "{UUID}",
+    private val playerMap: Map<String, Pair<String, String>> = mapOf(
+        "kuroma6666" to ("4e3fbdca-1158-4744-a9b9-c08caf97d254" to "開発協力"),
+        "kora429" to ("58fcfaf8-41b1-4a7d-b506-1e322abbe1a7" to "不具合報告・機能提案"),
+        "mend3141" to ("deda238b-64a3-4931-8a85-f55109a57bb1" to "不具合報告・機能提案"),
+        "LevelingMS" to ("a1965397-bf44-4368-8330-d2f1dbc6de17" to "機能提案"),
+        "kaerusan82433413" to ("9cec894e-9ae3-4a25-97c5-b7a6c55c1376" to "不具合報告"),
+        "Ichinose_4HML" to ("d643195d-c5c1-4ddc-87ad-afa59b843e19" to "機能提案")
     )
 
     private val officialSpecialThanksIndex: Int
