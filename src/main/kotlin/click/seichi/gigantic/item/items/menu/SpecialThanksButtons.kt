@@ -2,7 +2,7 @@ package click.seichi.gigantic.item.items.menu
 
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.item.Button
-import click.seichi.gigantic.menu.menus.specialthanks.OfficalSpecialThanksMenu
+import click.seichi.gigantic.menu.menus.specialthanks.OfficialSpecialThanksMenu
 import click.seichi.gigantic.message.messages.menu.SpecialThanksMenuMessages
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -29,8 +29,8 @@ object SpecialThanksButtons {
         }
 
         override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
-            if (event.inventory.holder === OfficalSpecialThanksMenu) return false
-            OfficalSpecialThanksMenu.open(player)
+            if (event.inventory.holder === OfficialSpecialThanksMenu) return false
+            OfficialSpecialThanksMenu.open(player)
             return true
         }
 

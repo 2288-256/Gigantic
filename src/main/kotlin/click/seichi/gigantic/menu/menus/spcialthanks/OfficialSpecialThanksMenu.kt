@@ -11,7 +11,7 @@ import click.seichi.gigantic.message.messages.BagMessages
 import org.bukkit.entity.Player
 import java.util.*
 
-object OfficalSpecialThanksMenu : Menu() {
+object OfficialSpecialThanksMenu : Menu() {
 
     override val size: Int
         get() = playerMap.size.minus(1).div(9).plus(1).coerceIn(3..6).times(9)
