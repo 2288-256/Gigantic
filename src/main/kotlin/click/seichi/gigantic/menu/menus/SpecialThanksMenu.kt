@@ -35,9 +35,10 @@ object SpecialThanksMenu : Menu() {
     init {
         registerButton(officialSpecialThanksIndex, SpecialThanksButtons.OFFICIAL_SPECIAL_THANKS)
         var index = 0
-        playerMap.forEach { name, uuidString ->
+        playerMap.forEach { (name, playerDisplayData) ->
+            val (uuidString, lore) = playerDisplayData
             val uuid = UUID.fromString(uuidString) ?: return@forEach
-            val button = OfflinePlayerHeadButton(uuid, name)
+            val button = OfflinePlayerHeadButton(uuid, name, lore)
             registerButton(index, button)
             index++
         }
