@@ -1,10 +1,8 @@
 package click.seichi.gigantic.menu.menus.specialthanks
 
 import click.seichi.gigantic.extension.wrappedLocale
-
 import click.seichi.gigantic.menu.Menu
 import click.seichi.gigantic.menu.menus.SpecialThanksMenu
-import click.seichi.gigantic.item.Button
 import click.seichi.gigantic.item.items.menu.OfflinePlayerHeadButton
 import click.seichi.gigantic.item.items.menu.BackButton
 import click.seichi.gigantic.message.messages.BagMessages
