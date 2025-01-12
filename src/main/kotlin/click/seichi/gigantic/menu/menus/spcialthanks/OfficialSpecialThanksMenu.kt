@@ -3,8 +3,10 @@ package click.seichi.gigantic.menu.menus.specialthanks
 import click.seichi.gigantic.extension.wrappedLocale
 
 import click.seichi.gigantic.menu.Menu
+import click.seichi.gigantic.menu.menus.SpecialThanksMenu
 import click.seichi.gigantic.item.Button
 import click.seichi.gigantic.item.items.menu.OfflinePlayerHeadButton
+import click.seichi.gigantic.item.items.menu.BackButton
 import click.seichi.gigantic.message.messages.BagMessages
 import org.bukkit.entity.Player
 import java.util.*
@@ -12,7 +14,7 @@ import java.util.*
 object OfficalSpecialThanksMenu : Menu() {
 
     override val size: Int
-        get() = playerMap.size.minus(1).div(9).plus(1).coerceIn(1..6).times(9)
+        get() = playerMap.size.minus(1).div(9).plus(1).coerceIn(3..6).times(9)
 
     override fun getTitle(player: Player): String {
         return BagMessages.SPECIAL_THANKS_TITLE.asSafety(player.wrappedLocale)
@@ -34,7 +36,11 @@ object OfficalSpecialThanksMenu : Menu() {
             "f_mode" to "d22dc4b7-a1b8-4ff0-a887-9fde3f20970a"
     )
 
+    private val backIndex: Int
+        get() = size - 9
+
     init {
+        registerButton(backIndex, BackButton(this, SpecialThanksMenu))
         var index = 0
         playerMap.forEach { name, uuidString ->
             val uuid = UUID.fromString(uuidString) ?: return@forEach
@@ -43,5 +49,4 @@ object OfficalSpecialThanksMenu : Menu() {
             index++
         }
     }
-
 }
