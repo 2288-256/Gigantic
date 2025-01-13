@@ -1171,6 +1171,7 @@ object Keys {
                 it.missionId to Mission(
                     it.missionId,
                     it.missionType,
+                    it.missionReqSize,
                     it.progress,
                     it.complete,
                     it.date
@@ -1185,6 +1186,7 @@ object Keys {
                     this.user = entity.user
                     this.missionId = missionId
                     this.missionType = mission.missionType
+                    this.missionReqSize = mission.missionReqSize
                     this.progress = mission.progress
                     this.complete = mission.complete
                     this.date = mission.date

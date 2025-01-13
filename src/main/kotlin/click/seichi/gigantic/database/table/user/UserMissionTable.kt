@@ -18,6 +18,8 @@ object UserMissionTable : IntIdTable("users_mission") {
      */
     val missionType = integer("mission_type").default(0)
 
+    val missionReqSize = varchar("mission_req_size", 6).default("")
+
     val progress = integer("mission_progress").default(0)
 
     val complete = bool("mission_complete").default(false)

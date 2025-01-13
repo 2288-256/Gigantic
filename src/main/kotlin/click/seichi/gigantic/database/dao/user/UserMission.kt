@@ -18,6 +18,8 @@ class UserMission(id: EntityID<Int>) : IntEntity(id) {
 
     var missionId by UserMissionTable.missionId
 
+    var missionReqSize by UserMissionTable.missionReqSize
+
     var progress by UserMissionTable.progress
 
     var complete by UserMissionTable.complete
