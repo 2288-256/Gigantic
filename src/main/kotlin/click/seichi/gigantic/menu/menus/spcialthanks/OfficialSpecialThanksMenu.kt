@@ -9,6 +9,9 @@ import click.seichi.gigantic.message.messages.BagMessages
 import org.bukkit.entity.Player
 import java.util.*
 
+/**
+ * @author kuroma6666
+ */
 object OfficialSpecialThanksMenu : Menu() {
 
     override val size: Int

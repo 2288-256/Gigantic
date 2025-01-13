@@ -4,6 +4,9 @@ import click.seichi.gigantic.message.LocalizedText
 import org.bukkit.ChatColor
 import java.util.*
 
+/**
+ * @author kuroma6666
+ */
 object SpecialThanksMenuMessages {
 
     val OFFICAL_SPECIAL_THANKS_DISPLAY_NAME = 

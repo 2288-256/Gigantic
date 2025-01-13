@@ -11,6 +11,9 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 
+/**
+ * @author kuroma6666
+ */
 object SpecialThanksButtons {
     val OFFICIAL_SPECIAL_THANKS = object : Button {
 

@@ -10,6 +10,7 @@ import java.util.*
 
 /**
  * @author tar0ss
+ * @author kuroma6666
  */
 object SpecialThanksMenu : Menu() {
 

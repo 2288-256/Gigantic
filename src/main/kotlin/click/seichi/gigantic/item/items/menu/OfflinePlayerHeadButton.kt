@@ -11,6 +11,7 @@ import java.util.*
 
 /**
  * @author tar0ss
+ * @author kuroma6666
  */
 class OfflinePlayerHeadButton(
         private val uniqueId: UUID,
