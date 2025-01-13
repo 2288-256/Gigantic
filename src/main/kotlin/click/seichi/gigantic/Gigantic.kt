@@ -188,6 +188,7 @@ class Gigantic : JavaPlugin() {
                     UserMuteTable,
                     UserToggleTable,
                     UserSettingTable,
+                    UserMissionTable,
                     // product,
                     PurchaseHistoryTable,
                     //ranking

@@ -120,6 +120,9 @@ class PlayerCache(private val uniqueId: UUID, private val playerName: String) : 
             Keys.STRIP_MINE.let {
                 offer(it, it.read(entity))
             }
+            Keys.MISSION_MAP.let {
+                offer(it, it.read(entity))
+            }
             Keys.EXP_MAP.forEach { (_, key) ->
                 offer(key, key.read(entity))
             }
@@ -238,6 +241,9 @@ class PlayerCache(private val uniqueId: UUID, private val playerName: String) : 
                 it.store(entity, getOrDefault(it))
             }
             Keys.STRIP_MINE.let {
+                it.store(entity, getOrDefault(it))
+            }
+            Keys.MISSION_MAP.let {
                 it.store(entity, getOrDefault(it))
             }
             Keys.EXP_MAP.forEach { (_, key) ->

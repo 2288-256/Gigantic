@@ -16,8 +16,10 @@ import click.seichi.gigantic.database.dao.user.User
 import click.seichi.gigantic.database.dao.user.UserFollow
 import click.seichi.gigantic.database.dao.user.UserHome
 import click.seichi.gigantic.database.dao.user.UserMute
+import click.seichi.gigantic.database.dao.user.UserMission
 import click.seichi.gigantic.database.table.user.UserFollowTable
 import click.seichi.gigantic.database.table.user.UserHomeTable
+import click.seichi.gigantic.database.table.user.UserMissionTable
 import click.seichi.gigantic.database.table.user.UserMuteTable
 import click.seichi.gigantic.effect.GiganticEffect
 import click.seichi.gigantic.menu.RelicCategory
@@ -1158,6 +1160,42 @@ object Keys {
             }
         }
     }.toMap()
+
+    val MISSION_MAP = object : DatabaseKey<PlayerCache, Map<Int, Mission>, UserEntity> {
+        override val default: Map<Int, Mission>
+            get() = mapOf()
+
+        override fun read(entity: UserEntity): Map<Int, Mission> {
+            val userMissionList = entity.userMissionList
+            return userMissionList.map {
+                it.missionId to Mission(
+                    it.missionId,
+                    it.missionType,
+                    it.progress,
+                    it.complete,
+                    it.date
+                )
+            }.toMap()
+        }
+
+        override fun store(entity: UserEntity, value: Map<Int, Mission>) {
+            UserMissionTable.deleteWhere { (UserMissionTable.userId eq entity.user.id.value) }
+            value.forEach { (missionId, mission) ->
+                UserMission.new {
+                    this.user = entity.user
+                    this.missionId = missionId
+                    this.missionType = mission.missionType
+                    this.progress = mission.progress
+                    this.complete = mission.complete
+                    this.date = mission.date
+                }
+            }
+        }
+
+        override fun satisfyWith(value: Map<Int, Mission>): Boolean {
+            return true
+        }
+    }
 
     val TITLE = object : Key<PlayerCache, String?> {
         override val default: String?
