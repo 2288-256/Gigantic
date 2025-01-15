@@ -23,6 +23,7 @@ import click.seichi.gigantic.database.table.user.UserMissionTable
 import click.seichi.gigantic.database.table.user.UserMuteTable
 import click.seichi.gigantic.effect.GiganticEffect
 import click.seichi.gigantic.menu.RelicCategory
+import click.seichi.gigantic.mission.MissionClient
 import click.seichi.gigantic.monster.SoulMonster
 import click.seichi.gigantic.player.*
 import click.seichi.gigantic.quest.Quest
@@ -1161,14 +1162,14 @@ object Keys {
         }
     }.toMap()
 
-    val MISSION_MAP = object : DatabaseKey<PlayerCache, Map<Int, Mission>, UserEntity> {
-        override val default: Map<Int, Mission>
+    val MISSION_MAP = object : DatabaseKey<PlayerCache, Map<Int, MissionClient>, UserEntity> {
+        override val default: Map<Int, MissionClient>
             get() = mapOf()
 
-        override fun read(entity: UserEntity): Map<Int, Mission> {
+        override fun read(entity: UserEntity): Map<Int, MissionClient> {
             val userMissionList = entity.userMissionList
             return userMissionList.map {
-                it.missionId to Mission(
+                it.missionId to MissionClient(
                     it.missionId,
                     it.missionType,
                     it.missionReqSize,
@@ -1179,22 +1180,23 @@ object Keys {
             }.toMap()
         }
 
-        override fun store(entity: UserEntity, value: Map<Int, Mission>) {
+        override fun store(entity: UserEntity, value: Map<Int, MissionClient>) {
             UserMissionTable.deleteWhere { (UserMissionTable.userId eq entity.user.id.value) }
             value.forEach { (missionId, mission) ->
                 UserMission.new {
                     this.user = entity.user
                     this.missionId = missionId
                     this.missionType = mission.missionType
-                    this.missionReqSize = mission.missionReqSize
+                    this.missionReqSize = mission.missionReqSize ?: 0
                     this.progress = mission.progress
                     this.complete = mission.complete
                     this.date = mission.date
                 }
+
             }
         }
 
-        override fun satisfyWith(value: Map<Int, Mission>): Boolean {
+        override fun satisfyWith(value: Map<Int, MissionClient>): Boolean {
             return true
         }
     }
