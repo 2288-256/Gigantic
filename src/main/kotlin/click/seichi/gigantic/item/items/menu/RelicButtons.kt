@@ -46,6 +46,9 @@ object RelicButtons {
                                         it.asSafety(player.wrappedLocale)
                                     }.toTypedArray()
                     )
+                    if (player.getOrPut(Keys.MENU_RELIC_CATEGORY) == category) {
+                        setEnchanted(true)
+                    }
                 }
             }
 
@@ -117,6 +120,9 @@ object RelicButtons {
                                     it.asSafety(player.wrappedLocale)
                                 }.toTypedArray()
                 )
+                if (player.getOrPut(Keys.MENU_RELIC_CATEGORY) == category) {
+                    setEnchanted(true)
+                }
             }
         }
 
@@ -141,6 +147,9 @@ object RelicButtons {
         override fun toShownItemStack(player: Player): ItemStack? {
             return itemStackOf(Material.GRASS_BLOCK) {
                 setDisplayName(player, RelicMenuMessages.ALL_RELIC_MENU_TITLE)
+                if (player.getOrPut(Keys.MENU_RELIC_CATEGORY) == category) {
+                    setEnchanted(true)
+                }
             }
         }
 
@@ -176,6 +185,9 @@ object RelicButtons {
                                     it.asSafety(player.wrappedLocale)
                                 }.toTypedArray()
                 )
+                if (player.getOrPut(Keys.MENU_RELIC_CATEGORY) == category) {
+                    setEnchanted(true)
+                }
             }
         }
 
