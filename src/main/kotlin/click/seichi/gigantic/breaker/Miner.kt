@@ -7,6 +7,7 @@ import click.seichi.gigantic.cache.manipulator.catalog.CatalogPlayerCache
 import click.seichi.gigantic.effect.GiganticEffect
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.messages.PlayerMessages
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.ExpReason
 import click.seichi.gigantic.player.ToggleSetting
@@ -111,6 +112,27 @@ open class Miner : Breaker {
             }
         }
 
+        //MISSION
+        //特定のブロックを破壊する
+        val mission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 3 }
+        if (mission != null) {
+            if (!mission.complete) {
+                val blockMatch = mission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block) }
+                if (blockMatch == true) {
+                    val requiredAmount = Mission.BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(mission.missionDifficulty)
+                    mission.progress++
+                    if (mission.progress >= requiredAmount) {
+                        mission.complete = true
+                        mission.progress = requiredAmount
+                    }
+                    player.transform(Keys.MISSION_MAP) {
+                        it.toMutableMap().apply {
+                            put(mission.missionId, mission)
+                        }
+                    }
+                }
+            }
+        }
 
         // 全てのスキルを通して破壊したブロック数を取得
         val count = player.getOrPut(Keys.BREAK_COUNT)

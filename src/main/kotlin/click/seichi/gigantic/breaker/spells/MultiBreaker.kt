@@ -8,6 +8,7 @@ import click.seichi.gigantic.config.Config
 import click.seichi.gigantic.config.DebugConfig
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.messages.PlayerMessages
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.ExpReason
 import click.seichi.gigantic.relic.Relic
@@ -210,6 +211,27 @@ class MultiBreaker : SpellCaster {
                     relic.calcMultiplier(player)
                 }.sum()
                 source.plus(multiplier)
+            }
+        }
+        //MISSION処理
+        val mission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 3 }
+        if (mission != null) {
+           if (!mission.complete) {
+                val missionClearCount = breakBlockSet.count { b ->
+                    mission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, b) } == true
+                }
+                val requiredAmount = Mission.BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(mission.missionDifficulty)
+                mission.progress += missionClearCount
+                if (mission.progress >= requiredAmount) {
+                    mission.complete = true
+                    mission.progress = requiredAmount
+                }
+
+                player.transform(Keys.MISSION_MAP) {
+                    it.toMutableMap().apply {
+                        put(mission.missionId, mission)
+                    }
+                }
             }
         }
 
