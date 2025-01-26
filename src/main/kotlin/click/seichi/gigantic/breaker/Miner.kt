@@ -114,21 +114,37 @@ open class Miner : Breaker {
 
         //MISSION
         //特定のブロックを破壊する
-        val mission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 3 }
-        if (mission != null) {
-            if (!mission.complete) {
-                val blockMatch = mission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block) }
+        val reqMineMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 3 }
+        if (reqMineMission != null) {
+            if (!reqMineMission.complete) {
+                val blockMatch = reqMineMission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block) }
                 if (blockMatch == true) {
-                    val requiredAmount = Mission.BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(mission.missionDifficulty)
-                    mission.progress++
-                    if (mission.progress >= requiredAmount) {
-                        mission.complete = true
-                        mission.progress = requiredAmount
+                    val requiredAmount = Mission.BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(reqMineMission.missionDifficulty)
+                    reqMineMission.progress++
+                    if (reqMineMission.progress >= requiredAmount) {
+                        reqMineMission.complete = true
+                        reqMineMission.progress = requiredAmount
                     }
                     player.transform(Keys.MISSION_MAP) {
                         it.toMutableMap().apply {
-                            put(mission.missionId, mission)
+                            put(reqMineMission.missionId, reqMineMission)
                         }
+                    }
+                }
+            }
+        }
+        val mineMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 2 }
+        if (mineMission != null) {
+            if (!mineMission.complete) {
+                val requiredAmount = Mission.BLOCK_BREAK.getRequiredAmount(mineMission.missionDifficulty)
+                mineMission.progress++
+                if (mineMission.progress >= requiredAmount) {
+                    mineMission.complete = true
+                    mineMission.progress = requiredAmount
+                }
+                player.transform(Keys.MISSION_MAP) {
+                    it.toMutableMap().apply {
+                        put(mineMission.missionId, mineMission)
                     }
                 }
             }
