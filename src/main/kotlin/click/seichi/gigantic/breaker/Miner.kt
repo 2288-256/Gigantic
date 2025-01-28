@@ -19,6 +19,7 @@ import click.seichi.gigantic.sound.sounds.SkillSounds
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
+import java.math.RoundingMode
 
 /**
  * 通常破壊時の処理
@@ -165,6 +166,26 @@ open class Miner : Breaker {
                 stripCount > 0 -> PlayerMessages.STRIP_EXP(stripCount).sendTo(player)
                 relicBonus > 0.0 -> PlayerMessages.EXP_AND_BONUS(count, relicBonus).sendTo(player)
                 count > 1 -> PlayerMessages.EXP(count).sendTo(player)
+            }
+        }
+
+        val expMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 1 }
+        if (expMission != null) {
+            val totalBonus = count.toBigDecimal() + relicBonus.toBigDecimal()
+                .setScale(2, RoundingMode.HALF_UP) + stripCount.toBigDecimal()
+            info("$totalBonus")
+            if (!expMission.complete) {
+                val requiredAmount = Mission.EXP.getRequiredAmount(expMission.missionDifficulty)
+                expMission.progress += totalBonus.toDouble()
+                if (expMission.progress >= requiredAmount) {
+                    expMission.complete = true
+                    expMission.progress = requiredAmount.toDouble()
+                }
+                player.transform(Keys.MISSION_MAP) {
+                    it.toMutableMap().apply {
+                        put(expMission.missionId, expMission)
+                    }
+                }
             }
         }
 
