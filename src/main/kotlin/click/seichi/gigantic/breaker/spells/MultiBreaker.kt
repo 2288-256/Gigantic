@@ -224,7 +224,7 @@ class MultiBreaker : SpellCaster {
                 mission.progress += missionClearCount
                 if (mission.progress >= requiredAmount) {
                     mission.complete = true
-                    mission.progress = requiredAmount
+                    mission.progress = requiredAmount.toDouble()
                 }
 
                 player.transform(Keys.MISSION_MAP) {

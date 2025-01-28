@@ -20,7 +20,7 @@ object UserMissionTable : IntIdTable("users_mission") {
 
     val missionReqSize = integer("mission_req_size").default(0)
 
-    val progress = integer("mission_progress").default(0)
+    val progress = double("mission_progress").default(0.0)
 
     val complete = bool("mission_complete").default(false)
 

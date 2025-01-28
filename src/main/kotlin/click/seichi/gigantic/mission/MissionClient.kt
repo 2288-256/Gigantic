@@ -11,7 +11,7 @@ class MissionClient(
     var missionId: Int,
     var missionType: Int,
     var missionReqSize: Int?,
-    var progress: Int,
+    var progress: Double,
     var complete: Boolean,
     var date: DateTime
 )

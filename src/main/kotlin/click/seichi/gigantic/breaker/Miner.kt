@@ -124,7 +124,7 @@ open class Miner : Breaker {
                     reqMineMission.progress++
                     if (reqMineMission.progress >= requiredAmount) {
                         reqMineMission.complete = true
-                        reqMineMission.progress = requiredAmount
+                        reqMineMission.progress = requiredAmount.toDouble()
                     }
                     player.transform(Keys.MISSION_MAP) {
                         it.toMutableMap().apply {
@@ -141,7 +141,7 @@ open class Miner : Breaker {
                 mineMission.progress++
                 if (mineMission.progress >= requiredAmount) {
                     mineMission.complete = true
-                    mineMission.progress = requiredAmount
+                    mineMission.progress = requiredAmount.toDouble()
                 }
                 player.transform(Keys.MISSION_MAP) {
                     it.toMutableMap().apply {
