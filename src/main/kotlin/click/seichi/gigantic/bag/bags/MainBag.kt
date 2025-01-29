@@ -16,6 +16,7 @@ object MainBag : Bag() {
         registerButton(13, BagButtons.SPELL)
         // registerButton(15, BagButtons.EFFECT)
         // registerButton(16, BagButtons.SHOP)
+        registerButton(17, BagButtons.MISSION)
 //        registerButton(19, BagButtons.QUEST)
         registerButton(20, BagButtons.WILL)
         registerButton(21, BagButtons.RELIC)

@@ -18,7 +18,11 @@ class UserMission(id: EntityID<Int>) : IntEntity(id) {
 
     var missionId by UserMissionTable.missionId
 
+    var missionDifficulty by UserMissionTable.missionDifficulty
+
     var missionReqSize by UserMissionTable.missionReqSize
+
+    var missionReqBlock by UserMissionTable.missionReqBlock
 
     var progress by UserMissionTable.progress
 

@@ -18,7 +18,11 @@ object UserMissionTable : IntIdTable("users_mission") {
      */
     val missionType = integer("mission_type").default(0)
 
+    val missionDifficulty = integer("mission_difficulty").default(0)
+
     val missionReqSize = integer("mission_req_size").default(0)
+
+    val missionReqBlock = integer("mission_req_block").default(0)
 
     val progress = double("mission_progress").default(0.0)
 

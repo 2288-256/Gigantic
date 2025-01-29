@@ -22,7 +22,9 @@ import click.seichi.gigantic.database.table.user.UserHomeTable
 import click.seichi.gigantic.database.table.user.UserMissionTable
 import click.seichi.gigantic.database.table.user.UserMuteTable
 import click.seichi.gigantic.effect.GiganticEffect
+import click.seichi.gigantic.menu.MissionCategory
 import click.seichi.gigantic.menu.RelicCategory
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.mission.MissionClient
 import click.seichi.gigantic.monster.SoulMonster
 import click.seichi.gigantic.player.*
@@ -981,6 +983,15 @@ object Keys {
         }
     }
 
+    val MENU_MISSION_CATEGORY = object : Key<PlayerCache, MissionCategory> {
+        override val default: MissionCategory
+            get() = MissionCategory.DAILY
+
+        override fun satisfyWith(value: MissionCategory): Boolean {
+            return true
+        }
+    }
+
     val WILL_RELATIONSHIP_MAP: Map<Will, Key<PlayerCache, WillRelationship>> = Will.values().map { will ->
         will to
                 object : Key<PlayerCache, WillRelationship> {
@@ -1172,7 +1183,9 @@ object Keys {
                 it.missionId to MissionClient(
                     it.missionId,
                     it.missionType,
+                    it.missionDifficulty,
                     it.missionReqSize,
+                    it.missionReqBlock,
                     it.progress,
                     it.complete,
                     it.date
@@ -1187,7 +1200,9 @@ object Keys {
                     this.user = entity.user
                     this.missionId = missionId
                     this.missionType = mission.missionType
+                    this.missionDifficulty = mission.missionDifficulty
                     this.missionReqSize = mission.missionReqSize ?: 0
+                    this.missionReqBlock = mission.missionReqBlock ?: 0
                     this.progress = mission.progress
                     this.complete = mission.complete
                     this.date = mission.date
@@ -1233,6 +1248,15 @@ object Keys {
             get() = listOf()
 
         override fun satisfyWith(value: List<Relic>): Boolean {
+            return true
+        }
+    }
+
+    val MENU_MISSION_LIST = object : Key<PlayerCache, List<Mission>> {
+        override val default: List<Mission>
+            get() = listOf()
+
+        override fun satisfyWith(value: List<Mission>): Boolean {
             return true
         }
     }
