@@ -12,6 +12,7 @@ import click.seichi.gigantic.message.messages.MenuMessages
 import click.seichi.gigantic.message.messages.menu.RelicGeneratorMenuMessages
 import click.seichi.gigantic.message.messages.menu.RelicMenuMessages
 import click.seichi.gigantic.message.messages.menu.ToolSwitchMessages
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.Setting
 import click.seichi.gigantic.player.ToggleSetting
@@ -156,6 +157,8 @@ object RelicGeneratorButtons {
                 //todo: 2個目の引数generatedが現在使われていないので最後のレリックを渡している。使用するなら適切なものに変えるべき。
                 Bukkit.getPluginManager().callEvent(RelicGenerateEvent(player, it, selected, Defaults.RELIC_GENERATOR_REQUIRE_ETHEL * genMultList[genMultiValueIndex]))
             }
+
+            Mission.updateMissionProgress(player, Mission.RELIC_CREATE, genMultList[genMultiValueIndex].toDouble())
 
             if (genMultiValueIndex == 0) {
                 reopen(player)
