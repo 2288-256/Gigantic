@@ -16,10 +16,9 @@ import click.seichi.gigantic.event.events.RelicGenerateEvent
 import click.seichi.gigantic.event.events.SenseEvent
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.DiscordWebhookNotifier
-import click.seichi.gigantic.message.messages.AchievementMessages
-import click.seichi.gigantic.message.messages.GiganticEventMessages
-import click.seichi.gigantic.message.messages.LoginMessages
-import click.seichi.gigantic.message.messages.PlayerMessages
+import click.seichi.gigantic.message.messages.*
+import click.seichi.gigantic.mission.Mission
+import click.seichi.gigantic.mission.MissionClient
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.sound.sounds.PlayerSounds
@@ -35,9 +34,14 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.joda.time.DateTime
+import java.awt.SystemColor.text
+import java.security.MessageDigest
+import java.util.*
+import kotlin.random.Random
+
 
 /**
- * @author tar0ss
+ * author tar0ss
  */
 class PlayerMonitor : Listener {
 
@@ -113,6 +117,56 @@ class PlayerMonitor : Listener {
                 Relic.CUP_OF_KING.dropTo(player)
                 PlayerSounds.PICK_UP.playOnly(player)
                 GiganticEventMessages.DROPPED_RELIC(Relic.CUP_OF_KING).sendTo(player)
+            }
+        }
+        //todo:生成方法を細かくするべき
+        //ミッション用コード
+        if (player.getOrPut(Keys.MISSION_MAP).values.any { it.date != DateTime.now().withTimeAtStartOfDay() }) {
+            player.transform(Keys.MISSION_MAP) {
+                it.toMutableMap().apply {
+                    entries.removeIf { entry -> entry.value.date != DateTime.now().withTimeAtStartOfDay() }
+                }
+            }
+        }
+        val missionCount = player.getOrPut(Keys.MISSION_MAP).values.map { it.missionType == 1 }
+        if (missionCount.size < Config.MISSION_DAILY_AMOUNT) {
+            MissionMessages.MISSION_CREATE.sendTo(player)
+            missionCreate(player,1)
+        }
+    }
+
+    fun missionCreate(player: Player,missionType: Int){
+        var index = 0
+        val missionIds = mutableSetOf<Int>()
+        val digest = MessageDigest.getInstance("SHA-256")
+        while (missionIds.size < Config.MISSION_DAILY_AMOUNT) {
+        val concatenatedString = "${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_$index"
+        val random = Random(concatenatedString.hashCode().toLong())
+        missionIds.add(random.nextInt(1, Mission.values().size + 1))
+        index++
+    }
+        for (i in 0 until Config.MISSION_DAILY_AMOUNT) {
+            val newMission = MissionClient(
+                missionId = missionIds.elementAt(i),
+                missionType = missionType,
+                missionDifficulty = Random("${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(0, 3),
+                missionReqSize = if (missionIds.elementAt(i) == 6){
+                    Random("${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(0, Mission.RequestWillSize.values().size)
+                } else 0,
+                missionReqBlock = if (missionIds.elementAt(i) == 3) {
+                    Random("${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_missionReqBlock".hashCode().toLong()).nextInt(0, Mission.RequestBlockType.values().size)
+                } else 0,
+                progress = 0.0,
+                complete = false,
+                date = DateTime.now()
+            )
+            for (j in 0 until 12){
+                info("${Random("${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_${j}_missionDifficulty".hashCode().toLong()).nextInt(1, 4)}")
+            }
+            player.transform(Keys.MISSION_MAP) {
+                it.toMutableMap().apply {
+                    put(newMission.missionId, newMission)
+                }
             }
         }
     }

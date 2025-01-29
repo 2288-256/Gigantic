@@ -13,6 +13,12 @@ object MissionMessages {
             Locale.JAPANESE to "${ChatColor.YELLOW}[ミッション]"
     )
 
+    val MISSION_CREATE = LinedChatMessage(ChatMessageProtocol.CHAT,
+        LocalizedText(
+            Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}ミッションが更新されました"
+        )
+    )
+
     val MISSION_COMPLETE = { missionName: String ->
         LocalizedText(
             Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}ミッション「$missionName」を達成しました！"
