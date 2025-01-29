@@ -113,44 +113,6 @@ open class Miner : Breaker {
             }
         }
 
-        //MISSION
-        //特定のブロックを破壊する
-        val reqMineMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 3 }
-        if (reqMineMission != null) {
-            if (!reqMineMission.complete) {
-                val blockMatch = reqMineMission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block) }
-                if (blockMatch == true) {
-                    val requiredAmount = Mission.BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(reqMineMission.missionDifficulty)
-                    reqMineMission.progress++
-                    if (reqMineMission.progress >= requiredAmount) {
-                        reqMineMission.complete = true
-                        reqMineMission.progress = requiredAmount.toDouble()
-                    }
-                    player.transform(Keys.MISSION_MAP) {
-                        it.toMutableMap().apply {
-                            put(reqMineMission.missionId, reqMineMission)
-                        }
-                    }
-                }
-            }
-        }
-        val mineMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 2 }
-        if (mineMission != null) {
-            if (!mineMission.complete) {
-                val requiredAmount = Mission.BLOCK_BREAK.getRequiredAmount(mineMission.missionDifficulty)
-                mineMission.progress++
-                if (mineMission.progress >= requiredAmount) {
-                    mineMission.complete = true
-                    mineMission.progress = requiredAmount.toDouble()
-                }
-                player.transform(Keys.MISSION_MAP) {
-                    it.toMutableMap().apply {
-                        put(mineMission.missionId, mineMission)
-                    }
-                }
-            }
-        }
-
         // 全てのスキルを通して破壊したブロック数を取得
         val count = player.getOrPut(Keys.BREAK_COUNT)
 
@@ -169,25 +131,21 @@ open class Miner : Breaker {
             }
         }
 
-        val expMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 1 }
-        if (expMission != null) {
-            val totalBonus = count.toBigDecimal() + relicBonus.toBigDecimal()
-                .setScale(2, RoundingMode.HALF_UP) + stripCount.toBigDecimal()
-            info("$totalBonus")
-            if (!expMission.complete) {
-                val requiredAmount = Mission.EXP.getRequiredAmount(expMission.missionDifficulty)
-                expMission.progress += totalBonus.toDouble()
-                if (expMission.progress >= requiredAmount) {
-                    expMission.complete = true
-                    expMission.progress = requiredAmount.toDouble()
-                }
-                player.transform(Keys.MISSION_MAP) {
-                    it.toMutableMap().apply {
-                        put(expMission.missionId, expMission)
-                    }
-                }
+        //MISSION
+        //経験値ミッション
+        val totalBonus = count.toBigDecimal() + relicBonus.toBigDecimal()
+            .setScale(2, RoundingMode.HALF_UP) + stripCount.times(Defaults.STRIP_BONUS).toBigDecimal()
+        Mission.updateMissionProgress(player, Mission.EXP, totalBonus.toDouble())
+        //特定のブロックを破壊ミッション
+        val reqMineMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == Mission.BLOCK_BREAK_REQ_BLOCK.id }
+        if (reqMineMission != null){
+            val blockMatch = reqMineMission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block) }
+            if (blockMatch == true) {
+                Mission.updateMissionProgress(player, Mission.BLOCK_BREAK_REQ_BLOCK, 1.0)
             }
         }
+        //通常破壊ミッション
+        Mission.updateMissionProgress(player, Mission.BLOCK_BREAK, 1.0)
 
         player.transform(Keys.STRIP_MINE) { it + stripCount }
 

@@ -2,12 +2,9 @@ package click.seichi.gigantic.spirit.spirits
 
 import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.animation.animations.WillSpiritAnimations
-import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.event.events.SenseEvent
-import click.seichi.gigantic.extension.getOrPut
 import click.seichi.gigantic.extension.isCrust
 import click.seichi.gigantic.extension.relationship
-import click.seichi.gigantic.extension.transform
 import click.seichi.gigantic.message.messages.WillMessages
 import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.player.Defaults
@@ -83,36 +80,12 @@ class WillSpirit(
             },
             { player ->
                 player ?: return@Sensor
-                val willMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 5 }
-                if (willMission != null) {
-                    willMission.progress++
-                    if (willMission.progress >= Mission.WILL_GET.getRequiredAmount(willMission.missionDifficulty)) {
-                        willMission.complete = true
-                        willMission.progress = Mission.WILL_GET.getRequiredAmount(willMission.missionDifficulty).toDouble()
-                    }
-                    player.transform(Keys.MISSION_MAP) {
-                        it.toMutableMap().apply {
-                            put(willMission.missionId, willMission)
-                        }
-                    }
-                }
-                val willSizeMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 6 }
-                if (willSizeMission != null) {
-                    val requestSize = Mission.WILL_GET_REQ_SIZE.getRequiredSize(willMission?.missionReqSize ?: 0)
-                    if (this.willSize.prefix == requestSize?.prefix) {
-                        willSizeMission.progress++
-                        if (willSizeMission.progress >= Mission.WILL_GET_REQ_SIZE.getRequiredAmount(willSizeMission.missionDifficulty)) {
-                            willSizeMission.complete = true
-                            willSizeMission.progress = Mission.WILL_GET_REQ_SIZE.getRequiredAmount(willSizeMission.missionDifficulty).toDouble()
-                        }
-                        player.transform(Keys.MISSION_MAP) {
-                            it.toMutableMap().apply {
-                                put(willSizeMission.missionId, willSizeMission)
-                            }
-                        }
-                    }
-                }
 
+                Mission.updateMissionProgress(player, Mission.WILL_GET, 1.0)
+
+                if (willSize.prefix == Mission.RequestWillSize.getRequestSize(1)?.prefix) {
+                    Mission.updateMissionProgress(player, Mission.WILL_GET_REQ_SIZE, 1.0)
+                }
 
                 WillMessages.SENSED_WILL(this).sendTo(player)
                 WillSpiritSounds.SENSED.playOnly(player)
