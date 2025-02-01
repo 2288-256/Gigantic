@@ -44,6 +44,7 @@ class ProgressBossBar(private val targetPlayer: Player? = null, val mission: Mis
             bossBarRemoveTask = Bukkit.getScheduler().runTaskLater(Gigantic.PLUGIN, Runnable {
                 bossBar?.removeAll()
                 bossBar = null
+                remove()
             }, 60L)
         }
     }
@@ -63,6 +64,7 @@ class ProgressBossBar(private val targetPlayer: Player? = null, val mission: Mis
         bossBarRemoveTask = Bukkit.getScheduler().runTaskLater(Gigantic.PLUGIN, Runnable {
             bossBar?.removeAll()
             bossBar = null
+            remove()
         }, 60L)
     }
 
