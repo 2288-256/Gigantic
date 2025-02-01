@@ -70,7 +70,8 @@ object MissionMenu : BookMenu() {
     }
 
     override fun getButton(player: Player, page: Int, slot: Int): Button? {
-        val index = (page - 1) * numOfContentsPerPage + slot - offset
+        val pattern = listOf(19, 21, 23, 25) // 3行目のスロット番号
+        val index = pattern.indexOf(slot)
         return getButtonMap()[slot] ?: MissionButtons.MISSION(player.getOrPut(Keys.MENU_MISSION_LIST)[index])
     }
 
