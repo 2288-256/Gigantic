@@ -1,22 +1,14 @@
 package click.seichi.gigantic.mission
 
-import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.message.LocalizedText
 import click.seichi.gigantic.will.WillSize
 import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.messages.MissionMessages
 import click.seichi.gigantic.sound.sounds.PlayerSounds
-import click.seichi.gigantic.spirit.spirits.WillSpirit
-import org.bukkit.Bukkit
-import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.block.Block
-import org.bukkit.boss.BarColor
-import org.bukkit.boss.BarStyle
-import org.bukkit.boss.BossBar
 import org.bukkit.entity.Player
-import org.bukkit.scheduler.BukkitTask
 import java.util.*
 
 /**
@@ -98,6 +90,8 @@ enum class Mission(
                 if (!missionClient.complete) {
                     val requiredAmount = mission.getRequiredAmount(missionClient.missionDifficulty)
                     missionClient.progress += progressValue
+                    val missionProgressBar = ProgressBossBar(player, mission, missionClient)
+                    MissionProgressManager.spawn(mission,missionProgressBar)
                     if (missionClient.progress >= requiredAmount) {
                         missionClient.complete = true
                         missionClient.progress = requiredAmount.toDouble()
