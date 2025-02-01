@@ -28,5 +28,7 @@ class UserMission(id: EntityID<Int>) : IntEntity(id) {
 
     var complete by UserMissionTable.complete
 
+    var rewardReceived by UserMissionTable.rewardReceived
+
     var date by UserMissionTable.date
 }

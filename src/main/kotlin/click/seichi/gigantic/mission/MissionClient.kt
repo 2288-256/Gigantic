@@ -15,5 +15,6 @@ class MissionClient(
     var missionReqBlock: Int?,
     var progress: Double,
     var complete: Boolean,
+    var rewardReceived: Boolean,
     var date: DateTime
 )

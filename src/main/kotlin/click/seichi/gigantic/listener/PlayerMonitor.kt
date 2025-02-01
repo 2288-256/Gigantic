@@ -158,6 +158,7 @@ class PlayerMonitor : Listener {
                 } else 0,
                 progress = 0.0,
                 complete = false,
+                rewardReceived = false,
                 date = DateTime.now()
             )
             for (j in 0 until 12){

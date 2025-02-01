@@ -28,6 +28,8 @@ object UserMissionTable : IntIdTable("users_mission") {
 
     val complete = bool("mission_complete").default(false)
 
+    val rewardReceived = bool("reward_received").default(false)
+
     val date = date("mission_date")
 
 }

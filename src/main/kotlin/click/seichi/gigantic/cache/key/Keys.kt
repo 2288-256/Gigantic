@@ -1188,6 +1188,7 @@ object Keys {
                     it.missionReqBlock,
                     it.progress,
                     it.complete,
+                    it.rewardReceived,
                     it.date
                 )
             }.toMap()
@@ -1205,6 +1206,7 @@ object Keys {
                     this.missionReqBlock = mission.missionReqBlock ?: 0
                     this.progress = mission.progress
                     this.complete = mission.complete
+                    this.rewardReceived = mission.rewardReceived
                     this.date = mission.date
                 }
 
