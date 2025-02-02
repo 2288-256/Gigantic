@@ -33,8 +33,9 @@ class ProgressBossBar(private val targetPlayer: Player? = null, val mission: Mis
             )
         }
         if (bossBar == null) {
+            val cleanedWillName = willName?.replace("と達成", "")
             bossBar = Bukkit.createBossBar(
-                "${ChatColor.WHITE}目標:$willName",
+                "${ChatColor.WHITE}目標:$cleanedWillName",
                 BarColor.YELLOW,
                 BarStyle.SOLID
             )
