@@ -9,8 +9,8 @@ import org.joda.time.DateTime
  */
 class MissionClient(
     var missionId: Int,
-    var missionDifficulty: Int,
     var missionType: Int,
+    var missionDifficulty: Int,
     var missionReqSize: Int?,
     var missionReqBlock: Int?,
     var progress: Double,
