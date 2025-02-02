@@ -11,7 +11,12 @@ import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitTask
 import java.math.RoundingMode
 
-class ProgressBossBar(private val targetPlayer: Player? = null, val mission: Mission, private val missionData: MissionClient) : MissionProgress(){
+class ProgressBossBar(
+    private val targetPlayer: Player? = null,
+    val mission: Mission,
+    private val missionData: MissionClient
+) : MissionProgress(){
+
     private var bossBar: BossBar? = null
     private var bossBarRemoveTask: BukkitTask? = null
 
@@ -24,18 +29,17 @@ class ProgressBossBar(private val targetPlayer: Player? = null, val mission: Mis
         } else {
             progressData.toDouble()
         }
-        val willName = targetPlayer?.let {
+        val missionName = targetPlayer?.let {
             mission.getLore(
                 it.wrappedLocale,
                 missionData.missionDifficulty,
                 missionData.missionReqSize,
                 missionData.missionReqBlock
             )
-        }
+        }?.replace("と達成", "")
         if (bossBar == null) {
-            val cleanedWillName = willName?.replace("と達成", "")
             bossBar = Bukkit.createBossBar(
-                "${ChatColor.WHITE}目標:$cleanedWillName",
+                "${ChatColor.WHITE}目標:$missionName",
                 BarColor.YELLOW,
                 BarStyle.SOLID
             )

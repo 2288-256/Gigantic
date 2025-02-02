@@ -1,15 +1,13 @@
 package click.seichi.gigantic.mission
 
-import click.seichi.gigantic.extension.info
-
 abstract class MissionProgress {
     val lifeExpectancy
         get() = lifespan - count
 
     val isAlive
-        get() = isSummoned && 0 < lifeExpectancy
+        get() = isShowed && 0 < lifeExpectancy
 
-    var isSummoned = false
+    var isShowed = false
         private set
 
     private var count = 0L
@@ -29,7 +27,7 @@ abstract class MissionProgress {
     fun spawn() {
         onSpawn()
 
-        isSummoned = true
+        isShowed = true
     }
 
     fun update() {
@@ -41,7 +39,7 @@ abstract class MissionProgress {
     fun remove() {
         onRemove()
 
-        isSummoned = false
+        isShowed = false
     }
 
     open fun onRender() {}
