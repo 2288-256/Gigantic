@@ -5,6 +5,7 @@ import click.seichi.gigantic.will.WillSize
 import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.messages.MissionMessages
+import click.seichi.gigantic.player.ToggleSetting
 import click.seichi.gigantic.sound.sounds.PlayerSounds
 import org.bukkit.Material
 import org.bukkit.block.Block
@@ -102,8 +103,10 @@ enum class Mission(
                             put(missionClient.missionId, missionClient)
                         }
                     }
-                    val missionProgressBar = ProgressBossBar(player, mission, missionClient)
-                    MissionProgressManager.spawn(mission,missionProgressBar)
+                    if (ToggleSetting.MISSION_PROGRESS.getToggle(player)) {
+                        val missionProgressBar = ProgressBossBar(player, mission, missionClient)
+                        MissionProgressManager.spawn(mission,missionProgressBar)
+                    }
                 }
             }
         }
