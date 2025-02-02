@@ -90,8 +90,6 @@ enum class Mission(
                 if (!missionClient.complete) {
                     val requiredAmount = mission.getRequiredAmount(missionClient.missionDifficulty)
                     missionClient.progress += progressValue
-                    val missionProgressBar = ProgressBossBar(player, mission, missionClient)
-                    MissionProgressManager.spawn(mission,missionProgressBar)
                     if (missionClient.progress >= requiredAmount) {
                         missionClient.complete = true
                         missionClient.progress = requiredAmount.toDouble()
@@ -104,6 +102,8 @@ enum class Mission(
                             put(missionClient.missionId, missionClient)
                         }
                     }
+                    val missionProgressBar = ProgressBossBar(player, mission, missionClient)
+                    MissionProgressManager.spawn(mission,missionProgressBar)
                 }
             }
         }
