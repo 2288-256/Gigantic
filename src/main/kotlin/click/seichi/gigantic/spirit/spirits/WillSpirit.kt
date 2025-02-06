@@ -2,7 +2,9 @@ package click.seichi.gigantic.spirit.spirits
 
 import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.animation.animations.WillSpiritAnimations
+import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.event.events.SenseEvent
+import click.seichi.gigantic.extension.getOrPut
 import click.seichi.gigantic.extension.isCrust
 import click.seichi.gigantic.extension.relationship
 import click.seichi.gigantic.message.messages.WillMessages
@@ -82,9 +84,12 @@ class WillSpirit(
                 player ?: return@Sensor
 
                 Mission.updateMissionProgress(player, Mission.WILL_GET, 1.0)
-
-                if (willSize.prefix == Mission.RequestWillSize.getRequestSize(1)?.prefix) {
-                    Mission.updateMissionProgress(player, Mission.WILL_GET_REQ_SIZE, 1.0)
+                val willSizeGetMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == 5 }
+                val index = willSizeGetMission?.missionReqSize
+                index?.let {
+                    if (willSize.prefix == Mission.RequestWillSize.getRequestSize(index)?.prefix) {
+                        Mission.updateMissionProgress(player, Mission.WILL_GET_REQ_SIZE, 1.0)
+                    }
                 }
 
                 WillMessages.SENSED_WILL(this).sendTo(player)
