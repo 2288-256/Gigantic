@@ -22,6 +22,7 @@ import click.seichi.gigantic.mission.MissionClient
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.sound.sounds.PlayerSounds
+import click.seichi.gigantic.will.WillGrade
 import com.google.common.io.ByteStreams
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
@@ -120,7 +121,9 @@ class PlayerMonitor : Listener {
             }
         }
         //ミッション生成コード
-        Mission.missionCreate(player, 1)
+        if (player.wrappedLevel >= WillGrade.ADVANCED.unlockLevel) {
+            Mission.missionCreate(player, 1)
+        }
     }
 
 
