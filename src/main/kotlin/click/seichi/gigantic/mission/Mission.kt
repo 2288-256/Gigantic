@@ -28,8 +28,8 @@ enum class Mission(
         LocalizedText(Locale.JAPANESE to "expを取得する"),
         { difficulty, _, _ -> LocalizedText(Locale.JAPANESE to "${EXP.getRequiredAmount(difficulty)}exp以上取得すると達成") },
         listOf(20000, 50000, 100000),
-        QuestRewardType.Relic,
-        listOf(1, 1, 2)
+        QuestRewardType.Ethel,
+        listOf(100, 100, 200)
     ),
     BLOCK_BREAK(
         2,
@@ -37,16 +37,16 @@ enum class Mission(
         { difficulty, _, _ ->
             LocalizedText(Locale.JAPANESE to "${BLOCK_BREAK.getRequiredAmount(difficulty)}ブロック通常破壊すると達成") },
         listOf(3000, 5000, 10000),
-        QuestRewardType.Relic,
-        listOf(1, 1, 2)
+        QuestRewardType.Ethel,
+        listOf(100, 100, 200)
     ),
     BLOCK_BREAK_REQ_BLOCK(
         3,
         LocalizedText(Locale.JAPANESE to "特定のブロックを破壊する"),
         { difficulty, _, blockTypeIndex -> LocalizedText(Locale.JAPANESE to "${blockTypeIndex?.let { RequestBlockType.getDisplayName(blockTypeIndex) }}を${BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(difficulty)}ブロック破壊すると達成") },
         listOf(1000, 2000, 3000),
-        QuestRewardType.Relic,
-        listOf(1, 1, 2)
+        QuestRewardType.Ethel,
+        listOf(100, 100, 200)
     ),
 //    COMBO(
 //        4,
@@ -55,7 +55,7 @@ enum class Mission(
 //        LocalizedText(Locale.JAPANESE to "${COMBO.getRequiredAmount(difficulty)}コンボ以上になると達成"),
 //        ) },
 //        listOf(1000, 5000, 10000),
-//        QuestRewardType.Relic,
+//        QuestRewardType.Will,
 //        listOf(1, 2, 3)
 //    ),
     WILL_GET(
@@ -63,24 +63,24 @@ enum class Mission(
         LocalizedText(Locale.JAPANESE to "意志を回収する"),
         { difficulty, _, _ ->  LocalizedText(Locale.JAPANESE to "${WILL_GET.getRequiredAmount(difficulty)}回意志を回収すると達成")},
         listOf(20, 50, 100),
-        QuestRewardType.Relic,
-        listOf(1, 1, 2)
+        QuestRewardType.Ethel,
+        listOf(100, 100, 200)
     ),
     WILL_GET_REQ_SIZE(
         5,
         LocalizedText(Locale.JAPANESE to "特定のサイズの意志を回収する"),
         { difficulty, size, _ -> LocalizedText(Locale.JAPANESE to "${size?.let { RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE) + "サイズの" } ?: "普通サイズの"}意志を${WILL_GET_REQ_SIZE.getRequiredAmount(difficulty)}個回収すると達成")},
-        listOf(10, 15, 30),
-        QuestRewardType.Relic,
-        listOf(1, 1, 2)
+        listOf(5, 10, 20),
+        QuestRewardType.Ethel,
+        listOf(100, 100, 200)
     ),
     RELIC_CREATE(
         6,
         LocalizedText(Locale.JAPANESE to "レリックを生成する"),
         { difficulty, _, _ -> LocalizedText(Locale.JAPANESE to "${RELIC_CREATE.getRequiredAmount(difficulty)}回レリックを生成すると達成")},
         listOf(10, 15, 25),
-        QuestRewardType.Relic,
-        listOf(1, 1, 2)
+        QuestRewardType.Ethel,
+        listOf(100, 100, 200)
     ),
     ;
 
@@ -163,6 +163,7 @@ enum class Mission(
     }
 
     enum class QuestRewardType(val displayName: String) {
+        Ethel("ランダムなエーテル"),
         Relic("ランダムなレリック")
         ;
     }
