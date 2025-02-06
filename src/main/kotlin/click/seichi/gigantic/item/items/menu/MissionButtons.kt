@@ -10,6 +10,7 @@ import click.seichi.gigantic.message.messages.menu.MissionMenuMessages
 import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.util.Random
+import click.seichi.gigantic.will.Will
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -110,6 +111,19 @@ object MissionButtons {
                 }
                 if (missionData.complete) {
                     when (mission.getRewardType()) {
+                        Mission.QuestRewardType.Ethel -> {
+                            val rewardAmount = mission.getRewardAmount(missionData.missionDifficulty)
+                            val getEthel = Will.values()
+                                .filter { player.hasAptitude(it) }
+                                .shuffled(Random.generator)
+                                .take(1)
+                                .toSet()
+                            getEthel.forEach {
+                                it.addEthel(player, rewardAmount.toLong())
+                                info("hello")
+                                player.sendMessage(MissionMessages.MISSION_REWARD_GET_ETHEL_ONE(it, rewardAmount).asSafety(player.wrappedLocale))
+                            }
+                        }
                         Mission.QuestRewardType.Relic -> {
                             val relicCountMap = mutableMapOf<Relic, Int>()
                             val rewardAmount = mission.getRewardAmount(missionData.missionDifficulty)
@@ -128,19 +142,19 @@ object MissionButtons {
                             val playerLocale = player.wrappedLocale
                             if (rewardAmount != 1) {
                                 player.sendMessage(
-                                    MissionMessages.MISSION_REWARD_GET_MULTIPLE(rewardAmount)
+                                    MissionMessages.MISSION_REWARD_GET_RELIC_MULTIPLE(rewardAmount)
                                         .asSafety(playerLocale)
                                 )
-                                player.sendMessage(MissionMessages.MISSION_REWARD_GET_MORE_START.asSafety(playerLocale))
+                                player.sendMessage(MissionMessages.MISSION_REWARD_GET_RELIC_MORE_START.asSafety(playerLocale))
                                 for ((relic, count) in relicCountMap) {
                                     player.sendMessage(
-                                        MissionMessages.MISSION_REWARD_GET_DETAIL(relic, count).asSafety(playerLocale)
+                                        MissionMessages.MISSION_REWARD_GET_RELIC_DETAIL(relic, count).asSafety(playerLocale)
                                     )
                                 }
-                                player.sendMessage(MissionMessages.MISSION_REWARD_GET_MORE_END.asSafety(playerLocale))
+                                player.sendMessage(MissionMessages.MISSION_REWARD_GET_RELIC_MORE_END.asSafety(playerLocale))
                             }else{
                                 player.sendMessage(
-                                    MissionMessages.MISSION_REWARD_GET_ONE(relicCountMap.keys.first())
+                                    MissionMessages.MISSION_REWARD_GET_RELIC_ONE(relicCountMap.keys.first())
                                         .asSafety(playerLocale)
                                 )
                             }

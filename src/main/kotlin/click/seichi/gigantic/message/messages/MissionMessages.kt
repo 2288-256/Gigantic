@@ -26,7 +26,15 @@ object MissionMessages {
         )
     }
 
-    val MISSION_REWARD_GET_ONE = { relic: Relic, ->
+    val MISSION_REWARD_GET_ETHEL_ONE = { will: Will, amount: Int ->
+        LocalizedText(
+            Locale.JAPANESE.let {
+                it to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}報酬として「${will.chatColor}${will.getName(it)}${ChatColor.WHITE}」を${amount}個受け取りました"
+            }
+        )
+    }
+
+    val MISSION_REWARD_GET_RELIC_ONE = { relic: Relic, ->
         LocalizedText(
             Locale.JAPANESE.let {
                 it to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}報酬として「${Will.findByRelic(relic)?.chatColor}${relic.getName(it)}${ChatColor.WHITE}」を受け取りました"
@@ -34,20 +42,20 @@ object MissionMessages {
         )
     }
 
-    val MISSION_REWARD_GET_MULTIPLE = { amount: Int ->
+    val MISSION_REWARD_GET_RELIC_MULTIPLE = { amount: Int ->
         LocalizedText(
             Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}報酬としてレリックを${amount}個受け取りました"
         )
     }
 
-    val MISSION_REWARD_GET_MORE_START = LocalizedText(
+    val MISSION_REWARD_GET_RELIC_MORE_START = LocalizedText(
         Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}========= 受け取ったレリック =========="
     )
 
-    val MISSION_REWARD_GET_MORE_END = LocalizedText(
+    val MISSION_REWARD_GET_RELIC_MORE_END = LocalizedText(
         Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}============================="
     )
-    val MISSION_REWARD_GET_DETAIL = { relic: Relic, amount: Int ->
+    val MISSION_REWARD_GET_RELIC_DETAIL = { relic: Relic, amount: Int ->
         LocalizedText(
             Locale.JAPANESE.let {
                 it to "${PREFIX.asSafety(Locale.JAPANESE)} ${Will.findByRelic(relic)?.chatColor}${relic.getName(it)} ${ChatColor.GRAY}x$amount"
