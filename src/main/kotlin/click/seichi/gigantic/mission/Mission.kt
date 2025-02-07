@@ -114,10 +114,11 @@ enum class Mission(
             }
         }
         fun missionCreate(player: Player,missionType: Int) {
-            if (player.getOrPut(Keys.MISSION_MAP).values.any { it.date != DateTime.now().withTimeAtStartOfDay() }) {
+            val threshold = DateTime.now().minusDays(1).withTime(4, 0, 0, 0)
+            if (player.getOrPut(Keys.MISSION_MAP).values.any { it.date.isAfter(threshold) || it.date.isEqual(threshold) }) {
                 player.transform(Keys.MISSION_MAP) {
                     it.toMutableMap().apply {
-                        entries.removeIf { entry -> entry.value.date != DateTime.now().withTimeAtStartOfDay() }
+                        entries.removeIf { entry -> entry.value.date.isAfter(threshold) || entry.value.date.isEqual(threshold) }
                     }
                 }
             }
