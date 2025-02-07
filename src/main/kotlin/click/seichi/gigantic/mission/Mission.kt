@@ -114,10 +114,11 @@ enum class Mission(
             }
         }
         fun missionCreate(player: Player,missionType: Int) {
-            val threshold = DateTime.now().minusDays(1).withTime(4, 0, 0, 0)
+            val now = DateTime.now()
+            val extendedHour = if (now.hourOfDay < 4) now.hourOfDay + 24 else now.hourOfDay
+            val threshold = if (extendedHour in 24..27) now.withTime(4, 0, 0, 0) else now.minusDays(1).withTime(4, 0, 0, 0)
             val missionMapBefore = player.getOrPut(Keys.MISSION_MAP)
             val beforeCount = missionMapBefore.values.size
-
             if (missionMapBefore.values.any { it.date.isAfter(threshold) || it.date.isEqual(threshold) }) {
                 player.transform(Keys.MISSION_MAP) {
                     it.toMutableMap().apply {
