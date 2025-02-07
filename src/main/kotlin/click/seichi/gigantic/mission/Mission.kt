@@ -129,7 +129,8 @@ enum class Mission(
 
             val missionMapAfter = player.getOrPut(Keys.MISSION_MAP)
             val afterCount = missionMapAfter.values.size
-            val generateCount = beforeCount - afterCount
+            var generateCount = beforeCount - afterCount
+if (beforeCount == 0) generateCount = Config.MISSION_DAILY_AMOUNT
 
             if (generateCount > 0) {
                 var index = 0
