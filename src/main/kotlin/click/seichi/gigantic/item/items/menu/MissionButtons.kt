@@ -198,6 +198,8 @@ object MissionButtons {
                             put(missionData.missionId, missionData)
                         }
                     }
+                    val dailyMissionCount = player.getOrPut(Keys.DAILY_MISSION_COUNT)
+                    player.offer(Keys.DAILY_MISSION_COUNT, dailyMissionCount + 1)
                     close(player)
                     return true
                 }else{
