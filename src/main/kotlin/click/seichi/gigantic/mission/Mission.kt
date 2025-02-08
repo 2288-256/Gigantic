@@ -114,15 +114,18 @@ enum class Mission(
             }
         }
         fun missionCreate(player: Player,missionType: Int) {
-            val now = DateTime.now()
-            val extendedHour = if (now.hourOfDay < 4) now.hourOfDay + 24 else now.hourOfDay
-            val threshold = if (extendedHour in 24..27) now.withTime(4, 0, 0, 0) else now.minusDays(1).withTime(4, 0, 0, 0)
+            val nowDate = DateTime.now()
             val missionMapBefore = player.getOrPut(Keys.MISSION_MAP)
             val beforeCount = missionMapBefore.values.size
-            if (missionMapBefore.values.any { it.date.isAfter(threshold) || it.date.isEqual(threshold) }) {
-                player.transform(Keys.MISSION_MAP) {
-                    it.toMutableMap().apply {
-                        entries.removeIf { entry -> entry.value.date.isAfter(threshold) || entry.value.date.isEqual(threshold) }
+            for (mission in missionMapBefore.values){
+                val createDate = mission.date
+                val extendedHour = if (createDate.hourOfDay < 4) createDate.hourOfDay + 24 else createDate.hourOfDay
+                val resetDate = if (extendedHour in 24 .. 27) createDate.withTime(4, 0, 0, 0) else createDate.plusDays(1).withTime(4, 0, 0, 0)
+                if (resetDate.isBefore(nowDate)) {
+                    player.transform(Keys.MISSION_MAP) {
+                        it.toMutableMap().apply {
+                            remove(mission.missionId)
+                        }
                     }
                 }
             }
@@ -130,7 +133,7 @@ enum class Mission(
             val missionMapAfter = player.getOrPut(Keys.MISSION_MAP)
             val afterCount = missionMapAfter.values.size
             var generateCount = beforeCount - afterCount
-if (beforeCount == 0) generateCount = Config.MISSION_DAILY_AMOUNT
+            if (beforeCount == 0) generateCount = Config.MISSION_DAILY_AMOUNT
 
             if (generateCount > 0) {
                 var index = 0
