@@ -139,7 +139,7 @@ enum class Mission(
                 var index = 0
                 val missionIds = mutableSetOf<Int>()
                 while (missionIds.size < generateCount) {
-                    val concatenatedString = "${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_$index"
+                    val concatenatedString = "${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_$index"
                     val random = Random(concatenatedString.hashCode().toLong())
                     missionIds.add(random.nextInt(1, Mission.values().size + 1))
                     index++
@@ -148,15 +148,15 @@ enum class Mission(
                     val newMission = MissionClient(
                         missionId = missionIds.elementAt(i),
                         missionType = missionType,
-                        missionDifficulty = Random("${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(0, 3),
+                        missionDifficulty = Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(0, 3),
                         missionReqSize = if (missionIds.elementAt(i) == 6) {
-                            Random("${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(
+                            Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(
                                 0,
                                 Mission.RequestWillSize.values().size
                             )
                         } else 0,
                         missionReqBlock = if (missionIds.elementAt(i) == 3) {
-                            Random("${player.uniqueId}_${DateTime.now().withTimeAtStartOfDay()}_missionReqBlock".hashCode().toLong()).nextInt(
+                            Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_missionReqBlock".hashCode().toLong()).nextInt(
                                 0,
                                 Mission.RequestBlockType.values().size
                             )
@@ -164,7 +164,7 @@ enum class Mission(
                         progress = 0.0,
                         complete = false,
                         rewardReceived = false,
-                        date = DateTime.now()
+                        date = nowDate
                     )
                     player.transform(Keys.MISSION_MAP) {
                         it.toMutableMap().apply {
