@@ -17,6 +17,11 @@ object MissionMenuMessages {
     val SEASONTITLE = LocalizedText(
             Locale.JAPANESE to "シーズンミッション"
     )
+    val NO_UNLOCK = { unlockLevel: Int ->
+        LocalizedText(
+                Locale.JAPANESE to "${ChatColor.RED}レベル${unlockLevel}で解放"
+        )
+    }
     val CATEGORY_TITLE_LORE = { num: Long, clearAmount: Int, allAmount: Int ->
         listOf(
                 LocalizedText(

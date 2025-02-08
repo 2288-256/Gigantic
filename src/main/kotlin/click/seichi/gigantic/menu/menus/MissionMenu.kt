@@ -53,18 +53,25 @@ object MissionMenu : BookMenu() {
     }
 
     override fun setItem(inventory: Inventory, player: Player, page: Int): Inventory {
+        getButtonMap().forEach { slot, button ->
+            inventory.setItemAsync(player, slot, button)
+        }
+        val category = player.getOrPut(Keys.MENU_MISSION_CATEGORY)
+        val unlockLevelPattern = listOf(MissionCategory.DAILY to WillGrade.ADVANCED.unlockLevel)
+        val unlockLevel = unlockLevelPattern.first { it.first == category }.second
+        if (player.wrappedLevel < unlockLevel) {
+            inventory.setItemAsync(player, 22, MissionButtons.NO_UNLOCK(unlockLevel))
+            return inventory
+        }
         val contentList = player.getOrPut(Keys.MENU_MISSION_LIST)
         val start = (page - 1) * numOfContentsPerPage
         val end = page * numOfContentsPerPage
-        val pattern = listOf(19, 21, 23, 25) // 3行目のスロット番号
+        val indexPattern = listOf(19, 21, 23, 25) // 3行目のスロット番号
 
         contentList.subList(start, end.coerceAtMost(contentList.size))
             .forEachIndexed { index, mission ->
-                val slot = pattern.getOrNull(index % pattern.size) ?: return@forEachIndexed
+                val slot = indexPattern.getOrNull(index % indexPattern.size) ?: return@forEachIndexed
                 inventory.setItemAsync(player, slot, MissionButtons.MISSION(mission))
-        }
-        getButtonMap().forEach { slot, button ->
-            inventory.setItemAsync(player, slot, button)
         }
         return inventory
     }

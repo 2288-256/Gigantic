@@ -174,4 +174,15 @@ object MissionButtons {
             }
         }
     }
+    val NO_UNLOCK: (Int) -> Button = { unlockLevel: Int ->
+        object : Button {
+            override fun toShownItemStack(player: Player): ItemStack {
+                return itemStackOf(Material.BARRIER) {
+                    setDisplayName("${ChatColor.RED}未開放")
+                    clearLore()
+                    addLore("${ChatColor.RED}レベル${unlockLevel}で開放されます")
+                }
+            }
+        }
+    }
 }
