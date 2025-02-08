@@ -9,6 +9,7 @@ import click.seichi.gigantic.message.DiscordWebhookNotifier
 import click.seichi.gigantic.message.LinedChatMessage
 import click.seichi.gigantic.message.Message
 import click.seichi.gigantic.message.messages.AchievementMessages
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.sound.DetailedSound
 import click.seichi.gigantic.sound.sounds.PlayerSounds
@@ -98,6 +99,13 @@ enum class Achievement(
         Tool.SWORD.grant(it)
         it.offer(Keys.TOOL_TOGGLE_MAP[Tool.SWORD]!!,false)
     }, grantMessage = AchievementMessages.SWORD),*/
+    DAILY_MISSION_UNLOCK(106,
+        {
+            it.wrappedLevel >= WillGrade.ADVANCED.unlockLevel
+        },
+        action= { Mission.missionCreate(it, 1) },
+        grantMessage = AchievementMessages.UNLOCK_DAILY_MISSION
+    ),
 
     // skills
     SKILL_FLASH(200,

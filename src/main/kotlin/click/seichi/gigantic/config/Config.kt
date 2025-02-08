@@ -65,4 +65,6 @@ object Config : SimpleConfiguration("config") {
 
     val WEBHOOK_DISCORD_LEVEL_NOTIFICATION_URL by lazy { getString("webhook.discord.level_notification_url") }
 
+    val MISSION_DAILY_AMOUNT by lazy { getInt("mission.daily_amount") }
+
 }

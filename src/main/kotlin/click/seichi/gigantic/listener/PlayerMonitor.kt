@@ -16,13 +16,12 @@ import click.seichi.gigantic.event.events.RelicGenerateEvent
 import click.seichi.gigantic.event.events.SenseEvent
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.DiscordWebhookNotifier
-import click.seichi.gigantic.message.messages.AchievementMessages
-import click.seichi.gigantic.message.messages.GiganticEventMessages
-import click.seichi.gigantic.message.messages.LoginMessages
-import click.seichi.gigantic.message.messages.PlayerMessages
+import click.seichi.gigantic.message.messages.*
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.sound.sounds.PlayerSounds
+import click.seichi.gigantic.will.WillGrade
 import com.google.common.io.ByteStreams
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
@@ -35,6 +34,7 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.joda.time.DateTime
+
 
 /**
  * @author tar0ss
@@ -115,7 +115,13 @@ class PlayerMonitor : Listener {
                 GiganticEventMessages.DROPPED_RELIC(Relic.CUP_OF_KING).sendTo(player)
             }
         }
+        //ミッション生成コード
+        info("${player.wrappedLevel >= WillGrade.ADVANCED.unlockLevel}")
+        if (player.wrappedLevel >= WillGrade.ADVANCED.unlockLevel) {
+            Mission.missionCreate(player, 1)
+        }
     }
+
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onBlockBreak(event: BlockBreakEvent) {

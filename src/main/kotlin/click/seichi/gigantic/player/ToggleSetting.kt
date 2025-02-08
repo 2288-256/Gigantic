@@ -80,6 +80,11 @@ enum class ToggleSetting(
         13, LocalizedText(
             Locale.JAPANESE to "スコアボードに総経験値量の情報を表示"
         ), false, Category.DISPLAY
+    ),
+    MISSION_PROGRESS(
+        15, LocalizedText(
+            Locale.JAPANESE to "ミッションの進捗を表示"
+        ), true, Category.DISPLAY
     )
     ;
 

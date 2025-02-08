@@ -701,4 +701,22 @@ object BagButtons {
         }
 
     }
+
+    val MISSION = object : Button {
+
+        override fun toShownItemStack(player: Player): ItemStack? {
+            return itemStackOf(Material.BOOK) {
+                setDisplayName("${ChatColor.AQUA}${ChatColor.UNDERLINE}"
+                        + BagMessages.MISSION.asSafety(player.wrappedLocale))
+                clearLore()
+            }
+        }
+
+        override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
+            if (event.inventory.holder === MissionMenu) return false
+            MissionMenu.open(player)
+            return true
+        }
+
+    }
 }

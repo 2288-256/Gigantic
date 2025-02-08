@@ -267,4 +267,8 @@ object BagMessages {
                     "ランキング"
     )
 
+    val MISSION = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.GOLD}${ChatColor.BOLD}${ChatColor.UNDERLINE}" +
+                    "ミッション"
+    )
 }

@@ -197,6 +197,16 @@ object AchievementMessages {
             }
     ), 45L)
 
+    val UNLOCK_DAILY_MISSION = LinedChatMessage(ChatMessageProtocol.CHAT, LocalizedText(
+        Locale.JAPANESE.let {
+            it to "${ChatColor.AQUA}" +
+                    "デイリーミッションが解放されました。" +
+                    LinedChatMessage.NEW_LINE_SYMBOL +
+                    "${ChatColor.AQUA}" +
+                    "メニューのミッションを確認してみよう"
+        }
+    ))
+
     val QUEST_ORDER = LinedChatMessage(ChatMessageProtocol.CHAT, LocalizedText(
             Locale.JAPANESE.let {
                 it to "${Quest.COLOR}" +

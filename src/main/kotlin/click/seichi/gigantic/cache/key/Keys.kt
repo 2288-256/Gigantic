@@ -16,11 +16,16 @@ import click.seichi.gigantic.database.dao.user.User
 import click.seichi.gigantic.database.dao.user.UserFollow
 import click.seichi.gigantic.database.dao.user.UserHome
 import click.seichi.gigantic.database.dao.user.UserMute
+import click.seichi.gigantic.database.dao.user.UserMission
 import click.seichi.gigantic.database.table.user.UserFollowTable
 import click.seichi.gigantic.database.table.user.UserHomeTable
+import click.seichi.gigantic.database.table.user.UserMissionTable
 import click.seichi.gigantic.database.table.user.UserMuteTable
 import click.seichi.gigantic.effect.GiganticEffect
+import click.seichi.gigantic.menu.MissionCategory
 import click.seichi.gigantic.menu.RelicCategory
+import click.seichi.gigantic.mission.Mission
+import click.seichi.gigantic.mission.MissionClient
 import click.seichi.gigantic.monster.SoulMonster
 import click.seichi.gigantic.player.*
 import click.seichi.gigantic.quest.Quest
@@ -978,6 +983,15 @@ object Keys {
         }
     }
 
+    val MENU_MISSION_CATEGORY = object : Key<PlayerCache, MissionCategory> {
+        override val default: MissionCategory
+            get() = MissionCategory.DAILY
+
+        override fun satisfyWith(value: MissionCategory): Boolean {
+            return true
+        }
+    }
+
     val WILL_RELATIONSHIP_MAP: Map<Will, Key<PlayerCache, WillRelationship>> = Will.values().map { will ->
         will to
                 object : Key<PlayerCache, WillRelationship> {
@@ -1159,6 +1173,51 @@ object Keys {
         }
     }.toMap()
 
+    val MISSION_MAP = object : DatabaseKey<PlayerCache, Map<Int, MissionClient>, UserEntity> {
+        override val default: Map<Int, MissionClient>
+            get() = mapOf()
+
+        override fun read(entity: UserEntity): Map<Int, MissionClient> {
+            val userMissionList = entity.userMissionList
+            return userMissionList.map {
+                it.missionId to MissionClient(
+                    it.missionId,
+                    it.missionType,
+                    it.missionDifficulty,
+                    it.missionReqSize,
+                    it.missionReqBlock,
+                    it.progress,
+                    it.complete,
+                    it.rewardReceived,
+                    it.date
+                )
+            }.toMap()
+        }
+
+        override fun store(entity: UserEntity, value: Map<Int, MissionClient>) {
+            UserMissionTable.deleteWhere { (UserMissionTable.userId eq entity.user.id.value) }
+            value.forEach { (missionId, mission) ->
+                UserMission.new {
+                    this.user = entity.user
+                    this.missionId = missionId
+                    this.missionType = mission.missionType
+                    this.missionDifficulty = mission.missionDifficulty
+                    this.missionReqSize = mission.missionReqSize ?: 0
+                    this.missionReqBlock = mission.missionReqBlock ?: 0
+                    this.progress = mission.progress
+                    this.complete = mission.complete
+                    this.rewardReceived = mission.rewardReceived
+                    this.date = mission.date
+                }
+
+            }
+        }
+
+        override fun satisfyWith(value: Map<Int, MissionClient>): Boolean {
+            return true
+        }
+    }
+
     val TITLE = object : Key<PlayerCache, String?> {
         override val default: String?
             get() = null
@@ -1191,6 +1250,15 @@ object Keys {
             get() = listOf()
 
         override fun satisfyWith(value: List<Relic>): Boolean {
+            return true
+        }
+    }
+
+    val MENU_MISSION_LIST = object : Key<PlayerCache, List<Mission>> {
+        override val default: List<Mission>
+            get() = listOf()
+
+        override fun satisfyWith(value: List<Mission>): Boolean {
             return true
         }
     }
