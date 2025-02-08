@@ -8,6 +8,9 @@ import click.seichi.gigantic.will.Will
 import org.bukkit.ChatColor
 import java.util.*
 
+/**
+ * @author 2288-256
+ */
 object MissionMessages {
 
     val PREFIX = LocalizedText(

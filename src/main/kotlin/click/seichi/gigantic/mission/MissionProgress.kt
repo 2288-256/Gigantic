@@ -1,5 +1,8 @@
 package click.seichi.gigantic.mission
 
+/**
+ * @author 2288-256
+ */
 abstract class MissionProgress {
     val lifeExpectancy
         get() = lifespan - count

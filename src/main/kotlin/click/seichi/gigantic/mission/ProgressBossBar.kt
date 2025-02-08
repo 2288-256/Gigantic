@@ -11,6 +11,9 @@ import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitTask
 import java.math.RoundingMode
 
+/**
+ * @author 2288-256
+ */
 class ProgressBossBar(
     private val targetPlayer: Player? = null,
     val mission: Mission,

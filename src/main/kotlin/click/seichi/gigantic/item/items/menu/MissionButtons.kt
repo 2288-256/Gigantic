@@ -20,6 +20,9 @@ import org.bukkit.inventory.ItemStack
 import java.math.RoundingMode
 import kotlin.random.asKotlinRandom
 
+/**
+ * @author 2288-256
+ */
 object MissionButtons {
     val DAILY = object : Button {
         override fun toShownItemStack(player: Player): ItemStack {

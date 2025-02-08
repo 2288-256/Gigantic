@@ -4,6 +4,9 @@ import click.seichi.gigantic.message.LocalizedText
 import org.bukkit.ChatColor
 import java.util.*
 
+/**
+ * @author 2288-256
+ */
 object MissionMenuMessages {
     val DAILY_TITLE = LocalizedText(
             Locale.JAPANESE to "デイリーミッション"

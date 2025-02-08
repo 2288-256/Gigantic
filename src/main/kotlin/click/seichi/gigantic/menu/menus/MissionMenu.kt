@@ -11,6 +11,9 @@ import click.seichi.gigantic.will.WillGrade
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 
+/**
+ * @author 2288-256
+ */
 object MissionMenu : BookMenu() {
 
     override val size: Int

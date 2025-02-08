@@ -7,6 +7,9 @@ import click.seichi.gigantic.mission.Mission
 import org.bukkit.entity.Player
 import java.util.*
 
+/**
+ * @author 2288-256
+ */
 enum class MissionCategory(val menuTitle: LocalizedText) {
     DAILY(
         LocalizedText(

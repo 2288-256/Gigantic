@@ -4,6 +4,9 @@ import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.extension.info
 import org.bukkit.Bukkit
 
+/**
+ * @author 2288-256
+ */
 object MissionProgressManager {
     private data class ProgressPair(
         val mission: Mission,

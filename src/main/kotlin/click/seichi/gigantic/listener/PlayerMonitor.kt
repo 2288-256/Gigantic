@@ -42,7 +42,7 @@ import kotlin.random.Random
 
 
 /**
- * author tar0ss
+ * @author tar0ss
  */
 class PlayerMonitor : Listener {
 
