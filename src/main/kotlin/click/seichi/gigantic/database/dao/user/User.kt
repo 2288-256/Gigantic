@@ -66,6 +66,8 @@ class User(id: EntityID<UUID>) : Entity<UUID>(id) {
 
     var stripMine by UserTable.stripMine
 
+    var dailyMission by UserTable.dailyMission
+
     var createdDate by UserTable.createdAt
 
     var updatedDate by UserTable.updatedAt

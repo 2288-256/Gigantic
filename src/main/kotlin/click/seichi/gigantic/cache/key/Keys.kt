@@ -1301,6 +1301,25 @@ object Keys {
         }
     }
 
+    val DAILY_MISSION_COUNT = object : DatabaseKey<PlayerCache, Long, UserEntity> {
+        override val default: Long
+            get() = 0
+
+        override fun read(entity: UserEntity): Long {
+            val user = entity.user
+            return user.dailyMission
+        }
+
+        override fun store(entity: UserEntity, value: Long) {
+            val user = entity.user
+            user.dailyMission = value
+        }
+
+        override fun satisfyWith(value: Long): Boolean {
+            return value >= 0
+        }
+    }
+
     val EVENT_JMS_KING_GIVEN_AT = object : DatabaseKey<PlayerCache, DateTime, UserEntity> {
         override val default: DateTime
             get() = DateTime.now()
