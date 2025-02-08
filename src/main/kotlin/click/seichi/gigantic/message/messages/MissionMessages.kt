@@ -29,7 +29,7 @@ object MissionMessages {
     val MISSION_REWARD_GET_ETHEL_ONE = { will: Will, amount: Int ->
         LocalizedText(
             Locale.JAPANESE.let {
-                it to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}報酬として「${will.chatColor}${will.getName(it)}${ChatColor.WHITE}」を${amount}個受け取りました"
+                it to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.WHITE}報酬として「${will.chatColor}${will.getName(it)}${ChatColor.WHITE}」のエーテルを${amount}個受け取りました"
             }
         )
     }
@@ -63,11 +63,11 @@ object MissionMessages {
         )
     }
     val NO_MISSION_ERROR = LocalizedText(
-        Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.RED}ミッションが見つかりませんでした。"
+        Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.RED}ミッションが見つかりませんでした"
     )
 
     val REWARD_ALREADY_RECEIVED_ERROR = LocalizedText(
-        Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.RED}報酬はすでに受け取っています。"
+        Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.RED}報酬はすでに受け取り済みです"
     )
 
 }
