@@ -72,7 +72,7 @@ enum class Mission(
     WILL_GET_REQ_SIZE(
         5,
         LocalizedText(Locale.JAPANESE to "特定のサイズの意志を回収する"),
-        { difficulty, size, _ -> LocalizedText(Locale.JAPANESE to "${size?.let { RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE) + "サイズの" } ?: "普通サイズの"}意志を${WILL_GET_REQ_SIZE.getRequiredAmount(difficulty)}個回収すると達成")},
+        { difficulty, size, _ -> LocalizedText(Locale.JAPANESE to "${size?.let { if ( RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE) == "" ) {"通常"} else {RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE)} }}サイズの意志を${WILL_GET_REQ_SIZE.getRequiredAmount(difficulty)}個回収すると達成")},
         listOf(5, 10, 20),
         QuestRewardType.Ethel,
         listOf(100, 100, 200)
@@ -149,16 +149,16 @@ enum class Mission(
                         missionId = missionIds.elementAt(i),
                         missionType = missionType,
                         missionDifficulty = Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(0, 3),
-                        missionReqSize = if (missionIds.elementAt(i) == 6) {
-                            Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_${i}_missionDifficulty".hashCode().toLong()).nextInt(
+                        missionReqSize = if (missionIds.elementAt(i) == 5) {
+                            Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_${i}_missionReqSize".hashCode().toLong()).nextInt(
                                 0,
-                                Mission.RequestWillSize.values().size
+                                RequestWillSize.values().size + 1
                             )
                         } else 0,
                         missionReqBlock = if (missionIds.elementAt(i) == 3) {
                             Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_missionReqBlock".hashCode().toLong()).nextInt(
                                 0,
-                                Mission.RequestBlockType.values().size
+                                RequestBlockType.values().size + 1
                             )
                         } else 0,
                         progress = 0.0,
