@@ -1,7 +1,5 @@
 package click.seichi.gigantic.mission
 
-import click.seichi.gigantic.extension.info
-import org.bukkit.entity.Player
 import org.joda.time.DateTime
 
 /**

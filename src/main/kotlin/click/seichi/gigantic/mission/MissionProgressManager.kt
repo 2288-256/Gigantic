@@ -1,7 +1,6 @@
 package click.seichi.gigantic.mission
 
 import click.seichi.gigantic.Gigantic
-import click.seichi.gigantic.extension.info
 import org.bukkit.Bukkit
 
 /**
@@ -28,7 +27,6 @@ object MissionProgressManager {
         }
         progress.spawn()
         progressSet.add(ProgressPair(mission, progress))
-        info(progressSet.size.toString())
     }
 
     fun getSpiritSet() = progressSet.map { it.progress }.toSet()

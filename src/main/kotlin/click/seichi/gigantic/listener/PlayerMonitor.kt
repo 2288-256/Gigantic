@@ -18,7 +18,6 @@ import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.DiscordWebhookNotifier
 import click.seichi.gigantic.message.messages.*
 import click.seichi.gigantic.mission.Mission
-import click.seichi.gigantic.mission.MissionClient
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.sound.sounds.PlayerSounds
@@ -35,10 +34,6 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.joda.time.DateTime
-import java.awt.SystemColor.text
-import java.security.MessageDigest
-import java.util.*
-import kotlin.random.Random
 
 
 /**
@@ -121,6 +116,7 @@ class PlayerMonitor : Listener {
             }
         }
         //ミッション生成コード
+        info("${player.wrappedLevel >= WillGrade.ADVANCED.unlockLevel}")
         if (player.wrappedLevel >= WillGrade.ADVANCED.unlockLevel) {
             Mission.missionCreate(player, 1)
         }
