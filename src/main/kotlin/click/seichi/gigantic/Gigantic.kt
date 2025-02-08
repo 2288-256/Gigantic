@@ -17,6 +17,7 @@ import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.listener.*
 import click.seichi.gigantic.listener.packet.ExperienceOrbSpawn
 import click.seichi.gigantic.message.messages.RankingMessages
+import click.seichi.gigantic.mission.MissionProgressManager
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.ExpReason
 import click.seichi.gigantic.player.ToggleSetting
@@ -188,6 +189,7 @@ class Gigantic : JavaPlugin() {
                     UserMuteTable,
                     UserToggleTable,
                     UserSettingTable,
+                    UserMissionTable,
                     // product,
                     PurchaseHistoryTable,
                     //ranking
@@ -209,6 +211,8 @@ class Gigantic : JavaPlugin() {
 
         SpiritManager.onEnabled()
 
+        MissionProgressManager.onEnabled()
+
         // 3秒後にTickEventを毎tick発火
         runTaskTimer(Defaults.TICK_EVENT_DELAY, 1) { tick ->
             Bukkit.getServer().pluginManager.callEvent(TickEvent(tick))
@@ -221,6 +225,8 @@ class Gigantic : JavaPlugin() {
     override fun onDisable() {
 
         SpiritManager.getSpiritSet().forEach { it.remove() }
+
+        MissionProgressManager.getSpiritSet().forEach { it.remove() }
 
         Bukkit.getOnlinePlayers().filterNotNull().forEach { player ->
             if (!PlayerCacheMemory.contains(player.uniqueId)) return@forEach

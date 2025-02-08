@@ -7,6 +7,7 @@ import click.seichi.gigantic.cache.manipulator.catalog.CatalogPlayerCache
 import click.seichi.gigantic.effect.GiganticEffect
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.messages.PlayerMessages
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.player.Defaults
 import click.seichi.gigantic.player.ExpReason
 import click.seichi.gigantic.player.ToggleSetting
@@ -18,6 +19,7 @@ import click.seichi.gigantic.sound.sounds.SkillSounds
 import org.bukkit.Material
 import org.bukkit.block.Block
 import org.bukkit.entity.Player
+import java.math.RoundingMode
 
 /**
  * 通常破壊時の処理
@@ -111,7 +113,6 @@ open class Miner : Breaker {
             }
         }
 
-
         // 全てのスキルを通して破壊したブロック数を取得
         val count = player.getOrPut(Keys.BREAK_COUNT)
 
@@ -129,6 +130,22 @@ open class Miner : Breaker {
                 count > 1 -> PlayerMessages.EXP(count).sendTo(player)
             }
         }
+
+        //MISSION
+        //経験値ミッション
+        val totalBonus = count.toBigDecimal() + relicBonus.toBigDecimal()
+            .setScale(2, RoundingMode.HALF_UP) + stripCount.times(Defaults.STRIP_BONUS).toBigDecimal()
+        Mission.updateMissionProgress(player, Mission.EXP, totalBonus.toDouble())
+        //特定のブロックを破壊ミッション
+        val reqMineMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == Mission.BLOCK_BREAK_REQ_BLOCK.id }
+        if (reqMineMission != null){
+            val blockMatch = reqMineMission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block) }
+            if (blockMatch == true) {
+                Mission.updateMissionProgress(player, Mission.BLOCK_BREAK_REQ_BLOCK, 1.0)
+            }
+        }
+        //通常破壊ミッション
+        Mission.updateMissionProgress(player, Mission.BLOCK_BREAK, 1.0)
 
         player.transform(Keys.STRIP_MINE) { it + stripCount }
 

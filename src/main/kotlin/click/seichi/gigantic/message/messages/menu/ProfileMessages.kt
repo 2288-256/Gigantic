@@ -83,7 +83,7 @@ object ProfileMessages {
             rank == 1 -> LocalizedText(Locale.JAPANESE to "${ChatColor.GOLD}あなたは現在1位です！")
             rank == null || value == null || abovePlayerName == null || aboveDiff == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
             aboveDiff < 0 -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングが変動しました。更新までお待ち下さい")
-            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.minus(1)}位(${abovePlayerName})までとの差: ${ChatColor.WHITE}$aboveDiff")
+            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.minus(1)}位(${abovePlayerName})までの差: ${ChatColor.WHITE}$aboveDiff")
         }
     }
     val PROFILE_BELOW_RANKING = { player: Player, value: BigDecimal ->
@@ -113,7 +113,7 @@ object ProfileMessages {
             isLastRank -> LocalizedText(Locale.JAPANESE to "${ChatColor.GRAY}あなたは現在最下位です...")
             rank == null || value == null || belowPlayerName == null || belowDiff == null -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングエラー")
             belowDiff < 0 -> LocalizedText(Locale.JAPANESE to "${ChatColor.RED}ランキングが変動しました。更新までお待ち下さい")
-            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.plus(1)}位(${belowPlayerName})までとの差: ${ChatColor.WHITE}$belowDiff")
+            else -> LocalizedText(Locale.JAPANESE to "${ChatColor.GREEN}${rank.plus(1)}位(${belowPlayerName})までの差: ${ChatColor.WHITE}$belowDiff")
         }
     }
 

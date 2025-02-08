@@ -66,6 +66,8 @@ object UserTable : IdTable<UUID>("users") {
 
     val stripMine = long("strip_mine").default(0L)
 
+    val dailyMission = long("daily_mission").default(0L)
+
     val createdAt = datetime("created_at")
 
     val updatedAt = datetime("updated_at")

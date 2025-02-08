@@ -1,19 +1,10 @@
 package click.seichi.gigantic.menu.menus
 
 import click.seichi.gigantic.extension.*
-import click.seichi.gigantic.item.Button
 import click.seichi.gigantic.item.items.menu.SettingButtons
 import click.seichi.gigantic.menu.Menu
 import click.seichi.gigantic.message.messages.menu.SettingMenuMessages
-import click.seichi.gigantic.message.messages.menu.ToolSwitchMessages
-import click.seichi.gigantic.player.ToggleSetting
-import click.seichi.gigantic.sound.sounds.PlayerSounds
-import org.bukkit.ChatColor
-import org.bukkit.Material
 import org.bukkit.entity.Player
-import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.inventory.ItemStack
-import java.util.*
 
 /**
  * @author tar0ss

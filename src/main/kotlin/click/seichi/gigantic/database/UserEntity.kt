@@ -124,6 +124,10 @@ class UserEntity(uniqueId: UUID, playerName: String) {
         })
     }.toMap()
 
+    val userMissionList = UserMission
+            .find { UserMissionTable.userId eq uniqueId }
+            .toList()
+
     val userFollowList = UserFollow
             .find { UserFollowTable.userId eq uniqueId }
             .toList()

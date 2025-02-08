@@ -17,6 +17,7 @@ import click.seichi.gigantic.event.events.LevelUpEvent
 import click.seichi.gigantic.menu.Menu
 import click.seichi.gigantic.message.messages.PlayerMessages
 import click.seichi.gigantic.message.messages.WillMessages
+import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.player.ExpReason
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.sound.sounds.PlayerSounds
@@ -146,6 +147,8 @@ val Player.mutes: Int
 fun Player.relationship(will: Will) = getOrPut(Keys.WILL_RELATIONSHIP_MAP[will]!!)
 
 fun Player.hasRelic(relic: Relic) = relic.getDroppedNum(this) > 0
+
+fun Player.hasMission(mission: Mission) = true
 
 fun Player.teleportSafely(location: Location) {
     teleport(location)
