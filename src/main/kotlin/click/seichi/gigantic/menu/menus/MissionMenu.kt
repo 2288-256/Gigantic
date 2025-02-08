@@ -4,12 +4,10 @@ import click.seichi.gigantic.cache.key.Keys
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.item.Button
 import click.seichi.gigantic.item.items.menu.MissionButtons
-import click.seichi.gigantic.item.items.menu.RelicButtons
 import click.seichi.gigantic.menu.BookMenu
 import click.seichi.gigantic.menu.MissionCategory
-import click.seichi.gigantic.menu.RelicCategory
 import click.seichi.gigantic.mission.Mission
-import click.seichi.gigantic.relic.Relic
+import click.seichi.gigantic.will.WillGrade
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
 
@@ -23,9 +21,10 @@ object MissionMenu : BookMenu() {
     private const val offset = 2 * 9
 
     init {
-        registerButton(0, MissionButtons.DAILY)
-//        registerButton(1, MissionButtons.WEEKLY)
-//        registerButton(2, MissionButtons.EVENT)
+        registerButton(1, MissionButtons.DAILY)
+        registerButton(3, MissionButtons.WEEKLY)
+        registerButton(5, MissionButtons.MONTHLY)
+        registerButton(7, MissionButtons.EVENT)
     }
 
     override fun getMaxPage(player: Player): Int {

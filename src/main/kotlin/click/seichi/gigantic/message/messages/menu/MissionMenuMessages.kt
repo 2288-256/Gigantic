@@ -5,17 +5,20 @@ import org.bukkit.ChatColor
 import java.util.*
 
 object MissionMenuMessages {
-    val DAILYTITLE = LocalizedText(
+    val DAILY_TITLE = LocalizedText(
             Locale.JAPANESE to "デイリーミッション"
     )
-    val WEEKLYTITLE = LocalizedText(
+    val WEEKLY_TITLE = LocalizedText(
             Locale.JAPANESE to "ウィークリーミッション"
     )
-    val MONTHLYTITLE = LocalizedText(
+    val MONTHLY_TITLE = LocalizedText(
             Locale.JAPANESE to "マンスリーミッション"
     )
-    val SEASONTITLE = LocalizedText(
+    val SEASON_TITLE = LocalizedText(
             Locale.JAPANESE to "シーズンミッション"
+    )
+    val NO_RELEASE = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.RED}近日実装"
     )
     val NO_UNLOCK = { unlockLevel: Int ->
         LocalizedText(

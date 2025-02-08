@@ -11,6 +11,7 @@ import click.seichi.gigantic.mission.Mission
 import click.seichi.gigantic.relic.Relic
 import click.seichi.gigantic.util.Random
 import click.seichi.gigantic.will.Will
+import click.seichi.gigantic.will.WillGrade
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -23,9 +24,37 @@ object MissionButtons {
     val DAILY = object : Button {
         override fun toShownItemStack(player: Player): ItemStack {
             return itemStackOf(Material.BOOK) {
-                setDisplayName(MissionMenuMessages.DAILYTITLE.asSafety(player.wrappedLocale))
+                setDisplayName(MissionMenuMessages.DAILY_TITLE.asSafety(player.wrappedLocale))
                 val nowClearMission = player.getOrPut(Keys.MISSION_MAP).values.count { it.missionType == 1 && it.complete }
-                setLore("${ChatColor.GREEN}ミッション達成率:$nowClearMission/${Config.MISSION_DAILY_AMOUNT}")
+                if (player.wrappedLevel >= WillGrade.ADVANCED.unlockLevel){
+                    setLore("${ChatColor.GREEN}ミッション達成率:$nowClearMission/${Config.MISSION_DAILY_AMOUNT}")
+                }else{
+                    setLore(MissionMenuMessages.NO_UNLOCK(WillGrade.ADVANCED.unlockLevel).asSafety(player.wrappedLocale))
+                }
+            }
+        }
+    }
+    val WEEKLY = object : Button {
+        override fun toShownItemStack(player: Player): ItemStack {
+            return itemStackOf(Material.BOOK) {
+                setDisplayName(MissionMenuMessages.WEEKLY_TITLE.asSafety(player.wrappedLocale))
+                setLore(MissionMenuMessages.NO_RELEASE.asSafety(player.wrappedLocale))
+            }
+        }
+    }
+    val MONTHLY = object : Button {
+        override fun toShownItemStack(player: Player): ItemStack {
+            return itemStackOf(Material.BOOK) {
+                setDisplayName(MissionMenuMessages.MONTHLY_TITLE.asSafety(player.wrappedLocale))
+                setLore(MissionMenuMessages.NO_RELEASE.asSafety(player.wrappedLocale))
+            }
+        }
+    }
+    val EVENT = object : Button {
+        override fun toShownItemStack(player: Player): ItemStack {
+            return itemStackOf(Material.BOOK) {
+                setDisplayName(MissionMenuMessages.SEASON_TITLE.asSafety(player.wrappedLocale))
+                setLore(MissionMenuMessages.NO_RELEASE.asSafety(player.wrappedLocale))
             }
         }
     }
