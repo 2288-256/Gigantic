@@ -181,7 +181,7 @@ enum class Mission(
         GRAVEL(Material.GRAVEL, "砂利"),
         SAND(Material.SAND, "砂"),
         CLAY(Material.CLAY, "粘土"),
-        GRASS(Material.GRASS, "草"),
+        GRASS(Material.GRASS_BLOCK, "草ブロック"),
         DIRT(Material.DIRT, "土"),
         IRON_ORE(Material.IRON_ORE, "鉄鉱石"),
         COAL_ORE(Material.COAL_ORE, "石炭鉱石"),
