@@ -137,9 +137,9 @@ open class Miner : Breaker {
             .setScale(2, RoundingMode.HALF_UP) + stripCount.times(Defaults.STRIP_BONUS).toBigDecimal()
         Mission.updateMissionProgress(player, Mission.EXP, totalBonus.toDouble())
         //特定のブロックを破壊ミッション
-        val reqMineMission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == Mission.BLOCK_BREAK_REQ_BLOCK.id }
-        if (reqMineMission != null){
-            val blockMatch = reqMineMission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block) }
+        val missionData = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == Mission.BLOCK_BREAK_REQ_BLOCK.id }
+        if (missionData != null){
+            val blockMatch = missionData.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, block, missionData.missionType) }
             if (blockMatch == true) {
                 Mission.updateMissionProgress(player, Mission.BLOCK_BREAK_REQ_BLOCK, 1.0)
             }

@@ -21,7 +21,7 @@ import kotlin.random.Random
 enum class Mission(
     val id: Int,
     private val localizedName: LocalizedText,
-    private val localizedLore: (difficulty: Int, requestSize: Int?, requestBlockIndex: Int?) -> LocalizedText,
+    private val localizedLore: (difficulty: Int, requestSize: Int?, requestBlockIndex: Int?, missionType: Int?) -> LocalizedText,
     private val requiredAmount: List<Int>,
     private val rewardType: QuestRewardType,
     private val rewardAmount: List<Int>
@@ -29,7 +29,7 @@ enum class Mission(
     EXP(
         1,
         LocalizedText(Locale.JAPANESE to "expを取得する"),
-        { difficulty, _, _ -> LocalizedText(Locale.JAPANESE to "${EXP.getRequiredAmount(difficulty)}exp以上取得すると達成") },
+        { difficulty, _, _, _ -> LocalizedText(Locale.JAPANESE to "${EXP.getRequiredAmount(difficulty)}exp以上取得すると達成") },
         listOf(20000, 50000, 100000),
         QuestRewardType.Ethel,
         listOf(100, 100, 200)
@@ -37,7 +37,7 @@ enum class Mission(
     BLOCK_BREAK(
         2,
         LocalizedText(Locale.JAPANESE to "通常破壊をする"),
-        { difficulty, _, _ ->
+        { difficulty, _, _, _ ->
             LocalizedText(Locale.JAPANESE to "${BLOCK_BREAK.getRequiredAmount(difficulty)}ブロック通常破壊すると達成") },
         listOf(3000, 5000, 10000),
         QuestRewardType.Ethel,
@@ -46,7 +46,14 @@ enum class Mission(
     BLOCK_BREAK_REQ_BLOCK(
         3,
         LocalizedText(Locale.JAPANESE to "特定のブロックを破壊する"),
-        { difficulty, _, blockTypeIndex -> LocalizedText(Locale.JAPANESE to "${blockTypeIndex?.let { RequestBlockType.getDisplayName(blockTypeIndex) }}を${BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(difficulty)}ブロック破壊すると達成") },
+        { difficulty, _, blockTypeIndex, missionType -> LocalizedText(
+            Locale.JAPANESE to
+                    "${blockTypeIndex?.let {
+                        if (missionType != null) {
+                            RequestBlockType.getDisplayName(blockTypeIndex,missionType)
+                        }
+                    }}を${BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(difficulty)}ブロック破壊すると達成")
+        },
         listOf(1000, 2000, 3000),
         QuestRewardType.Ethel,
         listOf(100, 100, 200)
@@ -64,7 +71,7 @@ enum class Mission(
     WILL_GET(
         4,
         LocalizedText(Locale.JAPANESE to "意志を回収する"),
-        { difficulty, _, _ ->  LocalizedText(Locale.JAPANESE to "${WILL_GET.getRequiredAmount(difficulty)}回意志を回収すると達成")},
+        { difficulty, _, _, _ ->  LocalizedText(Locale.JAPANESE to "${WILL_GET.getRequiredAmount(difficulty)}回意志を回収すると達成")},
         listOf(20, 50, 100),
         QuestRewardType.Ethel,
         listOf(100, 100, 200)
@@ -72,7 +79,7 @@ enum class Mission(
     WILL_GET_REQ_SIZE(
         5,
         LocalizedText(Locale.JAPANESE to "特定のサイズの意志を回収する"),
-        { difficulty, size, _ -> LocalizedText(Locale.JAPANESE to "${size?.let { if ( RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE) == "" ) {"通常"} else {RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE)} }}サイズの意志を${WILL_GET_REQ_SIZE.getRequiredAmount(difficulty)}個回収すると達成")},
+        { difficulty, size, _, _ -> LocalizedText(Locale.JAPANESE to "${size?.let { if ( RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE) == "" ) {"通常"} else {RequestWillSize.getRequestSize(it)?.prefix?.asSafety(Locale.JAPANESE)} }}サイズの意志を${WILL_GET_REQ_SIZE.getRequiredAmount(difficulty)}個回収すると達成")},
         listOf(5, 10, 20),
         QuestRewardType.Ethel,
         listOf(100, 100, 200)
@@ -80,7 +87,7 @@ enum class Mission(
     RELIC_CREATE(
         6,
         LocalizedText(Locale.JAPANESE to "レリックを生成する"),
-        { difficulty, _, _ -> LocalizedText(Locale.JAPANESE to "${RELIC_CREATE.getRequiredAmount(difficulty)}回レリックを生成すると達成")},
+        { difficulty, _, _, _ -> LocalizedText(Locale.JAPANESE to "${RELIC_CREATE.getRequiredAmount(difficulty)}回レリックを生成すると達成")},
         listOf(10, 15, 25),
         QuestRewardType.Ethel,
         listOf(100, 100, 200)
@@ -158,7 +165,7 @@ enum class Mission(
                         missionReqBlock = if (missionIds.elementAt(i) == 3) {
                             Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_missionReqBlock".hashCode().toLong()).nextInt(
                                 0,
-                                RequestBlockType.values().size
+                                RequestBlockType.filterReqBlockType(missionType).size
                             )
                         } else 0,
                         progress = 0.0,
@@ -177,20 +184,20 @@ enum class Mission(
         }
     }
 
-    enum class RequestBlockType(val material: Material, val displayName: String) {
-        GRAVEL(Material.GRAVEL, "砂利"),
-        SAND(Material.SAND, "砂"),
-        CLAY(Material.CLAY, "粘土"),
-        GRASS(Material.GRASS_BLOCK, "草ブロック"),
-        DIRT(Material.DIRT, "土"),
-        IRON_ORE(Material.IRON_ORE, "鉄鉱石"),
-        COAL_ORE(Material.COAL_ORE, "石炭鉱石"),
-        DIROITE(Material.DIORITE, "閃緑岩"),
-        ANDESITE(Material.ANDESITE, "安山岩"),
-        GRANITE(Material.GRANITE, "花崗岩"),
-        MAGMA_BLOCK(Material.MAGMA_BLOCK, "マグマブロック"),
-        PRISMARINE(Material.PRISMARINE, "プリズマリン"),
-        PRIISMARINE_BRICKS(Material.PRISMARINE_BRICKS, "プリズマリンレンガ"),
+    enum class RequestBlockType(val material: Material, val displayName: String, val missionType: List<Int>) {
+        GRAVEL(Material.GRAVEL, "砂利", listOf(2,3)),
+        SAND(Material.SAND, "砂", listOf(2,3)),
+        CLAY(Material.CLAY, "粘土", listOf(2,3)),
+        GRASS(Material.GRASS_BLOCK, "草ブロック", listOf(1,2,3)),
+        DIRT(Material.DIRT, "土", listOf(1,2,3)),
+        IRON_ORE(Material.IRON_ORE, "鉄鉱石", listOf(2,3)),
+        COAL_ORE(Material.COAL_ORE, "石炭鉱石", listOf(2,3)),
+        DIROITE(Material.DIORITE, "閃緑岩", listOf(1,2,3)),
+        ANDESITE(Material.ANDESITE, "安山岩", listOf(1,2,3)),
+        GRANITE(Material.GRANITE, "花崗岩", listOf(1,2,3)),
+        MAGMA_BLOCK(Material.MAGMA_BLOCK, "マグマブロック", listOf(2,3)),
+        PRISMARINE(Material.PRISMARINE, "プリズマリン", listOf(1,2,3)),
+        PRIISMARINE_BRICKS(Material.PRISMARINE_BRICKS, "プリズマリンレンガ", listOf(1,2,3)),
         ;
         companion object {
             /**
@@ -201,16 +208,26 @@ enum class Mission(
             fun fromIndex(index: Int): Material? =
                 values().getOrNull(index)?.material
 
-            fun getDisplayName(index: Int): String? = values().getOrNull(index)?.displayName
+            /**
+             * ミッションジャンルからブロックタイプをフィルタリングしてリストで返す
+             * @param missionType ミッションタイプ
+             * @return List<Mission.RequestBlockType> フィルタリングされたリクエストされたブロックタイプのリスト
+             */
+            fun filterReqBlockType(missionType: Int): List<RequestBlockType> {
+                return values().filter { it.missionType.contains(missionType) }
+            }
+            fun getDisplayName(index: Int, missionType: Int): String? = filterReqBlockType(missionType).getOrNull(index)?.displayName
 
             /**
              * ブロックがリクエストされたブロックタイプかどうかをBoolで返す
              * @param index クエストで指定されているブロックのindex
              * @param block 採掘したブロック
+             * @param missionType ミッションのジャンル
              * @return Boolean 対象のブロックかどうかをboolで返す
              */
-            fun ifReqBlockType(index: Int,block: Block): Boolean {
-                return values().any { values().getOrNull(index)?.material == block.type }
+            fun ifReqBlockType(index: Int, block: Block, missionType: Int): Boolean {
+                val filteringList = filterReqBlockType(missionType)
+                return filteringList.any { filteringList.getOrNull(index)?.material == block.type }
             }
         }
     }
@@ -235,7 +252,7 @@ enum class Mission(
 
     fun getName(locale: Locale) = localizedName.asSafety(locale)
 
-    fun getLore(locale: Locale, difficulty: Int, requestSize: Int?, requestBlockIndex: Int?) = localizedLore(difficulty, requestSize, requestBlockIndex).asSafety(locale)
+    fun getLore(locale: Locale, missionData: MissionClient) = localizedLore(missionData.missionDifficulty, missionData.missionReqSize, missionData.missionReqBlock, missionData.missionType).asSafety(locale)
 
     fun getRequiredAmount(difficulty: Int) = requiredAmount[difficulty]
 

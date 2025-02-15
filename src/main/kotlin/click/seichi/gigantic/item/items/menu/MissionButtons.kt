@@ -73,9 +73,7 @@ object MissionButtons {
                         clearLore()
                         val lore = mission.getLore(
                             player.wrappedLocale,
-                            missionData.missionDifficulty,
-                            missionData.missionReqSize,
-                            missionData.missionReqBlock
+                            missionData
                         )
                         addLore("${ChatColor.AQUA}目標:$lore")
                         addLore("${ChatColor.GRAY}進捗:${ChatColor.GOLD}達成済み")
@@ -89,9 +87,7 @@ object MissionButtons {
                         clearLore()
                         val lore = mission.getLore(
                             player.wrappedLocale,
-                            missionData.missionDifficulty,
-                            missionData.missionReqSize,
-                            missionData.missionReqBlock
+                            missionData
                         )
                         addLore("${ChatColor.AQUA}目標:$lore")
                         addLore("${ChatColor.GRAY}進捗:${ChatColor.GOLD}達成済み")
@@ -117,9 +113,7 @@ object MissionButtons {
                         clearLore()
                         val lore = mission.getLore(
                             player.wrappedLocale,
-                            missionData.missionDifficulty,
-                            missionData.missionReqSize,
-                            missionData.missionReqBlock
+                            missionData
                         )
                         addLore("${ChatColor.AQUA}目標:$lore")
                         addLore("${ChatColor.GRAY}進捗:$progressDisplay/${mission.getRequiredAmount(missionData.missionDifficulty)}")
