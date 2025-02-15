@@ -152,13 +152,13 @@ enum class Mission(
                         missionReqSize = if (missionIds.elementAt(i) == 5) {
                             Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_${i}_missionReqSize".hashCode().toLong()).nextInt(
                                 0,
-                                RequestWillSize.values().size + 1
+                                RequestWillSize.values().size
                             )
                         } else 0,
                         missionReqBlock = if (missionIds.elementAt(i) == 3) {
                             Random("${player.uniqueId}_${nowDate.withTimeAtStartOfDay()}_missionReqBlock".hashCode().toLong()).nextInt(
                                 0,
-                                RequestBlockType.values().size + 1
+                                RequestBlockType.values().size
                             )
                         } else 0,
                         progress = 0.0,
