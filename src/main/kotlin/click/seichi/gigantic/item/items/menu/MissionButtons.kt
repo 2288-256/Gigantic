@@ -67,9 +67,10 @@ object MissionButtons {
             override fun toShownItemStack(player: Player): ItemStack {
                 val missionMap = player.getOrPut(Keys.MISSION_MAP)
                 val missionData = missionMap.values.first { it.missionId == mission.id }
+                val missionDifficultyDisplay = MissionMenuMessages.MISSION_DIFFICULTY_DISPLAYNAME(missionData.missionDifficulty).asSafety(player.wrappedLocale)
                 if (missionData.rewardReceived) {
                     return itemStackOf(Material.BEDROCK) {
-                        setDisplayName("${ChatColor.RED}[済] ${ChatColor.WHITE}${ChatColor.BOLD}${ChatColor.UNDERLINE}${mission.getName(player.wrappedLocale) ?: "null"}")
+                        setDisplayName("${ChatColor.RED}[済] ${ChatColor.WHITE}${ChatColor.BOLD}${ChatColor.UNDERLINE}${mission.getName(player.wrappedLocale) ?: "null"} $missionDifficultyDisplay")
                         clearLore()
                         val lore = mission.getLore(
                             player.wrappedLocale,
@@ -83,7 +84,7 @@ object MissionButtons {
                 }
                 if (missionData.complete) {
                     return itemStackOf(Material.CHEST) {
-                        setDisplayName("${ChatColor.WHITE}${ChatColor.BOLD}${ChatColor.UNDERLINE}${mission.getName(player.wrappedLocale) ?: "null"}")
+                        setDisplayName("${ChatColor.WHITE}${ChatColor.BOLD}${ChatColor.UNDERLINE}${mission.getName(player.wrappedLocale) ?: "null"}$missionDifficultyDisplay")
                         clearLore()
                         val lore = mission.getLore(
                             player.wrappedLocale,
@@ -108,7 +109,7 @@ object MissionButtons {
                                 mission.getName(
                                     player.wrappedLocale
                                 ) ?: "null"
-                            }${ChatColor.RESET}  ${ChatColor.GRAY}($progress%)"
+                            }$missionDifficultyDisplay${ChatColor.RESET}  ${ChatColor.GRAY}($progress%)"
                         )
                         clearLore()
                         val lore = mission.getLore(

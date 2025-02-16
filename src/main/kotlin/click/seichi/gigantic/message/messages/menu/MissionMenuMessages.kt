@@ -44,5 +44,14 @@ object MissionMenuMessages {
                 )
         )
     }
-
+    val MISSION_DIFFICULTY_DISPLAYNAME = { difficulty: Int ->
+        LocalizedText(
+                Locale.JAPANESE to "${ChatColor.WHITE}${ChatColor.BOLD}(${ChatColor.YELLOW}" + when (difficulty) {
+                    0 -> "⭐"
+                    1 -> "⭐⭐"
+                    2 -> "⭐⭐⭐"
+                    else -> "???"
+                } + "${ChatColor.WHITE}${ChatColor.BOLD})"
+        )
+    }
 }
