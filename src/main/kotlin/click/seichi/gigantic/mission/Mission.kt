@@ -86,7 +86,7 @@ enum class Mission(
         { difficulty, _, _, _ -> LocalizedText(Locale.JAPANESE to "${RELIC_CREATE.getRequiredAmount(difficulty)}回レリックを生成すると達成")},
         listOf(10, 15, 25),
         QuestRewardType.Ethel,
-        listOf(100, 100, 200)
+        listOf(100, 150, 250)
     ),
     ;
 
