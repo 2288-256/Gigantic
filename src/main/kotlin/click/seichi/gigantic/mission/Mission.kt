@@ -30,7 +30,7 @@ enum class Mission(
         1,
         LocalizedText(Locale.JAPANESE to "expを取得する"),
         { difficulty, _, _, _ -> LocalizedText(Locale.JAPANESE to "${EXP.getRequiredAmount(difficulty)}exp以上取得すると達成") },
-        listOf(20000, 50000, 100000),
+        listOf(100000, 300000, 500000),
         QuestRewardType.Ethel,
         listOf(100, 150, 200)
     ),
@@ -39,7 +39,7 @@ enum class Mission(
         LocalizedText(Locale.JAPANESE to "通常破壊をする"),
         { difficulty, _, _, _ ->
             LocalizedText(Locale.JAPANESE to "${BLOCK_BREAK.getRequiredAmount(difficulty)}ブロック通常破壊すると達成") },
-        listOf(3000, 5000, 10000),
+        listOf(5000, 15000, 30000),
         QuestRewardType.Ethel,
         listOf(100, 150, 200)
     ),
@@ -50,7 +50,7 @@ enum class Mission(
             Locale.JAPANESE to
                     "${blockTypeIndex?.let { index -> missionType?.let { RequestBlockType.getDisplayName(index, it) } } ?: "不明"}を${BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(difficulty)}ブロック破壊すると達成")
         },
-        listOf(1000, 2000, 3000),
+        listOf(1000, 1500, 2000),
         QuestRewardType.Ethel,
         listOf(100, 150, 200)
     ),
