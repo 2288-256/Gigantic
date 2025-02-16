@@ -229,11 +229,12 @@ enum class Mission(
     }
 
     enum class RequestWillSize(val size: WillSize) {
-        TINY(WillSize.TINY),
+        //巨大な意思、僅かな意思はウィークリー以上にする
+        //TINY(WillSize.TINY),
         SMALL(WillSize.SMALL),
         MEDIUM(WillSize.MEDIUM),
         LARGE(WillSize.LARGE),
-        HUGE(WillSize.HUGE),
+        //HUGE(WillSize.HUGE),
         ;
         companion object {
             fun getRequestSize(index: Int): WillSize? = values().getOrNull(index)?.size
