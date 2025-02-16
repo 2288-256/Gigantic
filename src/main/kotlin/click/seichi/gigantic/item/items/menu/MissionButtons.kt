@@ -141,6 +141,7 @@ object MissionButtons {
                             val rewardAmount = mission.getRewardAmount(missionData.missionDifficulty)
                             val getEthel = Will.values()
                                 .filter { player.hasAptitude(it) }
+                                .filterNot { it.grade == WillGrade.SPECIAL }
                                 .shuffled(Random.generator)
                                 .take(1)
                                 .toSet()
