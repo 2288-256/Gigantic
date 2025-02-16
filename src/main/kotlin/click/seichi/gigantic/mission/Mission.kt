@@ -48,11 +48,7 @@ enum class Mission(
         LocalizedText(Locale.JAPANESE to "特定のブロックを破壊する"),
         { difficulty, _, blockTypeIndex, missionType -> LocalizedText(
             Locale.JAPANESE to
-                    "${blockTypeIndex?.let {
-                        if (missionType != null) {
-                            RequestBlockType.getDisplayName(blockTypeIndex,missionType)
-                        }
-                    }}を${BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(difficulty)}ブロック破壊すると達成")
+                    "${blockTypeIndex?.let { index -> missionType?.let { RequestBlockType.getDisplayName(index, it) } } ?: "不明"}を${BLOCK_BREAK_REQ_BLOCK.getRequiredAmount(difficulty)}ブロック破壊すると達成")
         },
         listOf(1000, 2000, 3000),
         QuestRewardType.Ethel,
