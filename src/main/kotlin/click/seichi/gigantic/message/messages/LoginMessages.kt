@@ -91,7 +91,6 @@ object LoginMessages {
                 (1..53).joinToString("") { "-" } +
                 LinedChatMessage.NEW_LINE_SYMBOL +
                 "${ChatColor.WHITE}" +
-                "初イベント " +
                 "${ChatColor.LIGHT_PURPLE}${ChatColor.BOLD}" +
                 "春の整地祭り" +
                 "${ChatColor.WHITE}" +
