@@ -73,4 +73,8 @@ object MissionMessages {
         Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.RED}報酬はすでに受け取り済みです"
     )
 
+    val NO_REWARD_ERROR = LocalizedText(
+        Locale.JAPANESE to "${PREFIX.asSafety(Locale.JAPANESE)} ${ChatColor.RED}受け取っていない報酬が見つかりませんでした"
+    )
+
 }

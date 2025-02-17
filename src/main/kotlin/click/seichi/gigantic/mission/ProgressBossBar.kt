@@ -35,9 +35,7 @@ class ProgressBossBar(
         val missionName = targetPlayer?.let {
             mission.getLore(
                 it.wrappedLocale,
-                missionData.missionDifficulty,
-                missionData.missionReqSize,
-                missionData.missionReqBlock
+                missionData
             )
         }?.replace("と達成", "")
         if (bossBar == null) {

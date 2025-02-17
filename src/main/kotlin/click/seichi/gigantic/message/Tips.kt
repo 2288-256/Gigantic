@@ -47,9 +47,12 @@ enum class Tips(
             LocalizedText(
                 Locale.JAPANESE to Defaults.TIPS_PREFIX +
                         "${ChatColor.WHITE}" +
-                        "元祖整地鯖(春)非公式Wiki→" +
+                        "非公式整地鯖(春) 公認Wiki→" +
                         "${ChatColor.AQUA}" +
-                        "https://springseichi.sokuhou.wiki/"
+                        "https://wiki.seichi-haru.pgw.jp/"+
+                        LinedChatMessage.NEW_LINE_SYMBOL +
+                        Defaults.TIPS_PREFIX +
+                        "公認Wikiでは編集者を募集しています！"
             ), 2L)),
     HOME(LinedChatMessage(ChatMessageProtocol.CHAT,
         LocalizedText(
