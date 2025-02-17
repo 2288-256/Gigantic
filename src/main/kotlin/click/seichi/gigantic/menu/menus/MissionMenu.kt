@@ -28,6 +28,7 @@ object MissionMenu : BookMenu() {
         registerButton(3, MissionButtons.WEEKLY)
         registerButton(5, MissionButtons.MONTHLY)
         registerButton(7, MissionButtons.EVENT)
+        registerButton(31, MissionButtons.GET_ALL_REWARDS)
     }
 
     override fun getMaxPage(player: Player): Int {

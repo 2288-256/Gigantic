@@ -214,11 +214,11 @@ class MultiBreaker : SpellCaster {
             }
         }
         //MISSION処理
-        val mission = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == Mission.BLOCK_BREAK_REQ_BLOCK.id }
+        val missionData = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == Mission.BLOCK_BREAK_REQ_BLOCK.id }
 
-        if (mission != null) {
+        if (missionData != null) {
             val missionClearCount = breakBlockSet.count { b ->
-                mission.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, b) } == true
+                missionData.missionReqBlock?.let { Mission.RequestBlockType.ifReqBlockType(it, b, missionData.missionType) } == true
             }
             if (missionClearCount > 0) {
                 Mission.updateMissionProgress(player, Mission.BLOCK_BREAK_REQ_BLOCK, missionClearCount.toDouble())
