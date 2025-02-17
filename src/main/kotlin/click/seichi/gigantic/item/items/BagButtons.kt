@@ -634,7 +634,8 @@ object BagButtons {
 
         override fun tryClick(player: Player, event: InventoryClickEvent): Boolean {
             player.sendMessage(BagMessages.WIKI_MESSAGE_OFFICIAL.asSafety(player.wrappedLocale))
-            player.sendMessage(BagMessages.WIKI_MESSAGE_UNOFFICIAL.asSafety(player.wrappedLocale))
+            player.sendMessage(BagMessages.WIKI_MESSAGE_OLD_OFFICIAL.asSafety(player.wrappedLocale))
+            player.sendMessage(BagMessages.WIKI_MESSAGE_OLD_UNOFFICIAL.asSafety(player.wrappedLocale))
             player.closeInventory()
             return true
         }

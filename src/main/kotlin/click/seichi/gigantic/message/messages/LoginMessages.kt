@@ -36,11 +36,6 @@ object LoginMessages {
                     "https://s.seichi-haru.pgw.jp/github" +
                     LinedChatMessage.NEW_LINE_SYMBOL +
                     "${ChatColor.WHITE}" +
-                    "実装予定の機能・発生中の不具合: " +
-                    "${ChatColor.YELLOW}" +
-                    "https://s.seichi-haru.pgw.jp/issues" +
-                    LinedChatMessage.NEW_LINE_SYMBOL +
-                    "${ChatColor.WHITE}" +
                     "リリースノート: " +
                     "${ChatColor.YELLOW}" +
                     "https://s.seichi-haru.pgw.jp/releases" +
@@ -59,6 +54,11 @@ object LoginMessages {
                     "WebMap: " +
                     "${ChatColor.YELLOW}" +
                     "https://map.seichi-haru.pgw.jp" +
+                    LinedChatMessage.NEW_LINE_SYMBOL +
+                    "${ChatColor.WHITE}" +
+                    "公認Wiki: " +
+                    "${ChatColor.YELLOW}" +
+                    "https://wiki.seichi-haru.pgw.jp" +
                     LinedChatMessage.NEW_LINE_SYMBOL +
                     LinedChatMessage.NEW_LINE_SYMBOL +
                     "${ChatColor.WHITE}" +
