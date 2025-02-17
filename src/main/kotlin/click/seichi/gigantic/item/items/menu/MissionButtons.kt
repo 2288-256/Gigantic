@@ -217,7 +217,7 @@ object MissionButtons {
                 return null
             }
             return itemStackOf(Material.ENDER_CHEST) {
-                setDisplayName("すべての報酬を受け取る")
+                setDisplayName("${ChatColor.GOLD}すべての報酬を受け取る")
                 clearLore()
                 addLore("${ChatColor.GRAY}受け取っていない報酬が${missionData.size}件あります")
                 addLore("${ChatColor.UNDERLINE}クリックして報酬を受け取る")
