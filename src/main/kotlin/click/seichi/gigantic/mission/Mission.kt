@@ -91,6 +91,7 @@ enum class Mission(
     ;
 
     companion object {
+        fun fromId(id: Int) = values().firstOrNull { it.id == id }
         fun updateMissionProgress(player: Player,mission: Mission, progressValue: Double) {
             val missionClient = player.getOrPut(Keys.MISSION_MAP).values.firstOrNull { it.missionId == mission.id }
             if (missionClient != null) {
