@@ -255,11 +255,15 @@ object BagMessages {
     )
 
     val WIKI_MESSAGE_OFFICIAL = LocalizedText(
-            Locale.JAPANESE to "元祖整地鯖(春)公式Wiki: " + "${ChatColor.RED}${ChatColor.UNDERLINE}" + "https://www.seichi.network/spring"
+        Locale.JAPANESE to "非公式整地鯖(春) 公認Wiki: " + "${ChatColor.RED}${ChatColor.UNDERLINE}" + "https://wiki.seichi-haru.pgw.jp/"
     )
 
-    val WIKI_MESSAGE_UNOFFICIAL = LocalizedText(
-            Locale.JAPANESE to "元祖整地鯖(春)非公式Wiki: " + "${ChatColor.RED}${ChatColor.UNDERLINE}" + "https://springseichi.sokuhou.wiki"
+    val WIKI_MESSAGE_OLD_OFFICIAL = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.GRAY}元祖整地鯖(春)公式Wiki: " + "${ChatColor.GRAY}${ChatColor.UNDERLINE}" + "https://www.seichi.network/spring"
+    )
+
+    val WIKI_MESSAGE_OLD_UNOFFICIAL = LocalizedText(
+            Locale.JAPANESE to "${ChatColor.GRAY}元祖整地鯖(春)非公式Wiki: " + "${ChatColor.GRAY}${ChatColor.UNDERLINE}" + "https://springseichi.sokuhou.wiki"
     )
 
     val RANKING = LocalizedText(
