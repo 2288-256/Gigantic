@@ -13,5 +13,6 @@ data class SoulMonsterParameter(
         val shotInterval: Long,
         // blocks per attack
         val attackTimes: Int,
+        val attackDamage: Int,
         val attackMaterial: Material
 )

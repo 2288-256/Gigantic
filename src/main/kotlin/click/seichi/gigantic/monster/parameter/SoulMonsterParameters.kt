@@ -13,6 +13,7 @@ object SoulMonsterParameters {
             100L,
             10L,
             0,
+            1,
             Material.GRASS_BLOCK
     )
 
@@ -21,6 +22,7 @@ object SoulMonsterParameters {
             1,
             100L,
             10L,
+            1,
             1,
             Material.MOSSY_COBBLESTONE
     )
@@ -31,6 +33,7 @@ object SoulMonsterParameters {
             100L,
             10L,
             1,
+            1,
             Material.PINK_WOOL
     )
 
@@ -39,6 +42,7 @@ object SoulMonsterParameters {
             15,
             120L,
             10L,
+            1,
             1,
             Material.PINK_CONCRETE_POWDER
     )
@@ -49,6 +53,7 @@ object SoulMonsterParameters {
             140L,
             10L,
             1,
+            1,
             Material.PINK_CONCRETE
     )
 
@@ -58,6 +63,7 @@ object SoulMonsterParameters {
             240L,
             4L,
             3,
+            1,
             Material.WHITE_WOOL
     )
 
@@ -67,6 +73,7 @@ object SoulMonsterParameters {
             200L,
             4L,
             4,
+            1,
             Material.WHITE_TERRACOTTA
     )
 
@@ -75,6 +82,7 @@ object SoulMonsterParameters {
             30,
             250L,
             10L,
+            1,
             1,
             Material.SLIME_BLOCK
     )
@@ -85,6 +93,7 @@ object SoulMonsterParameters {
             250L,
             10L,
             2,
+            1,
             Material.SLIME_BLOCK
     )
 
@@ -94,6 +103,7 @@ object SoulMonsterParameters {
             250L,
             10L,
             3,
+            1,
             Material.SLIME_BLOCK
     )
 
@@ -102,6 +112,7 @@ object SoulMonsterParameters {
             40,
             160L,
             6L,
+            1,
             1,
             Material.NETHERRACK
     )
@@ -112,6 +123,7 @@ object SoulMonsterParameters {
             180L,
             6L,
             1,
+            1,
             Material.NETHER_BRICKS
     )
 
@@ -121,6 +133,7 @@ object SoulMonsterParameters {
             200L,
             6L,
             2,
+            4,
             Material.BLUE_CONCRETE_POWDER
     )
 
@@ -129,6 +142,7 @@ object SoulMonsterParameters {
             20,
             190,
             10L,
+            1,
             1,
             Material.END_STONE
     )
@@ -139,6 +153,7 @@ object SoulMonsterParameters {
             180,
             10L,
             2,
+            1,
             Material.END_STONE
     )
 
@@ -148,6 +163,7 @@ object SoulMonsterParameters {
             180,
             10L,
             3,
+            1,
             Material.END_STONE_BRICKS
     )
 
@@ -156,6 +172,7 @@ object SoulMonsterParameters {
             80,
             260L,
             40L,
+            1,
             1,
             Material.LIME_WOOL
     )
@@ -166,6 +183,7 @@ object SoulMonsterParameters {
             230L,
             40L,
             1,
+            1,
             Material.LIME_TERRACOTTA
     )
 
@@ -175,6 +193,7 @@ object SoulMonsterParameters {
             300L,
             40L,
             2,
+            1,
             Material.GREEN_CONCRETE
     )
 
@@ -184,6 +203,7 @@ object SoulMonsterParameters {
             220L,
             20L,
             3,
+            1,
             Material.BLACK_CONCRETE_POWDER
     )
 
@@ -193,6 +213,7 @@ object SoulMonsterParameters {
             500L,
             5L,
             6,
+            1,
             Material.BLACK_CONCRETE
     )
 
@@ -202,6 +223,7 @@ object SoulMonsterParameters {
             150L,
             6L,
             2,
+            1,
             Material.LIGHT_GRAY_WOOL
     )
 
@@ -211,6 +233,7 @@ object SoulMonsterParameters {
             175L,
             6L,
             3,
+            1,
             Material.RED_WOOL
     )
 
@@ -220,6 +243,7 @@ object SoulMonsterParameters {
             180L,
             6L,
             4,
+            1,
             Material.LIGHT_GRAY_CONCRETE_POWDER
     )
 
@@ -229,6 +253,7 @@ object SoulMonsterParameters {
             140L,
             7L,
             2,
+            1,
             Material.COBWEB
     )
 
@@ -238,6 +263,7 @@ object SoulMonsterParameters {
             160L,
             7L,
             3,
+            1,
             Material.COBWEB
     )
 
@@ -247,6 +273,7 @@ object SoulMonsterParameters {
             180L,
             7L,
             4,
+            1,
             Material.COBWEB
     )
 
@@ -255,6 +282,7 @@ object SoulMonsterParameters {
             160,
             100L,
             15L,
+            1,
             1,
             Material.MOSSY_COBBLESTONE
     )
@@ -265,6 +293,7 @@ object SoulMonsterParameters {
             120L,
             15L,
             2,
+            1,
             Material.MOSSY_COBBLESTONE
     )
 
@@ -274,6 +303,7 @@ object SoulMonsterParameters {
             140L,
             15L,
             3,
+            1,
             Material.MOSSY_COBBLESTONE
     )
 
@@ -283,6 +313,7 @@ object SoulMonsterParameters {
             250L,
             5L,
             3,
+            1,
             Material.BONE_BLOCK
     )
 
@@ -292,6 +323,7 @@ object SoulMonsterParameters {
             250L,
             5L,
             4,
+            1,
             Material.BONE_BLOCK
     )
 
@@ -301,6 +333,7 @@ object SoulMonsterParameters {
             250L,
             5L,
             5,
+            1,
             Material.BONE_BLOCK
     )
 
@@ -310,6 +343,7 @@ object SoulMonsterParameters {
             180L,
             16L,
             3,
+            1,
             Material.STONE_BRICKS
     )
 
@@ -319,6 +353,7 @@ object SoulMonsterParameters {
             180L,
             16L,
             3,
+            1,
             Material.STONE_BRICKS
     )
 
@@ -328,6 +363,7 @@ object SoulMonsterParameters {
             180L,
             16L,
             3,
+            1,
             Material.STONE_BRICKS
     )
 
@@ -337,6 +373,7 @@ object SoulMonsterParameters {
             160L,
             9L,
             2,
+            1,
             Material.GRAY_STAINED_GLASS
     )
 
@@ -346,6 +383,7 @@ object SoulMonsterParameters {
             160L,
             9L,
             3,
+            1,
             Material.WHITE_STAINED_GLASS
     )
 
@@ -355,6 +393,7 @@ object SoulMonsterParameters {
             160L,
             9L,
             4,
+            1,
             Material.BLACK_STAINED_GLASS
     )
 
@@ -363,6 +402,7 @@ object SoulMonsterParameters {
             10,
             100L,
             10L,
+            1,
             1,
             Material.GOLD_BLOCK
     )
@@ -373,6 +413,7 @@ object SoulMonsterParameters {
             100L,
             10L,
             1,
+            1,
             Material.BLUE_GLAZED_TERRACOTTA
     )
 
@@ -381,6 +422,7 @@ object SoulMonsterParameters {
             10,
             100L,
             10L,
+            1,
             1,
             Material.RED_GLAZED_TERRACOTTA
     )
@@ -391,6 +433,7 @@ object SoulMonsterParameters {
             100L,
             10L,
             1,
+            1,
             Material.WHITE_GLAZED_TERRACOTTA
     )
 
@@ -400,6 +443,7 @@ object SoulMonsterParameters {
             100L,
             10L,
             1,
+            1,
             Material.BROWN_GLAZED_TERRACOTTA
     )
 
@@ -408,6 +452,7 @@ object SoulMonsterParameters {
             10,
             100L,
             10L,
+            1,
             1,
             Material.LIME_GLAZED_TERRACOTTA
     )

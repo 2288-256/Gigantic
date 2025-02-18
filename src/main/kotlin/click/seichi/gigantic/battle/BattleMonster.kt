@@ -19,6 +19,7 @@ import org.bukkit.boss.BossBar
 import org.bukkit.entity.ArmorStand
 import org.bukkit.entity.Player
 import org.bukkit.util.EulerAngle
+import java.util.*
 
 /**
  * @author tar0ss
@@ -254,6 +255,7 @@ class BattleMonster(
 
             block.type = Material.AIR
             block.update()
+            player.damage(monster.parameter.attackDamage.toDouble(), entity)
         }, 20L + 60L)
 
     }
