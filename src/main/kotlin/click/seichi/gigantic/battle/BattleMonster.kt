@@ -253,6 +253,7 @@ class BattleMonster(
             SoulMonsterSounds.ATTACK.play(block.centralLocation)
 
             block.type = Material.AIR
+            block.update()
         }, 20L + 60L)
 
     }
