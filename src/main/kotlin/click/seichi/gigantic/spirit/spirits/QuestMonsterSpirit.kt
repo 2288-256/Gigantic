@@ -144,6 +144,8 @@ class QuestMonsterSpirit(
 
     override fun onRemove() {
         if (!spawner.isValid) return
+        entity.remove()
+        bossBar.removeAll()
         spawner.offer(Keys.BATTLE_SPIRIT, null)
     }
 
