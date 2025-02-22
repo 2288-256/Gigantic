@@ -45,7 +45,7 @@ object SoulMonsterSounds {
     )
 
     val DEFENCE = DetailedSound(
-            Sound.ENTITY_VEX_HURT,
+            Sound.ITEM_SHIELD_BLOCK,
             SoundCategory.HOSTILE,
             pitch = 0.5F,
             volume = 1.5F
