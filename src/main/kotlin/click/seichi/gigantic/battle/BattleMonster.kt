@@ -2,7 +2,6 @@ package click.seichi.gigantic.battle
 
 import click.seichi.gigantic.Gigantic
 import click.seichi.gigantic.animation.animations.BattleMonsterAnimations
-import click.seichi.gigantic.animation.animations.MonsterSpiritAnimations
 import click.seichi.gigantic.extension.*
 import click.seichi.gigantic.message.messages.BattleMessages
 import click.seichi.gigantic.monster.SoulMonster
@@ -10,14 +9,15 @@ import click.seichi.gigantic.monster.ai.AttackBlock
 import click.seichi.gigantic.monster.ai.SoulMonsterState
 import click.seichi.gigantic.sound.sounds.SoulMonsterSounds
 import click.seichi.gigantic.topbar.bars.BattleBars
-import org.bukkit.Bukkit
-import org.bukkit.Chunk
-import org.bukkit.Location
-import org.bukkit.Material
+import click.seichi.gigantic.util.Random.weightedRandom
+import org.bukkit.*
 import org.bukkit.block.Block
+import org.bukkit.block.data.BlockData
 import org.bukkit.boss.BossBar
 import org.bukkit.entity.ArmorStand
 import org.bukkit.entity.Player
+import org.bukkit.potion.PotionEffect
+import org.bukkit.potion.PotionEffectType
 import org.bukkit.util.EulerAngle
 
 /**
@@ -65,6 +65,16 @@ class BattleMonster(
     private val totalDamageMap = mutableMapOf<Player, Long>()
 
     private val attackBlockData = Bukkit.createBlockData(monster.parameter.attackMaterial)
+
+    private val healBlockData = Bukkit.createBlockData(Material.PINK_GLAZED_TERRACOTTA)
+
+    private val debuffBlockData = Bukkit.createBlockData(Material.PURPLE_GLAZED_TERRACOTTA)
+
+    private val debuffList = listOf(
+        Pair(PotionEffectType.SLOW,2),
+        Pair(PotionEffectType.SLOW_DIGGING,1),
+        Pair(PotionEffectType.BLINDNESS,3)
+    )
 
     fun leave(battlePlayer: BattlePlayer) {
         bossBar.removePlayer(battlePlayer.player)
@@ -187,9 +197,23 @@ class BattleMonster(
         state = SoulMonsterState.WAIT
     }
 
+    private fun selectAttackType(): BlockData {
+        val attackTypeList = listOf(
+            Bukkit.createBlockData(monster.parameter.attackMaterial),
+            Bukkit.createBlockData(Material.PINK_GLAZED_TERRACOTTA),
+            Bukkit.createBlockData(Material.PURPLE_GLAZED_TERRACOTTA)
+        )
+        return if (health <= monster.parameter.health / 2){
+            attackTypeList.weightedRandom(listOf(0.15, 0.7, 0.15))
+        }else{
+            attackTypeList.filter{ it != healBlockData }.random()
+        }
+    }
+
     private fun attack(attackBlock: AttackBlock) {
         val player = attackBlock.target.player
         val block = attackBlock.block
+        val selectAttackType = selectAttackType()
 
         if (!entity.isValid || !player.isValid) return
         // send attack ready particle
@@ -218,7 +242,7 @@ class BattleMonster(
             // effects
             BattleMonsterAnimations.ATTACK_READY_BLOCK(attackBlockData)
                     .start(block.centralLocation)
-            player.sendBlockChange(block.location, attackBlockData)
+            player.sendBlockChange(block.location, selectAttackType)
             if (ticks % 10 == 0L) {
                 SoulMonsterSounds.ATTACK_READY_SUB.play(block.centralLocation)
             }
@@ -250,13 +274,39 @@ class BattleMonster(
 //            }
 
             // effects
-            SoulMonsterSounds.ATTACK.play(block.centralLocation)
-
-            block.type = Material.AIR
-            val world = block.world
-            world.createExplosion(block.location,2f)
-            block.update()
-            player.damage(monster.parameter.attackDamage.toDouble(), entity)
+            when (selectAttackType) {
+                attackBlockData -> {
+                    block.type = Material.AIR
+                    val world = block.world
+                    world.createExplosion(block.location,2f)
+                    block.update()
+                    player.damage(monster.parameter.attackDamage.toDouble(), entity)
+                }
+                healBlockData -> {
+                    block.type = Material.AIR
+                    block.update()
+                    //todo: monster.parameterに移してモンスターごとに変えるべき
+                    val healValue = 15
+                    if (health + healValue > monster.parameter.health){
+                        health = monster.parameter.health
+                    }else{
+                        health += healValue
+                    }
+                    BattleBars.AWAKE(health, monster, locale).show(bossBar)
+                }
+                debuffBlockData -> {
+                    block.type = Material.AIR
+                    block.update()
+                    val (effectType,level) = debuffList.random()
+                    player.addPotionEffect(
+                        PotionEffect(
+                            effectType,
+                            20 * 5,
+                            level
+                        )
+                    )
+                }
+            }
         }, 20L + 60L)
 
     }
