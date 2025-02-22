@@ -132,4 +132,27 @@ internal object Random {
     )
 
     fun nextEgg() = eggSet.random(generator.asKotlinRandom())
+
+    /**
+     * 重み付きランダム選択を行う拡張関数
+     * @param weights それぞれの要素の重み（確率）
+     * @return 重み付きランダムで選択された要素
+     */
+    fun <T> List<T>.weightedRandom(weights: List<Double>): T {
+        require(this.size == weights.size) { "リストとウェイトの要素数が一致しません" }
+        require(weights.all { it >= 0 }) { "重みは0以上である必要があります" }
+
+        val totalWeight = weights.sum()
+        val random = Random.nextDouble(totalWeight)
+        var sum = 0.0
+
+        for (i in this.indices) {
+            sum += weights[i]
+            if (random <= sum) {
+                return this[i]
+            }
+        }
+
+        return this.last()
+    }
 }
