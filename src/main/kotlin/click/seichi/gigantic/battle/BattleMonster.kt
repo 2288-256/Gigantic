@@ -240,8 +240,20 @@ class BattleMonster(
             }
 
             // effects
-            BattleMonsterAnimations.ATTACK_READY_BLOCK(attackBlockData)
-                    .start(block.centralLocation)
+            if ((ticks % 5).toInt() == 0) {
+                when (selectAttackType) {
+                    attackBlockData -> {
+                        BattleMonsterAnimations.ATTACK_READY_BLOCK.start(block.centralLocation)
+                    }
+                    healBlockData -> {
+                        BattleMonsterAnimations.SELF_HEAL_READY_BLOCK.start(block.centralLocation)
+                    }
+                    debuffBlockData -> {
+                        BattleMonsterAnimations.DEBUFF_READY_BLOCK.start(block.centralLocation)
+                    }
+                }
+            }
+
             player.sendBlockChange(block.location, selectAttackType)
             if (ticks % 10 == 0L) {
                 SoulMonsterSounds.ATTACK_READY_SUB.play(block.centralLocation)

@@ -4,10 +4,8 @@ import click.seichi.gigantic.animation.Animation
 import click.seichi.gigantic.extension.spawnColoredParticle
 import click.seichi.gigantic.extension.spawnColoredParticleSpherically
 import click.seichi.gigantic.util.NoiseData
-import click.seichi.gigantic.util.Random
 import org.bukkit.Color
 import org.bukkit.Particle
-import org.bukkit.block.data.BlockData
 
 /**
  * @author tar0ss
@@ -35,19 +33,41 @@ object BattleMonsterAnimations {
         }
     }
 
-    val ATTACK_READY_BLOCK = { data: BlockData ->
-        Animation(0) { location, _ ->
-            location.world?.spawnParticle(
-                    Particle.BLOCK_CRACK,
-                    location.clone().add(
-                            Random.nextGaussian(variance = 0.5),
-                            Random.nextGaussian(variance = 0.5),
-                            Random.nextGaussian(variance = 0.5)
-                    ),
-                    1,
-                    data
+    val ATTACK_READY_BLOCK = Animation(0) { location, _ ->
+        location.world?.spawnParticle(
+            Particle.LAVA,
+            location,
+            1,
+            0.1,
+            0.1,
+            0.1
+        )
+    }
+
+    val SELF_HEAL_READY_BLOCK = Animation(0) { location, _ ->
+        location.world?.spawnParticle(
+            Particle.REDSTONE, location.add(0.0,0.5,0.0), 25,
+            0.25,
+            0.25,
+            0.25,
+            Particle.DustOptions(
+                Color.fromRGB(
+                    255,141,161
+                ), 1F
             )
-        }
+        )
+    }
+
+    val DEBUFF_READY_BLOCK = Animation(0) { location, _ ->
+        location.world?.spawnParticle(
+            Particle.REDSTONE, location.add(0.0,0.5,0.0), 25,
+            0.25,
+            0.25,
+            0.25,
+            Particle.DustOptions(
+                Color.PURPLE, 1F
+            )
+        )
     }
 
     val DEFENCE = { color: Color ->
