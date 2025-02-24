@@ -88,4 +88,15 @@ object BattleMonsterAnimations {
         )
     }
 
+    val WIN_PARTICLE = Animation(0) { location, _ ->
+        location.world?.spawnParticle(
+            Particle.REDSTONE, location.add(0.0,0.5,0.0), 50,
+            1.0,
+            1.0,
+            1.0,
+            Particle.DustOptions(
+                Color.WHITE, 2F
+            )
+        )
+    }
 }

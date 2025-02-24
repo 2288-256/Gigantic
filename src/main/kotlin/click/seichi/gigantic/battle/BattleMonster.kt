@@ -351,5 +351,7 @@ class BattleMonster(
         }
         return trueDamage
     }
-
+    fun win(){
+        BattleMonsterAnimations.WIN_PARTICLE.start(eyeLocation)
+    }
 }
