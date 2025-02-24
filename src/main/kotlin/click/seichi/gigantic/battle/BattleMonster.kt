@@ -305,6 +305,7 @@ class BattleMonster(
                         health += healValue
                     }
                     BattleBars.AWAKE(health, monster, locale).show(bossBar)
+                    SoulMonsterSounds.MONSTER_HEAL.play(player.location)
                 }
                 debuffBlockData -> {
                     block.type = Material.AIR
@@ -317,6 +318,7 @@ class BattleMonster(
                             level
                         )
                     )
+                    SoulMonsterSounds.DEBUFF_ATTACK.playOnly(player)
                 }
             }
         }, 20L + 60L)

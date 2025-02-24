@@ -37,10 +37,17 @@ object SoulMonsterSounds {
             volume = 0.5F
     )
 
-    val ATTACK = DetailedSound(
-            Sound.ENTITY_EVOKER_CAST_SPELL,
+    val MONSTER_HEAL = DetailedSound(
+            Sound.ENTITY_PLAYER_LEVELUP,
             SoundCategory.HOSTILE,
-            pitch = 0.6F,
+            pitch = 2F,
+            volume = 0.8F
+    )
+
+    val DEBUFF_ATTACK = DetailedSound(
+            Sound.ENTITY_ELDER_GUARDIAN_CURSE,
+            SoundCategory.HOSTILE,
+            pitch = 1F,
             volume = 0.8F
     )
 
