@@ -30,11 +30,17 @@ object SoulMonsterSounds {
             volume = 1.0F
     )
 
-    val ATTACK_READY_SUB = DetailedSound(
-            Sound.ENTITY_HORSE_AMBIENT,
-            SoundCategory.HOSTILE,
-            pitch = 0.6F,
-            volume = 0.5F
+    val ATTACK_READY_SUB1 = DetailedSound(
+        Sound.ENTITY_HORSE_AMBIENT,
+        SoundCategory.HOSTILE,
+        pitch = 0.6F,
+        volume = 0.5F
+    )
+    val ATTACK_READY_SUB2 = DetailedSound(
+        Sound.BLOCK_NOTE_BLOCK_PLING,
+        SoundCategory.HOSTILE,
+        pitch = 2F,
+        volume = 0.5F
     )
 
     val MONSTER_HEAL = DetailedSound(

@@ -255,12 +255,17 @@ class BattleMonster(
             }
 
             player.sendBlockChange(block.location, selectAttackType)
-            if (ticks % 10 == 0L) {
-                SoulMonsterSounds.ATTACK_READY_SUB.play(block.centralLocation)
+            if (ticks < 45) {
+                if (ticks % 20 == 0L) {
+                    SoulMonsterSounds.ATTACK_READY_SUB1.play(block.centralLocation)
+                }
+            }else{
+                if (ticks % 4 == 0L && ticks <= 56L) {
+                    SoulMonsterSounds.ATTACK_READY_SUB2.play(block.centralLocation)
+                }
             }
             return@runTaskTimer true
         }
-
         // attack
         Bukkit.getScheduler().scheduleSyncDelayedTask(Gigantic.PLUGIN, {
             if (!entity.isValid || !player.isValid || player.isDead) return@scheduleSyncDelayedTask
